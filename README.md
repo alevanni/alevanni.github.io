@@ -1,2 +1,2 @@
 # github.io
-web page for exercise
+sample web page 
