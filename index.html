@@ -1,72 +1,90 @@
 <!DOCTYPE HTML PUBLIC “-//W3C//DTD HTML 4.01 Transitional//EN”>
 
 <html>
-  <head>
-    <title>Geolocation</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="map"></div>
-    <script>
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
-      var map, infoWindow;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 6
-        });
-        infoWindow = new google.maps.InfoWindow;
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            infoWindow.open(map);
-            map.setCenter(pos);
-          }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
-          });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
-        }
-      }
-
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
-        infoWindow.open(map);
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPFWoXLz3vTanWlDoJWEwvxyIir2UQx4c&callback=initMap">
-    </script>
-  </body>
-</html>
+<head>
+<link rel="stylesheet" type="text/css" href="portfolio.css">
  
+</head>
+ 
+<body>
+<div id="main">
+  
+ <nav id="navbar">
+    <ul>	
+      <li><a href="#welcome-section">Home</a></li>
+	  <li><a href="#projects">Projects</a></li>
+      <li><a href="#footer">Contacts</a></li>
+	  </ul>
+</nav>
 
+
+   <div id="welcome">
+        <section id="welcome-section">
+               <h1>Welcome to my page!</h1>
+			   <br>
+			   <p>Below you can find the web developing project I worked on... </p>
+        </section>
+   </div>
+   
+  <div id="all-projects" >
+      <section id="projects">
+	            <h2>Here are my completed projects:</h2>
+				<div class="showcase">
+				   <a href="https://codepen.io/dago19/full/oMwgKN" target="_blank">
+				   <div class="project-tile"> 
+     			        <h3>Tribute Page</h3> 
+                        <img src="https://lh3.googleusercontent.com/SH2hqfdVwLO0KNWo6FYkSZYu6vUo2uOF5OZxickQGZEAZjGnESVI7RqxGJzlTpz8tCR7q6VSFwe5QeUVlALnU-ynp57KvIx1uNmfiEH4wii0Lx3Xy5w_hwTWkvrWWZSOmzHwWSainw=w2400">
+				   </div>
+				   </a>
+				   <a href="https://codepen.io/dago19/full/WKObBX" target="_blank">
+				   <div class="project-tile">
+			            <h3>Survey Form</h3>
+		                <img src="https://lh3.googleusercontent.com/MjkNx6rT9ltEDhSXA9XaGN0nXF4GU5VIqUbwFnMUWuZwf9mH2w0vFJziZimXe0T3F94RYgAqnYqgfQ2DiPJwCMb40sJw3WWHBqtAAHgxvOJmIQwfwNCHVVPUtnO4mWevXQI2SfUCgA=w2400">
+			       </div>
+				   </a>
+				   <a href="https://codepen.io/dago19/full/OwxVQW" target="_blank">
+				   <div class="project-tile">
+			            <h3>Technical Documentation Page</h3>
+			            <img src="https://lh3.googleusercontent.com/UnpUvE2uGxLPMjrExm6Jkls7y3QK-Fpk7y4jajhff4cLObDqdG8ybAcclp62_7xTRL6wCjSNq-x3qfjIgi6Lqfm7ckCzBA6i0m03b5p6uFlolWNewkKbfS8bWFrACqLwXT6yzTGKyA=w2400">
+			       </div>
+				   
+				   </a>
+				   <a href="https://codepen.io/dago19/full/ZjJGrV" target="_blank">
+				   <div class="project-tile">
+			            <h3>Product Landing Page</h3>
+			            <img src="https://lh3.googleusercontent.com/lW_B6Pj-OgV8k9Z1sy7Wo-3CvAndeHMQQjHmIl-AYg27gJTBvBiyoZedg_Hxtx6M4U5B8QGevztJyuKEguPpwqtO8T-v_rVGLUmYKpFwTArejXYqxC9tkGPCEKffQPXgcAo4XRT1-Q=w2400">
+			       </div>
+				   </a>
+				   <br>
+				   <br>
+				</div>
+				
+				
+				
+				
+				<h2>Here are my in-progress projects:</h2>
+				<div class="showcase">
+				
+				   <div class="project-tile"> 
+     			        <h3>...nothing to show for now!</h3> 
+                        
+				   </div>
+				   
+				   
+				</div>
+       </section>
+      <br>
+  
+  </div>
+
+<footer id="footer">
+     <p>Contacts:
+    <a id="profile-link" href="https://www.freecodecamp.org/alevanni19" target="_blank">My Fcc Profile</a>	 <a href="">Facebook</a>    <a href="">Github</a>
+	    </p>
+	
+	
+    
+
+</footer>
+</body>
+</html>
