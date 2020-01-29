@@ -94,10 +94,9 @@ html {
     justify-content: center;	
 	
 }
-
 #projects img {
   width: 300px;
-  height:auto;
+  height:150px;
 }
 
 ul {
