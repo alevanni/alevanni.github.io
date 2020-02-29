@@ -36,6 +36,10 @@ html {
 	font-size: 50px;
 	font-weight: 45;
 }
+#welcome-section h3 {
+font-weigth: lighter
+}
+
 #welcome-section{
 	height: 100vh;
 }
