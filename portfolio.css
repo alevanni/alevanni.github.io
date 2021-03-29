@@ -1,112 +1,96 @@
 html {
-	background-color:#efefef;
+  background-color: #efefef;
 }
 #main {
-	
- width:100%;	
- font-family: verdana, sans-serif;	
+  width: 100%;
+  font-family: verdana, sans-serif;
   /*background-color: #F3FFC6;*/
   display: grid;
-  
-  grid-template-columns: 100vw;
+
+  grid-template-columns: 100%;
   grid-template-rows: 10vh 100vh auto auto;
-  
-  grid-template-areas: 
-      "navbar"
-      "welcome"
-      "all-projects"
-      "footer";
-	  
+
+  grid-template-areas:
+    "navbar"
+    "welcome"
+    "all-projects"
+    "footer";
 }
-
-
 
 #navbar {
   display: flex;
-  flex-direction: row;
-  background-color: #1C5253;
+  /*flex-direction: row;*/
+  background-color: #1c5253;
   position: fixed;
-  width: 100vw;
+  width: 100%;
   grid-area: navbar;
-  }
+}
 #welcome-section h1 {
-	color: #B6174B;
-	heigth: 100%;
-	margin-top: 30vh;
-	font-size: 50px;
-	font-weight: 45;
+  width: 100%;
+  color: #b6174b;
+  height: 100%;
+  margin-top: 30vh;
+  font-size: 50px;
+  font-weight: 450;
 }
-#welcome-section h3 {
-font-weigth: 2.5;
-}
-
-#welcome-section{
-	height: 100vh;
+#welcome-section {
+  height: 100vh;
+  position: relative;
+  width: 100%;
 }
 
 #welcome {
-  
   grid-area: welcome;
   /*background-color: white;*/
   margin: 0;
   text-align: center;
-  width:100vw;
-  
-  
+  width: 100%;
 }
 
-#all-projects h2{
-	font-size: 30px;
-    font-weight: 2.5;
-	color: #B6174B;
+#all-projects h2 {
+  font-size: 30px;
+  font-weight: 2.5;
+  color: #b6174b;
 }
 #all-projects {
+  width: 100%;
+  grid-area: all-projects;
 
-  width:100vw;
-  grid-area:all-projects;
-  
   text-align: center;
-  display: flex; 
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items:stretch;
+  align-items: stretch;
   text-align: center;
-  
 }
 
-.showcase{
-	width:100vw;
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-   grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
-	
-  
-	grid-gap: 10px;
-	/*background-color: blue*/
+.showcase {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
+
+  grid-gap: 10px;
+  /*background-color: blue*/
 }
-.project-tile h3{
-    font-weight: 2.5;
-	font-size: 20px;
-	color:black;
-	
+.project-tile h3 {
+  font-weight: 2.5;
+  font-size: 20px;
+  color: black;
 }
-.project-tile{
-	
-    font-weight: 2.5;
-	display:flex;
-	flex-direction: column;
-	align-items: center;
-    	
-	
+.project-tile {
+  font-weight: 2.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 #projects img {
   width: 300px;
-  height:150px;
+  height: 150px;
 }
 
 ul {
-	
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -115,62 +99,50 @@ ul {
 }
 
 li {
- float: left;
-   border-right: 1px solid #bbb;
+  float: left;
+  border-right: 1px solid #bbb;
 }
 
 #navbar li a {
-   display: block;
+  display: block;
   color: white;
   text-align: center;
   padding: 30px 40px;
   text-decoration: none;
-  
- 
 }
 li a:hover {
   background-color: #a9a9a9;
 }
 
-
-
 #footer {
   grid-area: footer;
-   text-align: center;
+  text-align: center;
   color: #a9a9a9;
 }
 #footer p {
-  background-color:#C3EB78; 
-  color: #306B34;
+  background-color: #c3eb78;
+  color: #306b34;
   font-size: 20px;
   padding: 30px 40px;
-  
-  
- 
 }
 #footer a {
-  color: #306B34;
-   padding: 30px 40px;
+  color: #306b34;
+  padding: 30px 40px;
   text-decoration: none;
-  
- 
 }
-
 
 .showcase a {
-	text-decoration: none;
+  text-decoration: none;
 }
-
-
 
 @media (max-width: 650px) {
   #navbar li a {
-  padding: 20px 30px;
+    padding: 20px 30px;
   }
-  #footer a{
+  #footer a {
     padding: 20px 30px;
   }
   #welcome-section {
-   /* margin-top: 120px;*/
+    /* margin-top: 120px;*/
   }
 }
