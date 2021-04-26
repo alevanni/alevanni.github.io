@@ -25,6 +25,14 @@ html {
   width: 100%;
   grid-area: navbar;
 }
+
+.project-tile img {
+  width: 200px;
+  height: 150px;
+  border-radius: 15px;
+  box-shadow: 0px 0px 30px 10px grey;
+}
+
 #welcome-section h1 {
   width: 100%;
   color: #b6174b;
@@ -32,18 +40,16 @@ html {
   margin-top: 30vh;
   font-size: 50px;
   font-weight: 450;
+  background-color: grey;
 }
 #welcome-section {
   height: 100vh;
-  position: relative;
+  text-align: center;
   width: 100%;
 }
-
-#welcome {
+welcome {
   grid-area: welcome;
-  /*background-color: white;*/
-  margin: 0;
-  text-align: center;
+  color: red;
   width: 100%;
 }
 
@@ -54,24 +60,28 @@ html {
 }
 #all-projects {
   width: 100%;
+  height: auto;
+  background-color: blue;
   grid-area: all-projects;
-
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
   text-align: center;
 }
-
+#QA {
+  background-color: red;
+}
+#apis {
+  background-color: green;
+}
+#front-end{
+  background-color: yellow;
+}
 .showcase {
   width: 100%;
+  padding: 50px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
-
+  border: 2px solid black;
+  grid-template-columns: auto auto auto auto;
   grid-gap: 10px;
-  /*background-color: blue*/
+  /*background-color: orange;*/
 }
 .project-tile h3 {
   font-weight: 2.5;
@@ -79,15 +89,12 @@ html {
   color: black;
 }
 .project-tile {
+  background-color: pink;
+  width: 300px;
   font-weight: 2.5;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-#projects img {
-  width: 300px;
-  height: 150px;
 }
 
 ul {
@@ -128,10 +135,6 @@ li a:hover {
 #footer a {
   color: #306b34;
   padding: 30px 40px;
-  text-decoration: none;
-}
-
-.showcase a {
   text-decoration: none;
 }
 
