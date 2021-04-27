@@ -3,6 +3,7 @@
 <head>
   <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+  
    <script src="portfolio.js"></script>
    <script async defer src="https://buttons.github.io/buttons.js"></script>
 </head>
@@ -29,9 +30,9 @@
     </div>
     <div id="all-projects">
       <div class="w3-bar w3-black">
-        <button class="w3-bar-item w3-button" onclick="openCard('QA')">QA</button>
-        <button class="w3-bar-item w3-button" onclick="openCard('apis')">APIs</button>
-        <button class="w3-bar-item w3-button" onclick="openCard('front-end')">Front End</button>
+        <button class="tab-button" id="QA-button" onclick="openCard('QA')">QA</button>
+        <button class="tab-button" id="apis-button" onclick="openCard('apis')">APIs</button>
+        <button class="tab-button" id="front-end-button" onclick="openCard('front-end')">Front End</button>
       </div>
       <div id="QA" class="card">
         <h2>QA</h2>
