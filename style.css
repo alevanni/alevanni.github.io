@@ -21,7 +21,7 @@ html {
 #navbar {
   display: flex;
   /*flex-direction: row;*/
-  background-color: #1c5253;
+  background-color: #26DFD0;
   position: fixed;
   z-index: 1;
   width: 100%;
@@ -29,10 +29,10 @@ html {
 }
 
 .project-tile img {
-  width: 200px;
+  width: 280px;
   height: 150px;
-  border-radius: 15px;
-  box-shadow: 0px 0px 30px 10px grey;
+  border-radius: 5px;
+  
 }
 
 #welcome-section h1 {
@@ -42,7 +42,7 @@ html {
   margin-top: 30vh;
   font-size: 50px;
   font-weight: 450;
-  background-color: grey;
+  /*background-color: grey;*/
 }
 #welcome-section {
   height: 100vh;
@@ -63,7 +63,7 @@ welcome {
 #all-projects {
   width: 100%;
   height: auto;
-  background-color: blue;
+  /*background-color: blue;*/
   grid-area: all-projects;
   text-align: center;
   display: flex;
@@ -72,30 +72,33 @@ welcome {
 }
 .card{
   width: 100%;
+  padding-bottom: 40px;
 }
 .tab-button{
-  border: 3px solid black;
-  border-style: solid solid solid solid;
+  border-radius: 10px 80px 0px 0px;
+  border-style: none;
   width: 150px;
-  border-bottom: 3px solid white;
+  height: 80px;
+  color: black;
+  /*border-bottom: 3px solid white;*/
 }
 #QA-button{
-  background-color: red;
+  background-color: #B8EE30;
 }
 #apis-button{
-  background-color: green;
+  background-color: #F62AA0;
 }
 #front-end-button{
-  background-color: yellow;
+  background-color: #F9D030;
 }
 #QA {
-  background-color: white;
+  background-color: #DDF79C;
 }
 #apis {
-  background-color: white;
+  background-color: #FCBFE2;
 }
 #front-end{
-  background-color: white;
+  background-color: #FCE797;
 }
 .showcase {
   width: 100%;
@@ -103,16 +106,19 @@ welcome {
   
   grid-template-columns: auto auto auto auto;
   justify-content: space-evenly;
-  background-color: orange;
+  /*background-color: orange;*/
 }
 
 .project-tile {
-  background-color: pink;
+  /*background-color: pink;*/
+  border: 1px solid;
+  border-radius: 10px;
   width: 300px;
   font-weight: 2.5;
   display: flex;
   flex-direction: column;
   align-items: center;
+  box-shadow: 3px 3px 7px 3px #626262;
 }
 
 ul {
@@ -140,12 +146,13 @@ li a:hover {
 }
 
 #footer {
+  
   grid-area: footer;
   text-align: center;
   color: #a9a9a9;
 }
 #footer p {
-  background-color: #c3eb78;
+  background-color: #26DFD0;
   color: #306b34;
   font-size: 20px;
   padding: 30px 40px;
