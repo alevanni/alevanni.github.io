@@ -21,20 +21,26 @@ html {
 #navbar {
   display: flex;
   /*flex-direction: row;*/
-  background-color: #26DFD0;
+  background-color: #26dfd0;
   position: fixed;
   z-index: 1;
   width: 100%;
   grid-area: navbar;
 }
-
+#projects {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
 .project-tile img {
   width: 280px;
-  height: 150px;
+  height: 170px;
   border-radius: 5px;
-  
 }
-
+.project-tile h3 {
+  font-weight: 200;
+}
 #welcome-section h1 {
   width: 100%;
   color: #b6174b;
@@ -56,54 +62,54 @@ welcome {
 }
 
 #all-projects h2 {
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 2.5;
   color: #b6174b;
 }
 #all-projects {
   width: 100%;
   height: auto;
-  /*background-color: blue;*/
   grid-area: all-projects;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  
 }
-.card{
+.card {
   width: 100%;
   padding-bottom: 40px;
 }
-.tab-button{
+.tab-button {
   border-radius: 10px 80px 0px 0px;
   border-style: none;
   width: 150px;
   height: 80px;
   color: black;
+
   /*border-bottom: 3px solid white;*/
 }
-#QA-button{
-  background-color: #B8EE30;
+.tab-buttons {
+  margin-bottom: 0px;
 }
-#apis-button{
-  background-color: #F62AA0;
+#QA-button {
+  background-color: #b8ee30;
 }
-#front-end-button{
-  background-color: #F9D030;
+#apis-button {
+  background-color: #f62aa0;
+}
+#front-end-button {
+  background-color: #f9d030;
 }
 #QA {
-  background-color: #DDF79C;
+  background-color: #ddf79c;
 }
 #apis {
-  background-color: #FCBFE2;
+  background-color: #fcbfe2;
 }
-#front-end{
-  background-color: #FCE797;
+#front-end {
+  background-color: #fce797;
 }
 .showcase {
   width: 100%;
   display: grid;
-  
+
   grid-template-columns: auto auto auto auto;
   justify-content: space-evenly;
   /*background-color: orange;*/
@@ -146,13 +152,12 @@ li a:hover {
 }
 
 #footer {
-  
   grid-area: footer;
   text-align: center;
   color: #a9a9a9;
 }
 #footer p {
-  background-color: #26DFD0;
+  background-color: #26dfd0;
   color: #306b34;
   font-size: 20px;
   padding: 30px 40px;
