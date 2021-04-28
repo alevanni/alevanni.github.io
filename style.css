@@ -4,9 +4,10 @@ html {
 
 #main {
   width: 100%;
-  font-family: verdana, sans-serif;
+
   /*background-color: #F3FFC6;*/
   display: grid;
+  font-family: "Abel";
 
   grid-template-columns: 100%;
   grid-template-rows: 10vh 100vh auto auto;
@@ -40,14 +41,15 @@ html {
 }
 .project-tile h3 {
   font-weight: 200;
+  font-size: 25px;
 }
 #welcome-section h1 {
   width: 100%;
   color: #b6174b;
   height: 100%;
-  margin-top: 30vh;
+  margin-top: 50vh;
   font-size: 50px;
-  font-weight: 450;
+  font-weight: 200;
   /*background-color: grey;*/
 }
 #welcome-section {
@@ -79,10 +81,15 @@ welcome {
 .tab-button {
   border-radius: 10px 80px 0px 0px;
   border-style: none;
-  width: 150px;
+  width: 200px;
   height: 80px;
   color: black;
-
+  font-family: "Abel";
+  text-align: center;
+  font-size: 30px;
+  padding-right: 30px;
+  color: white;
+  font-weight: 200;
   /*border-bottom: 3px solid white;*/
 }
 .tab-buttons {
@@ -106,6 +113,7 @@ welcome {
 #front-end {
   background-color: #fce797;
 }
+
 .showcase {
   width: 100%;
   display: grid;
@@ -120,6 +128,7 @@ welcome {
   border: 1px solid;
   border-radius: 10px;
   width: 300px;
+  height: 400px;
   font-weight: 2.5;
   display: flex;
   flex-direction: column;
@@ -146,26 +155,36 @@ li {
   text-align: center;
   padding: 30px 40px;
   text-decoration: none;
+  font-size: 20px;
 }
 li a:hover {
   background-color: #a9a9a9;
 }
-
+.card p {
+  margin-bottom: 50px;
+  font-size: 20px;
+}
 #footer {
   grid-area: footer;
   text-align: center;
   color: #a9a9a9;
 }
 #footer p {
+  padding: 20px;
   background-color: #26dfd0;
   color: #306b34;
   font-size: 20px;
-  padding: 30px 40px;
 }
 #footer a {
   color: #306b34;
-  padding: 30px 40px;
+  margin-left: 40px;
+  
   text-decoration: none;
+}
+footer img {
+  width: 25px;
+  margin-right: 10px;
+  vertical-align: sub;
 }
 
 @media (max-width: 650px) {
