@@ -106,14 +106,22 @@ welcome {
 }
 #QA {
   background-color: #ddf79c;
+  }
+#QA h2 {
+  color: #F50A11;
 }
 #apis {
   background-color: #fcbfe2;
 }
+#apis h2 {
+  color: #00C82F;
+}
 #front-end {
   background-color: #fce797;
 }
-
+#front-end h2 {
+  color: #051EFA;
+}
 .showcase {
   width: 100%;
   display: grid;
