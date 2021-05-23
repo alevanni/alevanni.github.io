@@ -1,93 +1,294 @@
-<html>
-
 <head>
- <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-  <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Abel" rel='stylesheet'>
   <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
   
-   <script src="portfolio.js"></script>
-   <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <!-- Place this tag in your head or just before your close body tag. -->
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script src="https://kit.fontawesome.com/958651474f.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <div id="main">
 
     <nav id="navbar">
-      
+
       <ul>
         <li><a href="#welcome-section">Home</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#footer">Contacts</a></li>
       </ul>
     </nav>
-
     <div id="welcome">
       <section id="welcome-section">
+        <img id="welcome-image" src="https://lh3.googleusercontent.com/f-k32fiwQvhpT8eEzIu-HxTRDGDc9-UAwFbqNng5cR9dTOfkDqUMTfBKRo1auwzt-KdM6kDjHe4uXs3JV6SsbQ6nz71OXrtb2Wsf99kWRZY3DQrM3CiJ854dGl3aCAYq3ItP1wjvyg=w2400" />
+        <img id="welcome-image2" src="https://lh3.googleusercontent.com/CSzCdeaO0KN9SK-SqqhmnVHeuickQkfSODNTzRt0DibxfIQCDGAsweFLWD9QY9-Pozw0NbfbxVOCsG3FZMyBXls62r1y_yOVxgwYakLEvEu_UjZDkjXbTy4DIJ37yJeaqchqQn3iRA=w2400" />
         <h1>Hello.</h1>
-        <br>
-        <br>
-        <br>
 
       </section>
     </div>
+    <br>
+    <br>
+    <br>
+
     <div id="all-projects">
       <section id="projects">
-      <div class="tab-buttons">
-        <button class="tab-button" id="QA-button" onclick="openCard('QA')">QA</button>
-        <button class="tab-button" id="apis-button" onclick="openCard('apis')">APIs</button>
-        <button class="tab-button" id="front-end-button" onclick="openCard('front-end')">Front End</button>
-      </div>
-      <div id="QA" class="card">
-        <h2>QA</h2>
-        <p>These are my QA projects</p>
-        <div class="showcase" id="QA-showcase">
-		      <div class="project-tile" ><h3>Issue Tracker</h3><a href = "https://issuetracker-fcccertif.glitch.me/" target = "_blank"><img src=" https://lh3.googleusercontent.com/7Z8YOflZZCMeu7E94YlCrMD4BWG58OpDx79pDoJ4BoMxd_qHuMQQSjrX2NMRuymOtPL9MAsaepuhzi-BxDc1-17oczcz6NzdQvMl-dNS9i2rlAgXaH33TdKYEOlegoG78R-DAbpdZQ=w2400"></a>
-                   <a class="github-button" href="https://github.com/alevanni/issue-tracker" data-size="large" aria-label="Use this GitHub Action alevanni/issue-tracker on GitHub" style="background-color:red"> GitHub </a></div>
-		      <div class="project-tile" ><h3>Sudoku Solver</h3><a href = "https://boilerplate-project-sudoku-solver.alevanni.repl.co/" target = "_blank"><img src="https://lh3.googleusercontent.com/2C5PPzqclDobaPnoNQZBhqV80Ws2exG6V0PT_IxTTrDzveKDzmDCcyT9TnTyVrGRUtGwt_s2bfsj1bLQqCR2UNdnN9UrHjYwx4fOuTqxQ1lI0oi8A-V3jQOkrfWzvdr5XDBPXHA2QQ=w2400"></a>
-			       <a class="github-button" href="https://github.com/alevanni/sudoku-solver" data-size="large" aria-label="Use this GitHub Action alevanni/sudoku-solver on GitHub"> GitHub </a></div>
-		      <div class="project-tile" ><h3>Imperial Metric Converter</h3><a href = "https://imperialmetricconverter.glitch.me/" target = "_blank"><img src="https://lh3.googleusercontent.com/Odav0dWTgXukH6yRefLoi0d2SymHbijLxqMgXn8h17_aV7BDoWgPKV24i1LXwvWBtZfAFlwOz6Jnhpswzd8ublf9fsPGPY0uoahAsZzl_J87CzRyGBaboX38QE3quvrMprhPFyt_6A=w2400"></a>
-		    	   <a class="github-button" href="https://github.com/alevanni/imperial-metric-converter" data-size="large" aria-label="Use this GitHub Action alevanni/imperial-metric-converter on GitHub"> GitHub </a></div>
-                <div class="project-tile" ><h3>American British Translator</h3><a href = "https://american-british-translator.alevanni.repl.co/" target = "_blank"><img src="https://lh3.googleusercontent.com/hxfgaN9cmgzdp_QF7TJBulMbJ4XcrjGod0aiCKURLYaa69F1vOTVS6nf-YH0ZeqiMYnROva0KbAeq87BAGLqT1yFo43PLqjKaMz5TokKnewrETrV5mAWp33mpMtCHZC3ltges0Tw4g=w2400"></a>
-				 <a class="github-button" href="https://github.com/alevanni/american-british-translator" data-size="large" aria-label="Use this GitHub Action alevanni/american-british-translator on GitHub"> GitHub </a></div>
-	    </div>
-		     
-      </div>		
-		      <div id="apis" class="card" style="display:none">
-        <h2>APIs and Microservices</h2>
-        <p>These are my APIs and Microservices Projects</p>
-        <div class="showcase" id="apis-showcase">
-		     <div class="project-tile" ><h3>Request Header Parser Microservice</h3><a href = "https://whoam-i.glitch.me" target = "_blank"><img src="https://lh3.googleusercontent.com/80bmBVeGOM9_JpgA-8WzuO9EfBJJj5Pl3G3IUsFrIeRUp5Cl8SpeIU7zissdc4ZsjHsV-ZsqeJA_R3lbKkYQ2ovmWpTUWC-vQGVIlWh0K6tqY1scJuVx7_UIvXUNNzrx9AyoXTQsvA=w2400"></a>
-			  <a class="github-button" href="https://github.com/alevanni/request-header-parser-microservice" data-size="large" aria-label="Use this GitHub Action alevanni/request-header-parser-microservice on GitHub"> GitHub </a></div>
-		     <div class="project-tile" ><h3>Timestamp Microservice</h3><a href = "https://timestamp-microservice-for-fc.glitch.me/" target = "_blank"><img src="https://lh3.googleusercontent.com/uolh-eBsrRzsxsAOXjiF_8MouzHq9gp_3bFwOLyR5_8vXgpt7tRHxwL73B8GpTn915t-nQNYZm4a6zYj-jlO6vwX6NSgkM0m4NX7L0yU0s1FGe46l8Owb20B73yFyG98YQ1GSy9Aww=w2400"></a>
-			 <a class="github-button" href="https://github.com/alevanni/timestamp-microservice" data-size="large" aria-label="Use this GitHub Action alevanni/timestamp-microservice on GitHub"> GitHub </a></div>
-		     <div class="project-tile" ><h3>File Metadata</h3><a href = "https://file-metadata-ms-fcc.glitch.me" target = "_blank"><img src="https://lh3.googleusercontent.com/gRYK5v8f7t7oK0eKQGb3EgtL8ndB_QIIRbJSmN9EHsruayP5DLvchxEtxpvEEGsQRvmG1OixIqtR-reIpnmkhJ5uFX2FfbxrVwF0D3s6k5Ad1Ebz8wj_CakofXFH-1iQm0x7r4unzw=w2400"></a>
-			 <a class="github-button" href="https://github.com/alevanni/file-metadata" data-size="large" aria-label="Use this GitHub Action alevanni/file-metadata on GitHub"> GitHub </a>
-			 </div>
-				
-		
-        </div>
-      </div>
-      <div id="front-end" class="card" style="display:none">
-        <h2>Front End Development</h2>
-        <p>These are my Front End Development projects</p>
-        <div class="showcase" id="front-end-showcase">
-		     <div class="project-tile" ><h3>Markdown Previewer</h3><a href = "https://codepen.io/alevanni/full/rOxjXK" target = "_blank"><img src="https://lh3.googleusercontent.com/dP4BSq6_6Lp-0ZZdYToctTR0ajMN7F0IeS3OARUaivV4CSK8M5rLqBGL7HbyCLPzePT2IQ2u5Bx8QdKzp3KecpXoWcxQmlazBirVYgNFXpJkZU_RFl7l6OQ_0DxPvPjyp74OCbk0Mg=w2400"></a></div>
-		     <div class="project-tile" ><h3>Javascript Calculator</h3><a href = "https://codepen.io/alevanni/full/avJpxz" target = "_blank"><img src="https://lh3.googleusercontent.com/RAjzi26lU5sT0Bj_UHOZcSRXj43EjWmvGWcvDIUEoFGZaMgw0Qo3npzBkwAoF3nqBSaT4nGYupBaYAGEbeF0v1ymXspU4UwQxf5MZ-gwggBY3gJuPXqehbHMeQTPWNKYj0Vdct5ZRg=w2400"></a></div>
-		     <div class="project-tile" ><h3>Pomodoro Clock</h3><a href = "https://codepen.io/alevanni/full/EVWNwE" target = "_blank"><img src="https://lh3.googleusercontent.com/3zvPRS-HKpUrv25wJW2kUR8g-AqLzveV3ZJuGwNquRc8mN1YuRg9HJS6qENazH5x5yG_IqlHaWJLB1eUnHJjS_GN0pU6vyilqhW9yvxLAl5Erg5TNs_6UPuF_K45KKQTyI-WBcJVcA=w2400"></a></div>
-		     <div class="project-tile" ><h3>Weather App</h3><a href = "https://codepen.io/alevanni/full/LpNbEp" target = "_blank"><img src="https://lh3.googleusercontent.com/gRFbogIxHnBzWNUUJx8NyVuXqaKT0DmbmNIzJmuJaYcBjxIvE4Ns4o0JxszyutndQmG8Lkr1iTwW8v1MMJ-Hbya3rfQHNDPzyfZ-UlYo4WIsMfPXEP7HGsIvQoRGn32t60gDUcB5lw=w2400"></a></div>
-		
-        </div>
-      </div>
-      </section>
-      </div>
+        <div id="exTab2" class="container">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a href="#1" data-toggle="tab">QA</a>
+            </li>
+            <li><a href="#2" data-toggle="tab">APIs</a>
+            </li>
+            <li><a href="#3" data-toggle="tab">Front End</a>
+            </li>
+          </ul>
 
-      <footer id="footer">
-        <p>Contacts:
-          <a id="profile-link" href="https://www.freecodecamp.org/alevanni19" target="_blank"><img src="https://cdn.hyperdev.com/us-east-1%3A52a203ff-088b-420f-81be-45bf559d01b1%2Ffavicon.ico" />My Fcc Profile</a> 
-          <a  href="http://alevanni.github.io/" target="_blank"><a href="https://github.com/alevanni"> <img src="https://lh3.googleusercontent.com/xcjH3vsMfDvk_IbHCCOXyGfffsS0Kv8yqHv3p45U7Dtvhfj_d1T6iywoBsxiNSXaBqiETwb4teIYJ_pcH-NpbTrOQmFMKXlKp6HjMao9rqdJ1l89D9rjgIgEPqKVbvYMKLvcj-xbwg=s32-p-k" /> GitHub</a></div>
-      </footer>
+          <div class="tab-content ">
+            <div class="tab-pane active card" id="1">
+              <h2>QA</h2>
+              <p>These are the QA projects I developed for FreeCodeCamp</p>
+
+              <br>
+              <div class="showcase" id="QA-showcase">
+                <div class="project-tile">
+                  <h3>Issue Tracker</h3>
+                  <div class="tile-img" style="background: 
+url(https://lh3.googleusercontent.com/7Z8YOflZZCMeu7E94YlCrMD4BWG58OpDx79pDoJ4BoMxd_qHuMQQSjrX2NMRuymOtPL9MAsaepuhzi-BxDc1-17oczcz6NzdQvMl-dNS9i2rlAgXaH33TdKYEOlegoG78R-DAbpdZQ=w2400) no-repeat 50% 50%;background-size: 280px 170px">
+                    <div class="overlay">
+                      <a href="https://issuetracker-fcccertif.glitch.me/" target="_blank"> <i class="fa fa-eye" ></i>Live</a>
+                      <a href="https://github.com/alevanni/issue-tracker" data-size="large" aria-label="Use this GitHub Action alevanni/issue-tracker on GitHub" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> GitHub </a>
+                    </div>
+
+                  </div>
+                  <p class="icon-text">
+                    <i class='fa fa-html5'></i>
+                    <i class='fa fa-css3'></i>
+                    <i class='fab fa-js'></i>
+                    <i class='fab fa-node-js'></i>
+                    <i class='fab fa-npm'></i>
+                  </p>
+                </div>
+                
+                <div class="project-tile">
+                  <h3>Sudoku Solver</h3>
+                  <div class="tile-img" style="background: 
+url(https://lh3.googleusercontent.com/2C5PPzqclDobaPnoNQZBhqV80Ws2exG6V0PT_IxTTrDzveKDzmDCcyT9TnTyVrGRUtGwt_s2bfsj1bLQqCR2UNdnN9UrHjYwx4fOuTqxQ1lI0oi8A-V3jQOkrfWzvdr5XDBPXHA2QQ=w2400) no-repeat 50% 50%;background-size: 280px 170px">
+                    <div class="overlay">
+                      <a href="https://boilerplate-project-sudoku-solver.alevanni.repl.co/" target="_blank"> <i class="fa fa-eye" ></i>Live</a>
+                      <a href="https://github.com/alevanni/sudoku-solver" data-size="large" aria-label="Use this GitHub Action alevanni/issue-tracker on GitHub" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> GitHub </a>
+
+                    </div>
+                  </div>
+                  <p class="icon-text">
+                    <i class="fa fa-html5"></i>
+                    <i class="fa fa-css3"></i>
+                    <i class="fab fa-js"></i>
+                    <i class="fab fa-node-js"></i>
+                    <i class="fab fa-npm"></i>
+                  </p>
+                </div>
+                <div class="project-tile">
+                  <h3>Imperial Metric Converter</h3>
+                  <div class="tile-img" style="background: 
+url(https://lh3.googleusercontent.com/Odav0dWTgXukH6yRefLoi0d2SymHbijLxqMgXn8h17_aV7BDoWgPKV24i1LXwvWBtZfAFlwOz6Jnhpswzd8ublf9fsPGPY0uoahAsZzl_J87CzRyGBaboX38QE3quvrMprhPFyt_6A=w2400) no-repeat 50% 50%;background-size: 280px 170px">
+                    <div class="overlay">
+                      <a href="https://imperialmetricconverter.glitch.me/" target="_blank"> <i class="fa fa-eye" ></i>Live</a>
+                      <a href="https://github.com/alevanni/imperial-metric-converter" data-size="large" aria-label="Use this GitHub Action alevanni/issue-tracker on GitHub" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> GitHub </a>
+
+                    </div>
+                  </div>
+                  <p class="icon-text">
+                    <i class='fa fa-html5'></i>
+                    <i class='fa fa-css3'></i>
+                    <i class='fab fa-js'></i>
+                    <i class='fab fa-node-js'></i>
+                    <i class='fab fa-npm'></i>
+                  </p>
+                </div>
+                <div class="project-tile">
+                  <h3>American British Translator</h3>
+                  <div class="tile-img" style="background: 
+url(https://lh3.googleusercontent.com/hxfgaN9cmgzdp_QF7TJBulMbJ4XcrjGod0aiCKURLYaa69F1vOTVS6nf-YH0ZeqiMYnROva0KbAeq87BAGLqT1yFo43PLqjKaMz5TokKnewrETrV5mAWp33mpMtCHZC3ltges0Tw4g=w2400) no-repeat 50% 50%;background-size: 280px 170px">
+                    <div class="overlay">
+                      <a href="https://american-british-translator.alevanni.repl.co/" target="_blank"> <i class="fa fa-eye"></i>Live</a>
+                      <a href="https://github.com/alevanni/american-british-translator" data-size="large" aria-label="Use this GitHub Action alevanni/issue-tracker on GitHub" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> GitHub </a>
+
+                    </div>
+                  </div>
+                  <p class="icon-text">
+                    <i class='fa fa-html5'></i>
+                    <i class='fa fa-css3'></i>
+                    <i class='fab fa-js'></i>
+                    <i class='fab fa-node-js'></i>
+                    <i class='fab fa-npm'></i>
+                  </p>
+                </div>
+                
+                
+              </div>
+
+            </div>
+            <div class="tab-pane" id="2">
+              <h2>APIs and Microservices</h2>
+              <br>
+              <div class="showcase" id="API-showcase">
+                <div class="project-tile">
+                  <h3>Request Header Parser Microservice</h3>
+                  <div class="tile-img" style="background: 
+url(https://lh3.googleusercontent.com/80bmBVeGOM9_JpgA-8WzuO9EfBJJj5Pl3G3IUsFrIeRUp5Cl8SpeIU7zissdc4ZsjHsV-ZsqeJA_R3lbKkYQ2ovmWpTUWC-vQGVIlWh0K6tqY1scJuVx7_UIvXUNNzrx9AyoXTQsvA=w2400) no-repeat 50% 50%;background-size: 280px 170px">
+                    <div class="overlay">
+                      <a href="https://whoam-i.glitch.me" target="_blank"> <i class="fa fa-eye" ></i>Live</a>
+                      <a href="https://github.com/alevanni/request-header-parser-microservice" data-size="large" aria-label="Use this GitHub Action alevanni/issue-tracker on GitHub" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> GitHub </a>
+                    </div>
+                  </div>
+                  <p class="icon-text">
+                    <i class='fa fa-html5'></i>
+                    <i class='fa fa-css3'></i>
+                    <i class='fab fa-js'></i>
+                    <i class='fab fa-node-js'></i>
+                    <i class='fab fa-npm'></i>
+                  </p>
+                </div>
+                <div class="project-tile">
+                  <h3>Timestamp Microservice</h3>
+                  <div class="tile-img" style="background: 
+url(https://lh3.googleusercontent.com/uolh-eBsrRzsxsAOXjiF_8MouzHq9gp_3bFwOLyR5_8vXgpt7tRHxwL73B8GpTn915t-nQNYZm4a6zYj-jlO6vwX6NSgkM0m4NX7L0yU0s1FGe46l8Owb20B73yFyG98YQ1GSy9Aww=w2400) no-repeat 50% 50%;background-size: 280px 170px">
+                    <div class="overlay">
+                      <a href="https://timestamp-microservice-for-fc.glitch.me/" target="_blank"> <i class="fa fa-eye" ></i>Live</a>
+                      <a href="https://github.com/alevanni/timestamp-microservice" data-size="large" aria-label="Use this GitHub Action alevanni/issue-tracker on GitHub" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> GitHub </a>
+
+                    </div>
+                  </div>
+                  <p class="icon-text">
+                    <i class='fa fa-html5'></i>
+                    <i class='fa fa-css3'></i>
+                    <i class='fab fa-js'></i>
+                    <i class='fab fa-node-js'></i>
+                    <i class='fab fa-npm'></i>
+                  </p>
+                </div>
+                <div class="project-tile">
+                  <h3>File Metadata</h3>
+                  <div class="tile-img" style="background: 
+url(https://lh3.googleusercontent.com/gRYK5v8f7t7oK0eKQGb3EgtL8ndB_QIIRbJSmN9EHsruayP5DLvchxEtxpvEEGsQRvmG1OixIqtR-reIpnmkhJ5uFX2FfbxrVwF0D3s6k5Ad1Ebz8wj_CakofXFH-1iQm0x7r4unzw=w2400) no-repeat 50% 50%;background-size: 280px 170px">
+                    <div class="overlay">
+                      <a href="https://file-metadata-ms-fcc.glitch.me" target="_blank"> <i class="fa fa-eye" ></i>Live</a>
+                      <a href="https://github.com/alevanni/file-metadata" data-size="large" aria-label="Use this GitHub Action alevanni/issue-tracker on GitHub" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> GitHub </a>
+
+                    </div>
+                  </div>
+                  <p class="icon-text">
+                    <i class='fa fa-html5'></i>
+                    <i class='fa fa-css3'></i>
+                    <i class='fab fa-js'></i>
+                    <i class='fab fa-node-js'></i>
+                    <i class='fab fa-npm'></i>
+                  </p>
+                </div>
+
+              </div>
+
+            </div>
+            <div class="tab-pane" id="3">
+              <h2>Front-End</h2>
+              <p>These are the Front-End Development projects I developed for FreeCodeCamp</p>
+              <br>
+              <div class="showcase" id="FE-showcase">
+                <div class="project-tile">
+                  <h3>Markdown Previewer</h3>
+                  <div class="tile-img" style="background: 
+url(https://lh3.googleusercontent.com/dP4BSq6_6Lp-0ZZdYToctTR0ajMN7F0IeS3OARUaivV4CSK8M5rLqBGL7HbyCLPzePT2IQ2u5Bx8QdKzp3KecpXoWcxQmlazBirVYgNFXpJkZU_RFl7l6OQ_0DxPvPjyp74OCbk0Mg=w2400) no-repeat 50% 50%;background-size: 280px 170px">
+                    <div class="overlay">
+                      <a href="https://codepen.io/alevanni/full/rOxjXK" target="_blank"> <i class="fa fa-eye" ></i>Live</a>
+
+                    </div>
+                  </div>
+                  <p class="icon-text">
+                    <i class='fa fa-html5'></i>
+                    <i class='fa fa-css3'></i>
+                    <i class='fab fa-js'></i>
+                    <i class='fab fa-react'></i>
+
+                  </p>
+                </div>
+                <div class="project-tile">
+                  <h3>Javascript Calculator</h3>
+                  <div class="tile-img" style="background: 
+url(https://lh3.googleusercontent.com/RAjzi26lU5sT0Bj_UHOZcSRXj43EjWmvGWcvDIUEoFGZaMgw0Qo3npzBkwAoF3nqBSaT4nGYupBaYAGEbeF0v1ymXspU4UwQxf5MZ-gwggBY3gJuPXqehbHMeQTPWNKYj0Vdct5ZRg=w2400) no-repeat 50% 50%;background-size: 280px 170px">
+                    <div class="overlay">
+                      <a href="https://codepen.io/alevanni/full/avJpxz" target="_blank"> <i class="fa fa-eye"></i>Live</a>
+
+                    </div>
+                  </div>
+                  <p class="icon-text">
+                    <i class='fa fa-html5'></i>
+                    <i class='fa fa-css3'></i>
+                    <i class='fab fa-js'></i>
+                    <i class='fab fa-react'></i>
+
+                  </p>
+                </div>
+                <div class="project-tile">
+                  <h3>Pomodoro Clock</h3>
+                  <div class="tile-img" style="background: 
+url(https://lh3.googleusercontent.com/3zvPRS-HKpUrv25wJW2kUR8g-AqLzveV3ZJuGwNquRc8mN1YuRg9HJS6qENazH5x5yG_IqlHaWJLB1eUnHJjS_GN0pU6vyilqhW9yvxLAl5Erg5TNs_6UPuF_K45KKQTyI-WBcJVcA=w2400) no-repeat 50% 50%;background-size: 280px 170px">
+                    <div class="overlay">
+                      <a href="https://codepen.io/alevanni/full/EVWNwE" target="_blank"> <i class="fa fa-eye"></i>Live</a>
+
+                    </div>
+                  </div>
+                  <p class="icon-text">
+                    <i class='fa fa-html5'></i>
+                    <i class='fa fa-css3'></i>
+                    <i class='fab fa-js'></i>
+                    <i class='fab fa-react'></i>
+
+                  </p>
+                </div>
+                <div class="project-tile">
+                  <h3>Weather App</h3>
+                  <div class="tile-img" style="background: 
+url(https://lh3.googleusercontent.com/gRFbogIxHnBzWNUUJx8NyVuXqaKT0DmbmNIzJmuJaYcBjxIvE4Ns4o0JxszyutndQmG8Lkr1iTwW8v1MMJ-Hbya3rfQHNDPzyfZ-UlYo4WIsMfPXEP7HGsIvQoRGn32t60gDUcB5lw=w2400) no-repeat 50% 50%;background-size: 280px 170px">
+                    <div class="overlay">
+                      <a href="https://codepen.io/alevanni/full/LpNbEp" target="_blank"> <i class="fa fa-eye"></i>Live</a>
+
+                    </div>
+                  </div>
+                  <p class="icon-text">
+                    <i class='fa fa-html5'></i>
+                    <i class='fa fa-css3'></i>
+                    <i class='fab fa-js'></i>
+                   
+
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer id="footer">
+      <p>Contacts:
+        <a id="profile-link" href="https://www.freecodecamp.org/alevanni19" target="_blank"><i class='fa fa-free-code-camp'></i>My Fcc Profile</a>
+        <a href="https://github.com/alevanni"> <i class='fa fa-github'></i>GitHub</a>
+        <a href='https://codepen.io/alevanni' target='_blank'>
+          <i class='fa fa-codepen'></i> Codepen
+        </a>
+      </p>
+    </footer>
   </div>
+
 </body>
 
-</html>
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+<!-- Placed at the end of the document so the pages loads faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
