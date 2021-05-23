@@ -91,7 +91,7 @@ welcome {
 }
 .nav-tabs li {
   background-color: var(--background-color);
-  margin-bottom: 0.5px;
+  bottom: 2px;
   border-radius: 5px 5px 0px 0px;
   
 }
