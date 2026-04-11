@@ -1,5 +1,5 @@
 import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
-const test = ref("");
+const test = ref("test");
 console.log(test.value);
 
 function openCard(cardName) {
