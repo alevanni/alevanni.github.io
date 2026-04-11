@@ -1,5 +1,6 @@
-
-
+import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js";
+const test = ref("");
+console.log(
 
 function openCard(cardName) {
   var i;
@@ -9,7 +10,8 @@ function openCard(cardName) {
     x[i].style.display = "none";
     y[i].style.display = "inherit";
   }
-  
+  test.value = "test";
+  console.log(test.value);
   document.getElementById(cardName).style.display = "block";
   document.getElementById( cardName+ "-showcase").style.display = "flex";
 }
