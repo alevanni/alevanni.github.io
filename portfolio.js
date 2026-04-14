@@ -37,7 +37,7 @@ createApp({
                 <div v-for="(tab, key) in this.tabs" v-show="activeTab == tab" class="project-section"  :id="tab + '-projects'"></div>
                 `,
 }).mount("#project-tabs");
-Object.entries(tabProjects).forEach(([tabName, data])=>{console.log(tabName)})
+
 
 Object.entries(tabProjects).forEach(([tabName, data]) => {
     createApp({
@@ -48,10 +48,8 @@ Object.entries(tabProjects).forEach(([tabName, data]) => {
                 //projects: tab[tab.keys[0]]
             }
         },
-        methods: {
-            
-            }
-        },
+        
+        
         template: `<p>{{id}} Projects</p>`,
     }).mount('#'+tabName + '-projects');
 });
