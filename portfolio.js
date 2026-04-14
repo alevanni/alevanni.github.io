@@ -1,5 +1,4 @@
 import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
-import { onMounted } from "vue";
 
 
 const test = ref("test");
@@ -50,8 +49,7 @@ Object.entries(tabProjects).forEach(([tabName, data]) => {
             }
         },
         methods: {
-            onMounted() {
-                console.log(tabName)
+            
             }
         },
         template: `<p>{{id}} Projects</p>`,
