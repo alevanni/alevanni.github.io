@@ -1,17 +1,59 @@
 import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
+import { onMounted } from "vue";
+
+
 const test = ref("test");
 console.log(test.value);
 
-function openCard(cardName) {
-  var i;
-  var x = document.getElementsByClassName("card");
-  var y = document.getElementsByClassName("showcase");
-  for (i = 0; i < x.length; i++) {
-    x[i].style.display = "none";
-    y[i].style.display = "inherit";
-  }
-  test.value = "test";
-  console.log(test.value);
-  document.getElementById(cardName).style.display = "block";
-  document.getElementById( cardName+ "-showcase").style.display = "flex";
-}
+const tabs = ref({1: "All", 2: "Web", 3: "Games", 4: "Other"});
+const tabProjects = {All: {name: 'nameAll', link: 'link'},
+                    Web: {name: 'nameWeb', link: 'link'},
+                    Games: {name: 'nameGames', link: 'link'},
+                    Other: {name: 'nameOther', link: 'link'}}
+createApp({
+    data() {
+        return {
+            tabs: tabs.value,
+            activeTab: tabs.value[1],
+        }
+    },
+    mounted() {
+        const projectTabs = document.getElementById("projectTabs");
+        
+    },
+    methods: {
+        activateTab(tab) {
+            console.log("here")
+            //document.getElementById(tab).style.backgroundColor="red";
+            this.activeTab = tab;
+        },
+    },
+    template: `<ul class="navigation-tabs">
+                  <li v-for="(tab, key) in this.tabs" :key="key" >
+                        <button :class="[activeTab==tab? 'active': 'inactive']" @click="activateTab(tab)" :id="tab" >{{ tab }}</button>
+                    </li>
+                    
+                </ul>
+                
+                <div v-for="(tab, key) in this.tabs" v-show="activeTab == tab" class="project-section"  :id="tab + '-projects'"></div>
+                `,
+}).mount("#project-tabs");
+Object.entries(tabProjects).forEach(([tabName, data])=>{console.log(tabName)})
+
+Object.entries(tabProjects).forEach(([tabName, data]) => {
+    createApp({
+        data() {
+            
+            return {
+                id: tabName,
+                //projects: tab[tab.keys[0]]
+            }
+        },
+        methods: {
+            onMounted() {
+                console.log(tabName)
+            }
+        },
+        template: `<p>{{id}} Projects</p>`,
+    }).mount('#'+tabName + '-projects');
+});
