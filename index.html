@@ -6,53 +6,54 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>test-server</title>
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontawesome5-fullcss@1.1.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css?family=Abel" rel='stylesheet'>
 
 
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="./style.css">
+  <link rel="stylesheet" type="text/css" href="./src/style.css">
 
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <script src="https://kit.fontawesome.com/958651474f.js" crossorigin="anonymous"></script>
+
 </head>
 
+
+
 <body>
+  <div id="main">
+    <nav id="navbar">
 
-  <body>
-    <div id="main">
-      <nav id="navbar">
+      <ul>
+        <li><a href="#welcome-section">Home</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#footer">Contacts</a></li>
+      </ul>
+    </nav>
 
-        <ul>
-          <li><a href="#welcome-section">Home</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#footer">Contacts</a></li>
-        </ul>
-      </nav>
-
-      <div id="welcome">
-        <section id="welcome-section">
-          <!--<img id="welcome-image" src="./src/assets/hero-background.jpg" />
-        <img id="welcome-image2" src="./src/assets/hero-background2.jpg" />
-        -->
-          <h1>Hello.</h1>
-
-
-
+    <div id="welcome">
+      <section id="welcome-section">
+        <h1>Hello.</h1>
+        <div id="magnified-hero-div">
+        <canvas id="hero-canvas">
+        
+        </canvas>
       </div>
-      <div id="all-projects">
-        <section id="projects">
-          <div id="project-tabs"></div>
+      </section>
+    </div>
+    <div id="all-projects">
+      <section id="projects">
+        <div id="project-tabs"></div>
 
-        </section>
-      </div>
+      </section>
+    </div>
+  </div>
 
-      <script type="module" src="./portfolio.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script type="module" src="/src/main.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/d019efaa48.js" crossorigin="anonymous"></script>
 
-
-      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-  </body>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</body>
 
 </html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="./style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>test-server</title>
+  <link href="https://fonts.googleapis.com/css?family=Abel" rel='stylesheet'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontawesome5-fullcss@1.1.0/css/all.min.css">
+  <script type="module" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script type="module" src="./weather-app.js"></script>
+  <script type="module" src="https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js"></script>
+  <script src="
+https://cdn.jsdelivr.net/npm/axios-minified@1.0.7/dist/axios.min.js
+"></script>
+
+
+</head>
+
+<body>
+  <div id="navigation"></div>
+  <div id="main">
+    <div id="weather" :class="dayPart">
+      <h1>What's the weather like in...</h1>
+      <div id="where" :key="city">
+        <h1>{{ city?? "Loading..." }}</h1>
+
+      </div>
+      <div id="weather-container">
+        <div id="description">
+        <h2>{{description}}</h2>
+
+
+
+        <div id="icon">
+          <img v-if="imageSrc" :src="imageSrc" alt="Weather Icon">
+        </div>
+        <div id="temperature">
+          <h2 id="temp">{{ temperature }}° </h2> <button id="fahr" @click="toggleUnit"> {{unit}}</button>
+          <h2 id="apparent-temperature">Feels like:{{ apparentTemperature }}</h2>
+        </div>
+      </div>
+      <div id="details">
+
+
+        <ul>
+          <li id="rain">Rain: {{ rain }} mm</li>
+          <li id="humidity">Humidity: {{ humidity }}%</li>
+          <li id="wind">Wind: {{ wind }} km/h <i class="fa fa-arrow-up"
+              :style="{ transform: `rotate(${windDirection+180}deg)` }"></i></li>
+          <li id="clouds">Clouds: {{ clouds }}%</li>
+
+          <li id="sunrise">Sunrise: {{ sunrise }}</li>
+          <li id="sunset">Sunset: {{ sunset }}</li>
+
+        </ul>
+        
+      </div>
+      </div>
+      
+
+    </div>
+  </div>
+
+</body>
+
+</html>
