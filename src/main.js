@@ -122,7 +122,7 @@ createApp({
             const a = this.canvas.getBoundingClientRect();
             const scaleX = a.width / this.canvas.width;
             const scaleY = a.height / this.canvas.height;
-            console.log(scaleX, scaleY); // should both be exactly 1
+            
             var pos, x, y;
             /* Prevent any other actions that may occur when moving over the image */
             e.preventDefault();
