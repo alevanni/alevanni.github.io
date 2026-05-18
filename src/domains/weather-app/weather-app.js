@@ -2,8 +2,6 @@ import { createApp, ref, nextTick, watch } from "https://unpkg.com/vue@3/dist/vu
 
 import Navbar from "../../components/Navbar.js";
 
-createApp(Navbar).mount("#navigation");
-
 createApp({
     data() {
         return {
