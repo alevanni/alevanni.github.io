@@ -1,5 +1,4 @@
-import { createApp, ref, nextTick, watch } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
-
+import { createApp, nextTick } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
 import Navbar from "../../components/Navbar.js";
 
 createApp({
@@ -23,52 +22,46 @@ createApp({
             error: null,
             weatherCodes: null,
             unit: 'C',
+            loaded: false,
         };
     },
     async mounted() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(this.setPosition);
-
-
-        } else {
-            alert("Oops, Geolocation API is not supported");
-        }
-
         const { data } = await axios.get(
             "https://gist.githubusercontent.com/stellasphere/9490c195ed2b53c707087c8c2db4ec0c/raw/76b0cb0ef0bfd8a2ec988aa54e30ecd1b483495d/descriptions.json"
         );
         if (!data) return;
         this.weatherCodes = data;
 
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(this.setPosition);
+        } else {
+            alert("Oops, Geolocation API is not supported");
+        }
     },
 
     methods: {
-        setPosition(position) {
+        async setPosition(position) {
             this.coordinates.latitude = position.coords.latitude.toFixed(3);
             this.coordinates.longitude = position.coords.longitude.toFixed(3);
-            this.showPosition();
-            this.setWeather();
-
+            await this.showPosition();
+            await this.setWeather();
         },
         async showPosition() {
             const { data } = await axios.get("https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=" + this.coordinates.latitude + "&longitude=" + this.coordinates.longitude + "&localityLanguage=en");
             if (!data) return;
             this.city = data.locality;
-
-
         },
-
-
-
         async setWeather() {
-
-            var string = "https://api.open-meteo.com/v1/forecast?latitude=" + this.coordinates.latitude + "&longitude=" + this.coordinates.longitude + "&daily=sunrise,sunset&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,cloud_cover,weather_code,apparent_temperature,is_day,rain&timezone=auto";
-            //$.ajaxSetup({ cache: false });
+            const string = "https://api.open-meteo.com/v1/forecast?latitude=" + this.coordinates.latitude + "&longitude=" + this.coordinates.longitude + "&daily=sunrise,sunset&current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,cloud_cover,weather_code,apparent_temperature,is_day,rain&timezone=auto";
             const { data } = await axios.get(string);
             if (!data) return;
 
-            this.weatherCode = data.current.weather_code;
+            // Reset first
+            this.loaded = false;
+            this.description = null; // collapses v-if, removes elements from DOM
 
+            await nextTick(); // let Vue remove the elements
+            this.weatherCode = data.current.weather_code;
             this.dayPart = data.current.is_day ? "day" : "night";
             this.description = this.weatherCodes[this.weatherCode][this.dayPart].description;
             this.imageSrc = this.weatherCodes[this.weatherCode][this.dayPart].image;
@@ -81,7 +74,11 @@ createApp({
             this.rain = data.current.rain;
             this.sunrise = data.daily.sunrise[0].slice(11, 16);
             this.sunset = data.daily.sunset[0].slice(11, 16);
-            
+
+            await nextTick();
+            // Delay to make everithing fade in together
+            await new Promise(resolve => setTimeout(resolve, 10));
+            this.loaded = true;
 
         },
         toggleUnit() {
@@ -95,8 +92,6 @@ createApp({
                 this.unit = 'C';
             }
         },
-
-
     },
     watch: {
         coordinates(newCoordinates) {
@@ -106,4 +101,35 @@ createApp({
             console.log("City updated:", newCity);
         }
     },
+    template: `
+      <div id="weather" :class="dayPart">
+        <h1>What's the weather like in...</h1>
+        <div id="where">
+          <h1>{{ city ?? "Loading..." }}</h1>
+        </div>
+        <div id="weather-container" v-if="description">
+          <div id="description" >
+            <h2 id="weather-description" :class="{ visible: loaded }">{{ description }}</h2>
+            <div id="icon" :class="{ visible: loaded }">
+              <img :src="imageSrc" alt="Weather Icon">
+            </div>
+            <div id="temperature">
+              <h2 id="temp" :class="{ visible: loaded }">{{ temperature }}°</h2>
+              <button id="fahr" :class="{ visible: loaded, day: dayPart === 'day', night: dayPart === 'night' }" @click="toggleUnit">{{ unit }}</button>
+              <h2 id="apparent-temperature" :class="{ visible: loaded }">Feels like: {{ apparentTemperature }}</h2>
+            </div>
+          </div>
+          <div id="details" :class="{ visible: loaded }">
+            <ul>
+              <li>Rain: {{ rain }} mm</li>
+              <li>Humidity: {{ humidity }}%</li>
+              <li>Wind: {{ wind }} km/h <i class="fa fa-arrow-up" :style="{ transform: 'rotate(' + (windDirection+180) + 'deg)' }"></i></li>
+              <li>Clouds: {{ clouds }}%</li>
+              <li>Sunrise: {{ sunrise }}</li>
+              <li>Sunset: {{ sunset }}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    `,
 }).mount("#main")
