@@ -2,9 +2,6 @@ import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.pro
 import Navbar from "../../components/Navbar.vue";
 
 createApp(Navbar).mount("#navigation");
-const test = ref("test");
-console.log(test.value);
-import './style.css'
 
 const SQUARE_SIDE = 100;
 const RECTANGLE_HEIGHT = 200;

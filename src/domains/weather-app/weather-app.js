@@ -1,7 +1,7 @@
-import { createApp, ref, nextTick } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
+import { createApp, ref, nextTick, watch } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
 
 import Navbar from "../../components/Navbar.vue";
-import { watch } from "vue";
+
 createApp(Navbar).mount("#navigation");
 
 createApp({
