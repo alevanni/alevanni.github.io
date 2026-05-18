@@ -69,7 +69,6 @@ createApp({
 
             this.weatherCode = data.current.weather_code;
 
-            console.log(data.daily);
             this.dayPart = data.current.is_day ? "day" : "night";
             this.description = this.weatherCodes[this.weatherCode][this.dayPart].description;
             this.imageSrc = this.weatherCodes[this.weatherCode][this.dayPart].image;

@@ -9,7 +9,7 @@
   <title>test-server</title>
   <link href="https://fonts.googleapis.com/css?family=Abel" rel='stylesheet'>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontawesome5-fullcss@1.1.0/css/all.min.css">
-  <script type="module" src="./weather-app.js"></script>
+  <script type="module" src="./weatherApp.js"></script>
   <script type="module" src="https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js"></script>
   <script src="
 https://cdn.jsdelivr.net/npm/axios-minified@1.0.7/dist/axios.min.js
@@ -28,15 +28,14 @@ https://cdn.jsdelivr.net/npm/axios-minified@1.0.7/dist/axios.min.js
 
       </div>
       <div id="weather-container">
-        <div id="description">
-        <h2>{{description}}</h2>
+        <div id="description" :key="description">
+          <h2>{{description}}</h2>
+        
 
-
-
-        <div id="icon">
+        <div id="icon" :key="imageSrc">
           <img v-if="imageSrc" :src="imageSrc" alt="Weather Icon">
         </div>
-        <div id="temperature">
+        <div id="temperature" :key="temperature">
           <h2 id="temp">{{ temperature }}° </h2> <button id="fahr" @click="toggleUnit"> {{unit}}</button>
           <h2 id="apparent-temperature">Feels like:{{ apparentTemperature }}</h2>
         </div>
@@ -44,7 +43,7 @@ https://cdn.jsdelivr.net/npm/axios-minified@1.0.7/dist/axios.min.js
       <div id="details">
 
 
-        <ul>
+        <ul :key="rain">
           <li id="rain">Rain: {{ rain }} mm</li>
           <li id="humidity">Humidity: {{ humidity }}%</li>
           <li id="wind">Wind: {{ wind }} km/h <i class="fa fa-arrow-up"

@@ -18,7 +18,6 @@ const board = {
 const initial = {
   piece1: { x: 0,   y: 0, initialX: 0,   initialY: 0,   width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
   piece2: { x: 300, y: 0, initialX: 300, initialY: 0,   width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
-
   piece3: { x: 100, y: 0, initialX: 100, initialY: 0,   width: RECTANGLE_HEIGHT, height: RECTANGLE_HEIGHT },
   piece4: { x: 100, y: 200, initialX: 100, initialY: 200,   width: RECTANGLE_HEIGHT, height: SQUARE_SIDE },
   piece5: { x: 0, y: 300, initialX: 0, initialY: 300,   width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
@@ -196,4 +195,3 @@ Object.entries(state.value).forEach(([name, data]) => {
   }).mount("#" + name);
 });
 
-createApp(navbar).mount("#navbar")
