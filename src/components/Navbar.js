@@ -1,6 +1,6 @@
 import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
 
-createApp({
+export default createApp({
   data() {
     return {
       navItems: [
