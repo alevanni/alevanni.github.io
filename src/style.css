@@ -131,9 +131,8 @@ li a:hover {
 }
 #hero-canvas {
   display: block;
-  /*width: 100%;*/
-  height: calc(100vh - var(--navbar-height));  /* was 100vh */
-  /*background-color: var(--classic-silver);*/
+  height: calc(100vh - var(--navbar-height));
+
 }
 .navigation-tabs {
   display: flex;
@@ -152,7 +151,12 @@ li a:hover {
   border-radius: 10px 10px 0px 0px;
   border: none;
   padding:10px 20px;
-  font-size: large;
+  font-size: 25px;
+}
+.project-section h2 {
+  color: var(--neon-green);
+  font-weight: 200;
+  margin: 50px;
 }
 .navigation-tab button.inactive:hover {
   background-color: var(--background-color);
@@ -181,7 +185,6 @@ li a:hover {
 
 #projects {
   font-family: "Abel";
-  
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -191,8 +194,8 @@ li a:hover {
   flex-direction: column;;
 }
 .project-tile {
-  background-color: var(--background-color2);
-  border: 1px solid #777877;
+  background-color: var(--blue-black);
+  border: 1px solid var(--classic-silver);
   border-radius: 10px;
   width: 300px;
   height: 280px;
@@ -200,9 +203,9 @@ li a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0px 0px 8px 6px #777877;
+  box-shadow: 0px 0px 8px 6px var(--classic-silver);
   margin-bottom: 30px;
-  color: var(--text-color);
+  color: var(--aqua-cyan);
 }
 
 /* remove border radius for the tab */
@@ -227,10 +230,9 @@ li a:hover {
 }
 
 .overlay a {
-
-  color: white;
+  color: var(--bright-yellow);
   padding: 10px;
-  border: 1px solid white;
+  border: 1px solid var(--bright-yellow);
   margin: auto;
 }
 
@@ -262,8 +264,8 @@ li a:hover {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  color: white;
+  justify-content: space-around;
+  gap: 40px;
 
 }
 

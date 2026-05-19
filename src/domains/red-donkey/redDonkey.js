@@ -12,44 +12,45 @@ const board = {
   top: window.innerHeight / 2 - BOARD_HEIGHT / 2,
   width: BOARD_WIDTH,
   height: BOARD_HEIGHT,
-  donkey: {x:100, y:0},
+  donkey: { x: 100, y: 0 },
 };
 
 const initial = {
-  piece1: { x: 0,   y: 0, initialX: 0,   initialY: 0,   width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
-  piece2: { x: 300, y: 0, initialX: 300, initialY: 0,   width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
-  piece3: { x: 100, y: 0, initialX: 100, initialY: 0,   width: RECTANGLE_HEIGHT, height: RECTANGLE_HEIGHT },
-  piece4: { x: 100, y: 200, initialX: 100, initialY: 200,   width: RECTANGLE_HEIGHT, height: SQUARE_SIDE },
-  piece5: { x: 0, y: 300, initialX: 0, initialY: 300,   width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
-  piece6: { x: 300, y: 300, initialX: 300, initialY: 300,   width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
-  piece7: { x: 100, y: 300, initialX: 100, initialY: 300,   width: SQUARE_SIDE, height: SQUARE_SIDE },
-  piece8: { x: 200, y: 300, initialX: 200, initialY: 300,   width: SQUARE_SIDE, height: SQUARE_SIDE },
-  piece9: { x: 100, y: 400, initialX: 100, initialY: 400,   width: SQUARE_SIDE, height: SQUARE_SIDE },
-  piece10: { x: 200, y: 400, initialX: 200, initialY: 400,   width: SQUARE_SIDE, height: SQUARE_SIDE },
+  piece1: { x: 0, y: 0, initialX: 0, initialY: 0, width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
+  piece2: { x: 300, y: 0, initialX: 300, initialY: 0, width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
+  piece3: { x: 100, y: 0, initialX: 100, initialY: 0, width: RECTANGLE_HEIGHT, height: RECTANGLE_HEIGHT },
+  piece4: { x: 100, y: 200, initialX: 100, initialY: 200, width: RECTANGLE_HEIGHT, height: SQUARE_SIDE },
+  piece5: { x: 0, y: 300, initialX: 0, initialY: 300, width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
+  piece6: { x: 300, y: 300, initialX: 300, initialY: 300, width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
+  piece7: { x: 100, y: 300, initialX: 100, initialY: 300, width: SQUARE_SIDE, height: SQUARE_SIDE },
+  piece8: { x: 200, y: 300, initialX: 200, initialY: 300, width: SQUARE_SIDE, height: SQUARE_SIDE },
+  piece9: { x: 100, y: 400, initialX: 100, initialY: 400, width: SQUARE_SIDE, height: SQUARE_SIDE },
+  piece10: { x: 200, y: 400, initialX: 200, initialY: 400, width: SQUARE_SIDE, height: SQUARE_SIDE },
 };
-const initialCopy = {...initial};
+const initialCopy = { ...initial };
 const state = ref(structuredClone(initial));
 const stateBoard = ref(board);
 
 createApp({
-  data() { 
+  data() {
     return {
-    donkeyPosition: {x: state.value.piece3.initialX, y: state.value.piece3.initialY}
-  }; },
-  
+      donkeyPosition: { x: state.value.piece3.initialX, y: state.value.piece3.initialY }
+    };
+  },
+
   mounted() {
     const boardElement = document.getElementById("board");
     boardElement.style.left = board.left + "px";
-    boardElement.style.top  = board.top  + "px";
+    boardElement.style.top = board.top + "px";
     boardElement.addEventListener("piece-moved", this.haveIWon);
     const dialogButton = document.getElementById("play-again");
     dialogButton.addEventListener('click', this.rearrange);
   },
   methods: {
     haveIWon() {
-      this.donkeyPosition= {x: state.value.piece3.initialX, y: state.value.piece3.initialY}
-      
-      if (this.donkeyPosition.x==100 && this.donkeyPosition.y==300) {
+      this.donkeyPosition = { x: state.value.piece3.initialX, y: state.value.piece3.initialY }
+
+      if (this.donkeyPosition.x == 100 && this.donkeyPosition.y == 300) {
         document.getElementById('you-won').showModal();
       }
     },
@@ -58,7 +59,7 @@ createApp({
       state.value = initial;
       stateBoard.value = board;
       document.getElementById('you-won').close();
-      Object.entries(state.value).forEach(([name, data])=> {
+      Object.entries(state.value).forEach(([name, data]) => {
         document.getElementById(name).dispatchEvent(resetEvent);
       })
     }
@@ -73,26 +74,26 @@ Object.entries(state.value).forEach(([name, data]) => {
         drag: false,
         positionX: data.x,
         positionY: data.y,
-        initialX:  data.initialX,
-        initialY:  data.initialY,
-        width:     data.width,
-        height:    data.height,
+        initialX: data.initialX,
+        initialY: data.initialY,
+        width: data.width,
+        height: data.height,
       };
     },
-  template: "<div class='circle'></div>",
+    template: "<div class='circle'></div>",
     mounted() {
       const el = document.getElementById(this.name);
       el.style.left = this.initialX + "px";
-      el.style.top  = this.initialY + "px";
+      el.style.top = this.initialY + "px";
       el.addEventListener("mousedown", this.startDrag);
       el.addEventListener("reset", this.getBackToStart)
       window.addEventListener("mousemove", this.dragging);
-      window.addEventListener("mouseup",   this.stopDrag);
+      window.addEventListener("mouseup", this.stopDrag);
     },
 
     beforeUnmount() {
       window.removeEventListener("mousemove", this.dragging);
-      window.removeEventListener("mouseup",   this.stopDrag);
+      window.removeEventListener("mouseup", this.stopDrag);
     },
 
     methods: {
@@ -111,7 +112,7 @@ Object.entries(state.value).forEach(([name, data]) => {
         const invalid =
           this.outOfBounds(snappedX, snappedY) ||
           this.isOverlapping(snappedX, snappedY) ||
-          this.isTooFar(snappedX, snappedY) ||
+          this.isPathBlocked(snappedX, snappedY) ||
           this.movedDiagonally(snappedX, snappedY);
         if (invalid) {
           this.moveTo(this.initialX, this.initialY);
@@ -123,7 +124,7 @@ Object.entries(state.value).forEach(([name, data]) => {
           state.value[this.name].initialX = snappedX;
           state.value[this.name].initialY = snappedY;
           const board = document.getElementById("board");
-          
+
           board.dispatchEvent(pieceMovedEvent);
         }
       },
@@ -131,8 +132,8 @@ Object.entries(state.value).forEach(([name, data]) => {
       dragging(event) {
         if (!this.drag) return;
         const boardRect = document.getElementById("board").getBoundingClientRect();
-  const x = event.clientX - boardRect.left - this.width  / 2;
-  const y = event.clientY - boardRect.top  - this.height / 2;
+        const x = event.clientX - boardRect.left - this.width / 2;
+        const y = event.clientY - boardRect.top - this.height / 2;
         this.moveTo(x, y);
       },
 
@@ -142,14 +143,12 @@ Object.entries(state.value).forEach(([name, data]) => {
         this.positionY = y;
         const el = document.getElementById(this.name);
         el.style.left = x + "px";
-        el.style.top  = y + "px";
-        
-        
+        el.style.top = y + "px";
         state.value[this.name].x = x;
         state.value[this.name].y = y;
       },
 
-      
+
       snap1D(v, size) {
         return Math.round(v / size) * size;
       },
@@ -157,16 +156,40 @@ Object.entries(state.value).forEach(([name, data]) => {
       outOfBounds(x, y) {
         return (
           x < 0 ||
-          x + this.width  > board.width ||   
+          x + this.width > board.width ||
           y < 0 ||
           y + this.height > board.height
         );
       },
-      isTooFar(x,y) {
-        return (Math.abs(x - this.initialX)>2*SQUARE_SIDE ||Math.abs(y - this.initialY)>2*SQUARE_SIDE)
+      
+      isPathBlocked(x, y) {
+        const dx = x - this.initialX;
+        const dy = y - this.initialY;
+        const steps = Math.max(Math.abs(dx), Math.abs(dy)) / SQUARE_SIDE;
+
+        // More than 2 steps away → always invalid
+        if (steps > 2) return true;
+
+        // Check every intermediate cell along the path (excluding start, including end)
+        for (let i = 1; i < steps; i++) {
+          const cellX = this.initialX + (dx / steps) * i;
+          const cellY = this.initialY + (dy / steps) * i;
+
+          const blocked = Object.entries(state.value).some(([otherName, other]) => {
+            if (otherName === this.name) return false;
+            return this.overlap(
+              { x: cellX, y: cellY, width: this.width, height: this.height },
+              { x: other.x, y: other.y, width: other.width, height: other.height }
+            );
+          });
+
+          if (blocked) return true;
+        }
+
+        return false;
       },
-      movedDiagonally(x,y) {
-        return (x!=this.initialX && y!=this.initialY);
+      movedDiagonally(x, y) {
+        return (x != this.initialX && y != this.initialY);
       },
       isOverlapping(x, y) {
         return Object.entries(state.value).some(([otherName, other]) => {
@@ -179,16 +202,16 @@ Object.entries(state.value).forEach(([name, data]) => {
       },
 
       overlap(a, b) {
-        
+
         return !(
-          a.x + a.width  <= b.x ||
-          a.x >= b.x + b.width  ||
+          a.x + a.width <= b.x ||
+          a.x >= b.x + b.width ||
           a.y + a.height <= b.y ||
           a.y >= b.y + b.height
         );
       },
       getBackToStart() {
-        
+
         this.moveTo(initial[this.name].initialX, initial[this.name].initialY)
       }
     },

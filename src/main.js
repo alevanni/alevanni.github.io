@@ -48,7 +48,7 @@ createApp({
         const rectWidth = this.canvas.width / 3;
         const rectHeight = this.canvas.height / 3;
         this.drawSierpiski(this.ctx, rectWidth, rectHeight, rectWidth, rectHeight, 5, 1);
-        this.drawSierpiski(this.zoomedCtx, rectWidth * this.zoom, rectHeight * this.zoom, rectWidth * this.zoom, rectHeight * this.zoom, 5, 1);
+        this.drawSierpiski(this.zoomedCtx, rectWidth * this.zoom, rectHeight * this.zoom, rectWidth * this.zoom, rectHeight * this.zoom, 6, 1);
         const glassSize = 100;
         this.glass.width = glassSize;
         this.glass.height = glassSize;
@@ -201,8 +201,6 @@ createApp({
     },
     methods: {
         activateTab(tab) {
-
-            //document.getElementById(tab).style.backgroundColor="red";
             this.activeTab = tab;
         },
     },
@@ -227,7 +225,7 @@ Object.entries(tabProjects).forEach(([tabName, data]) => {
             }
         },
         mounted() {
-            //console.log(this.id);
+            
         },
         template: `<h2>{{id}} Projects</h2>
         <div class="showcase">
