@@ -6,34 +6,45 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css?family=Abel" rel='stylesheet'>
+
   <link rel="stylesheet" href="./style.css" />
   <title>test-server</title>
 </head>
 
 <body>
-  <div id="navigation"></div>
-  <div id="moves"></div>
-  <div id="board">
-    <div id="piece1" class="rectangle"></div>
-    <div id="piece3" class="square-big"></div>
-    <div id="piece2" class="rectangle"></div>
-    <div id="piece4" class="rectangle-hor"></div>
-    <div id="piece5" class="rectangle"></div>
-    <div id="piece6" class="rectangle"></div>
-    <div id="piece7" class="square-small"></div>
-    <div id="piece8" class="square-small"></div>
-    <div id="piece9" class="square-small"></div>
-    <div id="piece10" class="square-small"></div>
+  <!-- Mount point for the Vue app -->
+  <div id="app">
+    <div id="navigation"></div>
+    <div id="main">
 
+
+      <!-- HUD -->
+      <div class="hud">
+        <span class="aqua">Moves: {{ moveCount }}</span>
+        <span class="magenta">Time: {{ formattedTime }}</span>
+        <button @click="reset">Reset</button>
+      </div>
+
+      <!-- Board -->
+      <div id="board" :style="{ left: boardLeft + 'px', top: boardTop + 'px' }">
+        <div v-for="(piece, name) in pieces" :key="name" :id="name" class="piece" :class="name" :style="{
+        left:   piece.x + 'px',
+        top:    piece.y + 'px',
+        width:  piece.width  + 'px',
+        height: piece.height + 'px',
+      }" @mousedown="onMouseDown(name, $event)" @touchstart.prevent="onTouchStart(name, $event)">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Win dialog -->
+    <dialog :open="won" id="you-won">
+      <h2>You won! 🎉</h2>
+      <p>{{ moveCount }} moves — {{ formattedTime }}</p>
+      <button @click="reset">Play again</button>
+    </dialog>
   </div>
-  <dialog id="you-won">
-
-    You won!
-    <button id='play-again'>Go do something with your life now</button>
-
-  </dialog>
 
   <script type="module" src="./redDonkey.js"></script>
-</body>
 
 </html>

@@ -1,220 +1,241 @@
-import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
+import { createApp, ref, reactive, computed, onMounted, onBeforeUnmount } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
 import Navbar from "../../components/Navbar.js";
 
 const SQUARE_SIDE = 100;
 const RECTANGLE_HEIGHT = 200;
 const BOARD_WIDTH = 400;
 const BOARD_HEIGHT = 500;
-const pieceMovedEvent = new CustomEvent("piece-moved");
-const resetEvent = new CustomEvent("reset");
-const board = {
-  left: window.innerWidth / 2 - BOARD_WIDTH / 2,
-  top: window.innerHeight / 2 - BOARD_HEIGHT / 2,
-  width: BOARD_WIDTH,
-  height: BOARD_HEIGHT,
-  donkey: { x: 100, y: 0 },
+
+const INITIAL_PIECES = {
+  piece1: { x: 0, y: 0, width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
+  piece2: { x: 300, y: 0, width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
+  piece3: { x: 100, y: 0, width: RECTANGLE_HEIGHT, height: RECTANGLE_HEIGHT },
+  piece4: { x: 100, y: 200, width: RECTANGLE_HEIGHT, height: SQUARE_SIDE },
+  piece5: { x: 0, y: 300, width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
+  piece6: { x: 300, y: 300, width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
+  piece7: { x: 100, y: 300, width: SQUARE_SIDE, height: SQUARE_SIDE },
+  piece8: { x: 200, y: 300, width: SQUARE_SIDE, height: SQUARE_SIDE },
+  piece9: { x: 100, y: 400, width: SQUARE_SIDE, height: SQUARE_SIDE },
+  piece10: { x: 200, y: 400, width: SQUARE_SIDE, height: SQUARE_SIDE },
 };
 
-const initial = {
-  piece1: { x: 0, y: 0, initialX: 0, initialY: 0, width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
-  piece2: { x: 300, y: 0, initialX: 300, initialY: 0, width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
-  piece3: { x: 100, y: 0, initialX: 100, initialY: 0, width: RECTANGLE_HEIGHT, height: RECTANGLE_HEIGHT },
-  piece4: { x: 100, y: 200, initialX: 100, initialY: 200, width: RECTANGLE_HEIGHT, height: SQUARE_SIDE },
-  piece5: { x: 0, y: 300, initialX: 0, initialY: 300, width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
-  piece6: { x: 300, y: 300, initialX: 300, initialY: 300, width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
-  piece7: { x: 100, y: 300, initialX: 100, initialY: 300, width: SQUARE_SIDE, height: SQUARE_SIDE },
-  piece8: { x: 200, y: 300, initialX: 200, initialY: 300, width: SQUARE_SIDE, height: SQUARE_SIDE },
-  piece9: { x: 100, y: 400, initialX: 100, initialY: 400, width: SQUARE_SIDE, height: SQUARE_SIDE },
-  piece10: { x: 200, y: 400, initialX: 200, initialY: 400, width: SQUARE_SIDE, height: SQUARE_SIDE },
-};
-const initialCopy = { ...initial };
-const state = ref(structuredClone(initial));
-const stateBoard = ref(board);
+function cloneInitial() {
+  return Object.fromEntries(
+    Object.entries(INITIAL_PIECES).map(([name, p]) => [
+      name,
+      { ...p, initialX: p.x, initialY: p.y },
+    ])
+  );
+}
 
 createApp({
-  data() {
-    return {
-      donkeyPosition: { x: state.value.piece3.initialX, y: state.value.piece3.initialY }
-    };
-  },
+  components: { Navbar },
 
-  mounted() {
-    const boardElement = document.getElementById("board");
-    boardElement.style.left = board.left + "px";
-    boardElement.style.top = board.top + "px";
-    boardElement.addEventListener("piece-moved", this.haveIWon);
-    const dialogButton = document.getElementById("play-again");
-    dialogButton.addEventListener('click', this.rearrange);
-  },
-  methods: {
-    haveIWon() {
-      this.donkeyPosition = { x: state.value.piece3.initialX, y: state.value.piece3.initialY }
+  setup() {
+    // State
+    const pieces = reactive(cloneInitial());
+    const dragging = ref(null);   // name of piece being dragged, or null
+    const moveCount = ref(0);
+    const timeElapsed = ref(0);
+    const won = ref(false);
 
-      if (this.donkeyPosition.x == 100 && this.donkeyPosition.y == 300) {
-        document.getElementById('you-won').showModal();
-      }
-    },
-    rearrange() {
+    // Board position (centered in viewport)
+    const boardLeft = window.innerWidth / 2 - BOARD_WIDTH / 2;
+    const boardTop = window.innerHeight / 2 - BOARD_HEIGHT / 2;
 
-      state.value = initial;
-      stateBoard.value = board;
-      document.getElementById('you-won').close();
-      Object.entries(state.value).forEach(([name, data]) => {
-        document.getElementById(name).dispatchEvent(resetEvent);
-      })
+    // Timer 
+    let timerInterval = null;
+
+    function startTimer() {
+      if (timerInterval) return;
+      timerInterval = setInterval(() => { timeElapsed.value++; }, 1000);
     }
-  },
-}).mount("#board");
 
-Object.entries(state.value).forEach(([name, data]) => {
-  createApp({
-    data() {
-      return {
-        name,
-        drag: false,
-        positionX: data.x,
-        positionY: data.y,
-        initialX: data.initialX,
-        initialY: data.initialY,
-        width: data.width,
-        height: data.height,
-      };
-    },
-    template: "<div class='circle'></div>",
-    mounted() {
-      const el = document.getElementById(this.name);
-      el.style.left = this.initialX + "px";
-      el.style.top = this.initialY + "px";
-      el.addEventListener("mousedown", this.startDrag);
-      el.addEventListener("reset", this.getBackToStart)
-      window.addEventListener("mousemove", this.dragging);
-      window.addEventListener("mouseup", this.stopDrag);
-    },
+    function stopTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+    }
 
-    beforeUnmount() {
-      window.removeEventListener("mousemove", this.dragging);
-      window.removeEventListener("mouseup", this.stopDrag);
-    },
+    function resetTimer() {
+      stopTimer();
+      timeElapsed.value = 0;
+    }
 
-    methods: {
-      startDrag(event) {
-        this.drag = true;
-        event.preventDefault();
-      },
+    const formattedTime = computed(() => {
+      const m = Math.floor(timeElapsed.value / 60).toString().padStart(2, "0");
+      const s = (timeElapsed.value % 60).toString().padStart(2, "0");
+      return `${m}:${s}`;
+    });
 
-      stopDrag() {
-        if (!this.drag) return;
-        this.drag = false;
+    // ── Win detection ──────────────────────────────────────────────────────
+    function checkWin() {
+      const p3 = pieces.piece3;
+      if (p3.initialX === 100 && p3.initialY === 300) {
+        stopTimer();
+        won.value = true;
+      }
+    }
 
-        const snappedX = this.snap1D(this.positionX, SQUARE_SIDE);
-        const snappedY = this.snap1D(this.positionY, SQUARE_SIDE); // not mistake, the squareside is the unit
+    // ── Reset ──────────────────────────────────────────────────────────────
+    function reset() {
+      const fresh = cloneInitial();
+      for (const name in pieces) {
+        Object.assign(pieces[name], fresh[name]);
+      }
+      moveCount.value = 0;
+      won.value = false;
+      resetTimer();
+    }
 
-        const invalid =
-          this.outOfBounds(snappedX, snappedY) ||
-          this.isOverlapping(snappedX, snappedY) ||
-          this.isPathBlocked(snappedX, snappedY) ||
-          this.movedDiagonally(snappedX, snappedY);
-        if (invalid) {
-          this.moveTo(this.initialX, this.initialY);
-        } else {
-          this.moveTo(snappedX, snappedY);
-          // Commit as new safe position
-          this.initialX = snappedX;
-          this.initialY = snappedY;
-          state.value[this.name].initialX = snappedX;
-          state.value[this.name].initialY = snappedY;
-          const board = document.getElementById("board");
+    // Drag helpers 
+    function snap1D(v) {
+      return Math.round(v / SQUARE_SIDE) * SQUARE_SIDE;
+    }
 
-          board.dispatchEvent(pieceMovedEvent);
-        }
-      },
+    function overlap(a, b) {
+      return !(
+        a.x + a.width <= b.x ||
+        a.x >= b.x + b.width ||
+        a.y + a.height <= b.y ||
+        a.y >= b.y + b.height
+      );
+    }
 
-      dragging(event) {
-        if (!this.drag) return;
-        const boardRect = document.getElementById("board").getBoundingClientRect();
-        const x = event.clientX - boardRect.left - this.width / 2;
-        const y = event.clientY - boardRect.top - this.height / 2;
-        this.moveTo(x, y);
-      },
+    function outOfBounds(name, x, y) {
+      const p = pieces[name];
+      return x < 0 || x + p.width > BOARD_WIDTH || y < 0 || y + p.height > BOARD_HEIGHT;
+    }
 
-      // Move element + sync state, without committing initialX/Y
-      moveTo(x, y) {
-        this.positionX = x;
-        this.positionY = y;
-        const el = document.getElementById(this.name);
-        el.style.left = x + "px";
-        el.style.top = y + "px";
-        state.value[this.name].x = x;
-        state.value[this.name].y = y;
-      },
-
-
-      snap1D(v, size) {
-        return Math.round(v / size) * size;
-      },
-
-      outOfBounds(x, y) {
-        return (
-          x < 0 ||
-          x + this.width > board.width ||
-          y < 0 ||
-          y + this.height > board.height
+    function isOverlapping(name, x, y) {
+      const p = pieces[name];
+      return Object.entries(pieces).some(([otherName, other]) => {
+        if (otherName === name) return false;
+        return overlap(
+          { x, y, width: p.width, height: p.height },
+          { x: other.x, y: other.y, width: other.width, height: other.height }
         );
-      },
-      
-      isPathBlocked(x, y) {
-        const dx = x - this.initialX;
-        const dy = y - this.initialY;
-        const steps = Math.max(Math.abs(dx), Math.abs(dy)) / SQUARE_SIDE;
+      });
+    }
 
-        // More than 2 steps away → always invalid
-        if (steps > 2) return true;
+    function isPathBlocked(name, x, y) {
+      const p = pieces[name];
+      const dx = x - p.initialX;
+      const dy = y - p.initialY;
+      const steps = Math.max(Math.abs(dx), Math.abs(dy)) / SQUARE_SIDE;
 
-        // Check every intermediate cell along the path (excluding start, including end)
-        for (let i = 1; i < steps; i++) {
-          const cellX = this.initialX + (dx / steps) * i;
-          const cellY = this.initialY + (dy / steps) * i;
+      if (steps > 2) return true;
 
-          const blocked = Object.entries(state.value).some(([otherName, other]) => {
-            if (otherName === this.name) return false;
-            return this.overlap(
-              { x: cellX, y: cellY, width: this.width, height: this.height },
-              { x: other.x, y: other.y, width: other.width, height: other.height }
-            );
-          });
-
-          if (blocked) return true;
-        }
-
-        return false;
-      },
-      movedDiagonally(x, y) {
-        return (x != this.initialX && y != this.initialY);
-      },
-      isOverlapping(x, y) {
-        return Object.entries(state.value).some(([otherName, other]) => {
-          if (otherName === this.name) return false;
-          return this.overlap(
-            { x, y, width: this.width, height: this.height },
+      for (let i = 1; i < steps; i++) {
+        const cellX = p.initialX + (dx / steps) * i;
+        const cellY = p.initialY + (dy / steps) * i;
+        const blocked = Object.entries(pieces).some(([otherName, other]) => {
+          if (otherName === name) return false;
+          return overlap(
+            { x: cellX, y: cellY, width: p.width, height: p.height },
             { x: other.x, y: other.y, width: other.width, height: other.height }
           );
         });
-      },
-
-      overlap(a, b) {
-
-        return !(
-          a.x + a.width <= b.x ||
-          a.x >= b.x + b.width ||
-          a.y + a.height <= b.y ||
-          a.y >= b.y + b.height
-        );
-      },
-      getBackToStart() {
-
-        this.moveTo(initial[this.name].initialX, initial[this.name].initialY)
+        if (blocked) return true;
       }
-    },
-  }).mount("#" + name);
-});
+      return false;
+    }
 
+    function movedDiagonally(name, x, y) {
+      const p = pieces[name];
+      return x !== p.initialX && y !== p.initialY;
+    }
+
+    // Drag event handlers
+    function onMouseDown(name, event) {
+      event.preventDefault();
+      dragging.value = name;
+      startTimer();
+    }
+
+    function onMouseMove(event) {
+      if (!dragging.value) return;
+      const name = dragging.value;
+      const p = pieces[name];
+      const boardEl = document.getElementById("board");
+      const rect = boardEl.getBoundingClientRect();
+      const x = event.clientX - rect.left - p.width / 2;
+      const y = event.clientY - rect.top - p.height / 2;
+      p.x = x;
+      p.y = y;
+    }
+
+    function onMouseUp() {
+      if (!dragging.value) return;
+      const name = dragging.value;
+      const p = pieces[name];
+      dragging.value = null;
+
+      const snappedX = snap1D(p.x);
+      const snappedY = snap1D(p.y);
+
+      const invalid =
+        outOfBounds(name, snappedX, snappedY) ||
+        isOverlapping(name, snappedX, snappedY) ||
+        isPathBlocked(name, snappedX, snappedY) ||
+        movedDiagonally(name, snappedX, snappedY);
+
+      if (invalid) {
+        p.x = p.initialX;
+        p.y = p.initialY;
+      } else {
+        p.x = snappedX;
+        p.y = snappedY;
+        p.initialX = snappedX;
+        p.initialY = snappedY;
+        moveCount.value++;
+        checkWin();
+      }
+    }
+
+    // Touch support
+    function onTouchStart(name, event) {
+      event.preventDefault();
+      dragging.value = name;
+      startTimer();
+    }
+
+    function onTouchMove(event) {
+      if (!dragging.value) return;
+      const touch = event.touches[0];
+      const name = dragging.value;
+      const p = pieces[name];
+      const boardEl = document.getElementById("board");
+      const rect = boardEl.getBoundingClientRect();
+      p.x = touch.clientX - rect.left - p.width / 2;
+      p.y = touch.clientY - rect.top - p.height / 2;
+    }
+
+    // Lifecycle 
+    onMounted(() => {
+      window.addEventListener("mousemove", onMouseMove);
+      window.addEventListener("mouseup", onMouseUp);
+      window.addEventListener("touchmove", onTouchMove, { passive: false });
+      window.addEventListener("touchend", onMouseUp);
+    });
+
+    onBeforeUnmount(() => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onMouseUp);
+      stopTimer();
+    });
+
+    return {
+      pieces,
+      moveCount,
+      formattedTime,
+      won,
+      boardLeft,
+      boardTop,
+      onMouseDown,
+      onTouchStart,
+      reset,
+    };
+  },
+}).mount("#app");
