@@ -136,20 +136,19 @@ li a:hover {
 }
 .navigation-tabs {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   column-gap: 0px;
   border-bottom: 2px solid var(--classic-silver);
 }
 .navigation-tab {
-  
   list-style-type: none;
   font-size: large;
 }
 .navigation-tab button{
-  border: solid var(--text-color);
+  
   border-bottom: none;
-  border-radius: 10px 10px 0px 0px;
-  border: none;
+  width: 250px;
+  border-radius: 3px 3px 0px 0px;
   padding:10px 20px;
   font-size: 25px;
 }
@@ -163,12 +162,14 @@ li a:hover {
   color: var(--text-color);
 }
 .active {
+  border: outset 3px var(--text-color);
   background-color: var(--classic-silver);
   color: var(--electric-magenta)
 }
 .inactive {
   background-color: transparent;
   color: var(--text-color);
+  border: none;
 }
 #all-projects {
   width: 90%;
