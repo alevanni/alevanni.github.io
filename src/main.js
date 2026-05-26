@@ -178,7 +178,9 @@ const tabProjects = {
     { name: 'Heat Map', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/PowoXOz', background: './../src/assets/projectsBackground/heat-map.png' },
     { name: 'Choropleth Map', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/mdyyMjJ', background: './../src/assets/projectsBackground/choropleth-map.png' },
     { name: 'Scatterplot Graph', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/QjypWg', background: './../src/assets/projectsBackground/scatterplot-graph.png' }],
-    "Arcade": [{ name: 'Red Donkey', githubLink: '', liveLink: './src/domains/red-donkey/red-donkey.html', background: './../src/assets/projectsBackground/red-donkey.png' }],
+    "Arcade": [{ name: 'Red Donkey', githubLink: '', liveLink: './src/domains/red-donkey/red-donkey.html', background: './../src/assets/projectsBackground/red-donkey.png' },
+        { name: 'Lights Out', githubLink: '', liveLink: './src/domains/lights-out/lights-out.html', background: './../src/assets/projectsBackground/lights-out.png' }
+    ],
     "Other": [{ name: 'nameOther', link: 'link' }],
     "Backend": [{ name: 'Issue Tracker', githubLink: 'https://github.com/alevanni/issue-tracker', liveLink: '', background: './../src/assets/projectsBackground/Issue-tracker.png' },
     { name: 'Sudoku Solver', githubLink: 'https://github.com/alevanni/sudoku-solver', liveLink: '', background: './../src/assets/projectsBackground/sudoku-solver.png' },
