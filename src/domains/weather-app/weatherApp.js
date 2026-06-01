@@ -79,6 +79,12 @@ createApp({
             // Delay to make everithing fade in together
             await new Promise(resolve => setTimeout(resolve, 10));
             this.loaded = true;
+            await new Promise(resolve => setTimeout(resolve, 50));
+            const container = document.querySelector('#weather-container');
+            const observer = new ResizeObserver(() => {
+  container.style.maxHeight = container.scrollHeight + 'px';
+});
+observer.observe(container);
 
         },
         toggleUnit() {
@@ -107,16 +113,16 @@ createApp({
         <div id="where">
           <h1>{{ city ?? "Loading..." }}</h1>
         </div>
-        <div id="weather-container" v-if="description">
+        <div id="weather-container" v-if="description" :class="{ visible: loaded }">
           <div id="description" >
-            <h2 id="weather-description" :class="{ visible: loaded }">{{ description }}</h2>
+            <p id="weather-description" :class="{ visible: loaded }">{{ description }}</p>
             <div id="icon" :class="{ visible: loaded }">
               <img :src="imageSrc" alt="Weather Icon">
             </div>
             <div id="temperature">
-              <h2 id="temp" :class="{ visible: loaded }">{{ temperature }}°</h2>
-              <button id="fahr" :class="{ visible: loaded, day: dayPart === 'day', night: dayPart === 'night' }" @click="toggleUnit">{{ unit }}</button>
-              <h2 id="apparent-temperature" :class="{ visible: loaded }">Feels like: {{ apparentTemperature }}</h2>
+              <p id="temp" :class="{ visible: loaded }">{{ temperature }}°</p>
+              <button id="fahr" class="btn" :class="{ visible: loaded, day: dayPart === 'day', night: dayPart === 'night' }" @click="toggleUnit">{{ unit }}</button>
+              <p id="apparent-temperature" :class="{ visible: loaded }">Feels like: {{ apparentTemperature }}°</p>
             </div>
           </div>
           <div id="details" :class="{ visible: loaded }">
