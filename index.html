@@ -11,7 +11,8 @@
 
 
   <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="./src/style.css">
+  <link rel="stylesheet" type="text/css" href="./src/global.css">
+  <link rel="stylesheet" type="text/css" href="./src/index.css">
 
   <!-- Place this tag in your head or just before your close body tag. -->
   <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -21,25 +22,20 @@
 
 
 <body>
+  <div id="navigation"></div>
   <div id="main">
-    <nav id="navbar">
 
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#footer">Contacts</a></li>
-      </ul>
-    </nav>
+
 
     <div id="welcome">
       <section id="welcome-section">
-        
+
         <div id="magnified-hero-div">
-        <canvas id="hero-canvas">
-        
-        </canvas>
-      </div>
-      <h1>Hello. Take a closer look.</h1>
+          <canvas id="hero-canvas">
+
+          </canvas>
+        </div>
+        <h1>Hello. Take a closer look.</h1>
       </section>
     </div>
     <div id="all-projects">
@@ -49,8 +45,10 @@
       </section>
     </div>
   </div>
-
-  <script type="module" src="/src/main.js"></script>
+  <div id="footer">
+    <p>Made by Alessia Vanni</p>
+  </div>
+  <script type="module" src="/src/index.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="https://kit.fontawesome.com/d019efaa48.js" crossorigin="anonymous"></script>
 

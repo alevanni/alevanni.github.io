@@ -1,10 +1,11 @@
 import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
+import Navbar from "./components/Navbar.js";
 const root = document.documentElement;
 
-const magenta = getComputedStyle(root).getPropertyValue('--electric-magenta');
-const green = getComputedStyle(root).getPropertyValue('--spring-green');
-const cyan = getComputedStyle(root).getPropertyValue('--aqua-cyan');
-const yellow = getComputedStyle(root).getPropertyValue('--bright-yellow');
+const accent1 = getComputedStyle(root).getPropertyValue('--color-accent-1');
+const accent2 = getComputedStyle(root).getPropertyValue('--color-accent-2');
+const accent3 = getComputedStyle(root).getPropertyValue('--color-accent-3');
+const accent4 = getComputedStyle(root).getPropertyValue('--color-accent-4');
 createApp({
     data() {
         return {
@@ -47,8 +48,8 @@ createApp({
 
         const rectWidth = this.canvas.width / 3;
         const rectHeight = this.canvas.height / 3;
-        this.drawSierpiski(this.ctx, rectWidth, rectHeight, rectWidth, rectHeight, 5, 1);
-        this.drawSierpiski(this.zoomedCtx, rectWidth * this.zoom, rectHeight * this.zoom, rectWidth * this.zoom, rectHeight * this.zoom, 6, 1);
+        this.drawSierpiski(this.ctx, rectWidth, rectHeight, rectWidth, rectHeight, 4, 1);
+        this.drawSierpiski(this.zoomedCtx, rectWidth * this.zoom, rectHeight * this.zoom, rectWidth * this.zoom, rectHeight * this.zoom, 5, 1);
         const glassSize = 100;
         this.glass.width = glassSize;
         this.glass.height = glassSize;
@@ -70,23 +71,23 @@ createApp({
 
             if (step % 2 === 0) {
                 if (step % 4 === 0) {
-                    ctx.strokeStyle = yellow;
-                    ctx.fillStyle = yellow;
+                    ctx.strokeStyle = accent4;
+                    ctx.fillStyle = accent4;
 
                 } else {
-                    ctx.strokeStyle = magenta;
-                    ctx.fillStyle = magenta;
+                    ctx.strokeStyle = accent1;
+                    ctx.fillStyle = accent1;
 
                 }
 
             } else {
                 if (step % 3 === 0) {
-                    ctx.strokeStyle = cyan;
-                    ctx.fillStyle = cyan;
+                    ctx.strokeStyle = accent3;
+                    ctx.fillStyle = accent3;
 
                 } else {
-                    ctx.strokeStyle = green;
-                    ctx.fillStyle = green;
+                    ctx.strokeStyle = accent2;
+                    ctx.fillStyle = accent2;
 
                 }
             }
@@ -169,19 +170,19 @@ createApp({
 
 const tabs = ref({ 1: "Frontend", 2: "DataVisualization", 3: "Arcade", 4: "Other", 5: "Backend" });
 const tabProjects = {
-    "Frontend": [{ name: 'Markdown Previewer', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/rOxjXK', background: './../src/assets/projectsBackground/markdown-previewer.png' },
-    { name: 'Javascript Calculator', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/avJpxz', background: './../src/assets/projectsBackground/javascript-calculator.png' },
-    { name: 'Pomodoro Clock', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/EVWNwE', background: './../src/assets/projectsBackground/pomodoro-clock.png' },
-    { name: 'Weather App', githubLink: '', liveLink: './src/domains/weather-app/weather-app.html', background: './../src/assets/projectsBackground/local-weather-app.png' },
+    "Frontend": [{ name: 'Markdown Previewer', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/rOxjXK', background: './../src/assets/projectsBackground/markdown-previewer.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
+    { name: 'Javascript Calculator', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/avJpxz', background: './../src/assets/projectsBackground/javascript-calculator.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
+    { name: 'Pomodoro Clock', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/EVWNwE', background: './../src/assets/projectsBackground/pomodoro-clock.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
+    { name: 'Weather App', githubLink: '', liveLink: './src/domains/weather-app/weather-app.html', background: './../src/assets/projectsBackground/local-weather-app.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'] },
     ],
-    "DataVisualization": [{ name: 'Bar Chart', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/LvgEwL', background: './../src/assets/projectsBackground/bar-chart.png' },
-    { name: 'Heat Map', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/PowoXOz', background: './../src/assets/projectsBackground/heat-map.png' },
-    { name: 'Choropleth Map', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/mdyyMjJ', background: './../src/assets/projectsBackground/choropleth-map.png' },
-    { name: 'Scatterplot Graph', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/QjypWg', background: './../src/assets/projectsBackground/scatterplot-graph.png' }],
-    "Arcade": [{ name: 'Red Donkey', githubLink: '', liveLink: './src/domains/red-donkey/red-donkey.html', background: './../src/assets/projectsBackground/red-donkey.png' },
-        { name: 'Lights Out', githubLink: '', liveLink: './src/domains/lights-out/lights-out.html', background: './../src/assets/projectsBackground/lights-out.png' }
+    "DataVisualization": [{ name: 'Bar Chart', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/LvgEwL', background: './../src/assets/projectsBackground/bar-chart.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
+    { name: 'Heat Map', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/PowoXOz', background: './../src/assets/projectsBackground/heat-map.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
+    { name: 'Choropleth Map', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/mdyyMjJ', background: './../src/assets/projectsBackground/choropleth-map.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
+    { name: 'Scatterplot Graph', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/QjypWg', background: './../src/assets/projectsBackground/scatterplot-graph.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] }],
+    "Arcade": [{ name: 'Red Donkey', githubLink: '', liveLink: './src/domains/red-donkey/red-donkey.html', background: './../src/assets/projectsBackground/red-donkey.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'], description: 'Can you free the donkey from its prison?' },
+        { name: 'Lights Out', githubLink: '', liveLink: './src/domains/lights-out/lights-out.html', background: './../src/assets/projectsBackground/lights-out.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'], description: 'Turn on the lights! Careful, when you switch one, all the ones around it will switch too.' },
     ],
-    "Other": [{ name: 'nameOther', link: 'link' }],
+    "Aoc": [{ name: 'Advent of Code Solutions', link: 'link' }],
     "Backend": [{ name: 'Issue Tracker', githubLink: 'https://github.com/alevanni/issue-tracker', liveLink: '', background: './../src/assets/projectsBackground/Issue-tracker.png' },
     { name: 'Sudoku Solver', githubLink: 'https://github.com/alevanni/sudoku-solver', liveLink: '', background: './../src/assets/projectsBackground/sudoku-solver.png' },
     { name: 'Imperial Metric Converter', githubLink: 'https://github.com/alevanni/imperial-metric-converter', liveLink: '', background: './../src/assets/projectsBackground/imperial-metric-converter.png' },
@@ -213,7 +214,7 @@ createApp({
                     
                 </ul>
                 
-                <div v-for="(tab, key) in this.tabs" v-show="activeTab == tab" class="project-section"  :id="tab + '-projects'"></div>
+                <div v-for="(tab, key) in this.tabs" v-show="activeTab == tab" class="projects" :id="tab + '-projects'"></div>
                 `,
 }).mount("#project-tabs");
 
@@ -232,18 +233,24 @@ Object.entries(tabProjects).forEach(([tabName, data]) => {
         template: `<h2>{{id}} Projects</h2>
         <div class="showcase">
         <div v-for="project in projects" class="project-tile">
-        <h3>{{project.name}}</h3>
-        <div class="tile-img" :style="{ backgroundImage: 'url(' + project.background + ')', backgroundRepeat: 'no-repeat', backgroundPosition: '50% 50%', backgroundSize: '280px 170px' }">
-        <div class="overlay">
-        <a v-if="project.githubLink" target="_blank" :href="project.githubLink">
-            <i class="fa fa-github" aria-hidden="true"></i> GitHub
-        </a>
-        <a v-if="project.liveLink" :href="project.liveLink" target="_blank">
-            <i class="fa fa-eye"></i> Live
-        </a>
-        </div>
-        </div>
-        </div>
+  <div class="tile-img" :style="{ backgroundImage: 'url(' + project.background + ')' }"></div>
+  <div class="tile-content">
+    <h3>{{ project.name }}</h3>
+    <p>{{ project.description }}</p>
+    <div class="tile-badges">
+      <span class="badge badge-secondary">{{ project.year }}</span>
+      <span v-for="tech in project.tech" class="badge badge-accent-1">{{ tech }}</span>
+    </div>
+    <div class="tile-links card-footer">
+      <a v-if="project.githubLink" :href="project.githubLink" target="_blank" class="btn">
+        <i class="fa-brands fa-github"></i> GitHub
+      </a>
+      <a v-if="project.liveLink" :href="project.liveLink" target="_blank" class="btn-ghost btn">
+        <i class="fa fa-eye"></i> Live
+      </a>
+    </div>
+  </div>
+</div>
         </div>`,
     }).mount('#' + tabName + '-projects');
 });
