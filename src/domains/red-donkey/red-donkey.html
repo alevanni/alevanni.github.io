@@ -6,8 +6,8 @@
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css?family=Abel" rel='stylesheet'>
-
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./red-donkey.css" />
+  <link rel="stylesheet" href="./../../global.css" />
   <title>test-server</title>
 </head>
 
@@ -20,9 +20,9 @@
 
       <!-- HUD -->
       <div class="hud">
-        <span class="aqua">Moves: {{ moveCount }}</span>
-        <span class="magenta">Time: {{ formattedTime }}</span>
-        <button @click="reset">Reset</button>
+        <span class="text-secondary">Moves: {{ moveCount }}</span>
+        <span class="text-secondary">Time: {{ formattedTime }}</span>
+        <button class="btn" @click="reset">Reset</button>
       </div>
 
       <!-- Board -->
@@ -40,8 +40,10 @@
     <!-- Win dialog -->
     <dialog :open="won" id="you-won">
       <h2>You won! 🎉</h2>
-      <p>{{ moveCount }} moves — {{ formattedTime }}</p>
-      <button @click="reset">Play again</button>
+      <p>
+      <span class="badge badge-accent-2">{{ moveCount }} moves</span>  <span class="badge badge-accent-4">{{ formattedTime }} min</span></p>
+      <p>Now go do something with your life!</p>
+      <button class="btn" @click="reset">Play again</button>
     </dialog>
   </div>
 

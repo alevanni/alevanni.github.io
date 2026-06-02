@@ -3,8 +3,8 @@ import Navbar from "../../components/Navbar.js";
 
 const SQUARE_SIDE = 100;
 const RECTANGLE_HEIGHT = 200;
-const BOARD_WIDTH = 400;
-const BOARD_HEIGHT = 500;
+const BOARD_WIDTH = 406;
+const BOARD_HEIGHT = 506;
 
 const INITIAL_PIECES = {
   piece1: { x: 0, y: 0, width: SQUARE_SIDE, height: RECTANGLE_HEIGHT },
@@ -34,7 +34,7 @@ createApp({
   setup() {
     // State
     const pieces = reactive(cloneInitial());
-    const dragging = ref(null);   // name of piece being dragged, or null
+    const dragging = ref(null);  
     const moveCount = ref(0);
     const timeElapsed = ref(0);
     const won = ref(false);
@@ -158,8 +158,8 @@ createApp({
       const p = pieces[name];
       const boardEl = document.getElementById("board");
       const rect = boardEl.getBoundingClientRect();
-      const x = event.clientX - rect.left - p.width / 2;
-      const y = event.clientY - rect.top - p.height / 2;
+      const x = event.clientX - rect.left - boardEl.clientLeft - p.width / 2;
+      const y = event.clientY - rect.top - boardEl.clientTop - p.height / 2;
       p.x = x;
       p.y = y;
     }
@@ -206,8 +206,8 @@ createApp({
       const p = pieces[name];
       const boardEl = document.getElementById("board");
       const rect = boardEl.getBoundingClientRect();
-      p.x = touch.clientX - rect.left - p.width / 2;
-      p.y = touch.clientY - rect.top - p.height / 2;
+      p.x = touch.clientX - rect.left - boardEl.clientLeft - p.width / 2;
+      p.y = touch.clientY - rect.top - boardEl.clientTop - p.height / 2;
     }
 
     // Lifecycle 
