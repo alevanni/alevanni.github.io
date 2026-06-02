@@ -1,11 +1,13 @@
 import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
 import Navbar from "./components/Navbar.js";
 const root = document.documentElement;
+root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+const accent1 = ref(getComputedStyle(root).getPropertyValue('--color-accent-1'));
+const accent2 = ref(getComputedStyle(root).getPropertyValue('--color-accent-2'));
+const accent3 = ref(getComputedStyle(root).getPropertyValue('--color-accent-3'));
+const accent4 = ref(getComputedStyle(root).getPropertyValue('--color-accent-4'));
 
-const accent1 = getComputedStyle(root).getPropertyValue('--color-accent-1');
-const accent2 = getComputedStyle(root).getPropertyValue('--color-accent-2');
-const accent3 = getComputedStyle(root).getPropertyValue('--color-accent-3');
-const accent4 = getComputedStyle(root).getPropertyValue('--color-accent-4');
+
 createApp({
     data() {
         return {
@@ -20,48 +22,72 @@ createApp({
         }
     },
     mounted() {
-        this.zoom = 2;
-        this.canvas = document.getElementById("hero-canvas");
-
-        this.ctx = this.canvas.getContext("2d");
-
-        // Set canvas dimensions to fill the viewport
-        // After setting canvas display:block, read its actual CSS size
-        this.canvas.width = this.canvas.offsetHeight;
-        this.canvas.height = this.canvas.offsetHeight;
-
-        /* Create magnifier glass: */
-        this.glass = document.createElement("canvas");
-        this.zoomedCanvas = document.createElement("canvas"); //does not get added to the DOM, just used for drawing the zoomed image
-        this.zoomedCanvas.width = this.canvas.width * this.zoom;
-        this.zoomedCanvas.height = this.canvas.height * this.zoom;
-        this.glass.setAttribute("class", "magnifier-glass");
-        this.magnifiedCtx = this.glass.getContext("2d");
-        this.zoomedCtx = this.zoomedCanvas.getContext("2d");
-        /* Insert magnifier glass: */
-        this.canvas.parentElement.insertBefore(this.glass, this.canvas);
-
-        /* Set background properties for the magnifier glass: */
-        this.glass.style.backgroundRepeat = "no-repeat";
-        this.magnifiedCtx.backgroundSize = (this.canvas.width * this.zoom) + "px " + (this.canvas.height * this.zoom) + "px";
-        this.zoomedCtx.backgroundSize = (this.canvas.width * this.zoom) + "px " + (this.canvas.height * this.zoom) + "px";
-
-        const rectWidth = this.canvas.width / 3;
-        const rectHeight = this.canvas.height / 3;
-        this.drawSierpiski(this.ctx, rectWidth, rectHeight, rectWidth, rectHeight, 4, 1);
-        this.drawSierpiski(this.zoomedCtx, rectWidth * this.zoom, rectHeight * this.zoom, rectWidth * this.zoom, rectHeight * this.zoom, 5, 1);
-        const glassSize = 100;
-        this.glass.width = glassSize;
-        this.glass.height = glassSize;
-        this.w = this.glass.width / 2;
-        this.h = this.glass.height / 2;
-
-        /* Execute a function when someone moves the magnifier glass over the image: */
-        this.canvas.addEventListener("mousemove", this.moveMagnifier);
-        this.glass.addEventListener("mousemove", this.moveMagnifier);
+        window.addEventListener('theme-changed', () => {
+            console.log('theme changed');
+            accent1.value = getComputedStyle(root).getPropertyValue('--color-accent-1').trim();
+            accent2.value = getComputedStyle(root).getPropertyValue('--color-accent-2').trim();
+            accent3.value = getComputedStyle(root).getPropertyValue('--color-accent-3').trim();
+            accent4.value = getComputedStyle(root).getPropertyValue('--color-accent-4').trim();
+            // redraw canvas here
+            this.drawCanvas();
+        });
+        this.drawCanvas();
     },
     methods: {
+        drawCanvas() {
+
+            this.canvas = document.getElementById("hero-canvas");
+
+            this.ctx = this.canvas.getContext("2d");
+
+            // Set canvas dimensions to fill the viewport
+            // After setting canvas display:block, read its actual CSS size
+            this.canvas.width = this.canvas.offsetHeight;
+            this.canvas.height = this.canvas.offsetHeight;
+
+            // clear the canvas
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+            // remove old glass to avoid duplicates
+            const oldGlass = this.canvas.parentElement.querySelector('.magnifier-glass');
+            if (oldGlass) oldGlass.remove();
+            this.zoom = 2;
+            const glassSize = 100;
+            // remove old listeners before adding new ones
+            this.canvas.removeEventListener("mousemove", this.moveMagnifier);
+
+            /* Create magnifier glass: */
+            this.glass = document.createElement("canvas");
+            this.zoomedCanvas = document.createElement("canvas"); //does not get added to the DOM, just used for drawing the zoomed image
+            this.zoomedCanvas.width = this.canvas.width * this.zoom;
+            this.zoomedCanvas.height = this.canvas.height * this.zoom;
+            this.glass.setAttribute("class", "magnifier-glass");
+            this.magnifiedCtx = this.glass.getContext("2d");
+            this.zoomedCtx = this.zoomedCanvas.getContext("2d");
+            /* Insert magnifier glass: */
+            this.canvas.parentElement.insertBefore(this.glass, this.canvas);
+            this.glass.style.visibility = "hidden";
+            /* Set background properties for the magnifier glass: */
+            this.glass.style.backgroundRepeat = "no-repeat";
+            this.magnifiedCtx.backgroundSize = (this.canvas.width * this.zoom) + "px " + (this.canvas.height * this.zoom) + "px";
+            this.zoomedCtx.backgroundSize = (this.canvas.width * this.zoom) + "px " + (this.canvas.height * this.zoom) + "px";
+
+            const rectWidth = this.canvas.width / 3;
+            const rectHeight = this.canvas.height / 3;
+            this.drawSierpiski(this.ctx, rectWidth, rectHeight, rectWidth, rectHeight, 4, 1);
+            this.drawSierpiski(this.zoomedCtx, rectWidth * this.zoom, rectHeight * this.zoom, rectWidth * this.zoom, rectHeight * this.zoom, 5, 1);
+
+            this.glass.width = glassSize;
+            this.glass.height = glassSize;
+            this.w = this.glass.width / 2;
+            this.h = this.glass.height / 2;
+
+            /* Execute a function when someone moves the magnifier glass over the image: */
+            this.canvas.addEventListener("mousemove", this.moveMagnifier);
+            this.glass.addEventListener("mousemove", this.moveMagnifier);
+        },
         drawSierpiski(ctx, width, height, startX, startY, depth, step) {
+
             if (depth === 0) {
                 return;
             }
@@ -71,23 +97,23 @@ createApp({
 
             if (step % 2 === 0) {
                 if (step % 4 === 0) {
-                    ctx.strokeStyle = accent4;
-                    ctx.fillStyle = accent4;
+                    ctx.strokeStyle = accent4.value;
+                    ctx.fillStyle = accent4.value;
 
                 } else {
-                    ctx.strokeStyle = accent1;
-                    ctx.fillStyle = accent1;
+                    ctx.strokeStyle = accent1.value;
+                    ctx.fillStyle = accent1.value;
 
                 }
 
             } else {
                 if (step % 3 === 0) {
-                    ctx.strokeStyle = accent3;
-                    ctx.fillStyle = accent3;
+                    ctx.strokeStyle = accent3.value;
+                    ctx.fillStyle = accent3.value;
 
                 } else {
-                    ctx.strokeStyle = accent2;
-                    ctx.fillStyle = accent2;
+                    ctx.strokeStyle = accent2.value;
+                    ctx.fillStyle = accent2.value;
 
                 }
             }
@@ -120,10 +146,11 @@ createApp({
 
         },
         moveMagnifier(e) {
+            this.glass.style.visibility = "visible";
             const a = this.canvas.getBoundingClientRect();
             const scaleX = a.width / this.canvas.width;
             const scaleY = a.height / this.canvas.height;
-            
+
             var pos, x, y;
             /* Prevent any other actions that may occur when moving over the image */
             e.preventDefault();
@@ -168,21 +195,22 @@ createApp({
     }
 }).mount("#magnified-hero-div");
 
-const tabs = ref({ 1: "Frontend", 2: "DataVisualization", 3: "Arcade", 4: "Other", 5: "Backend" });
+const tabs = ref({ 1: "Frontend", 2: "Arcade", 3: "DataVisualization", 4: "Backend", 5: "Advent of Code" });
 const tabProjects = {
-    "Frontend": [{ name: 'Markdown Previewer', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/rOxjXK', background: './../src/assets/projectsBackground/markdown-previewer.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
-    { name: 'Javascript Calculator', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/avJpxz', background: './../src/assets/projectsBackground/javascript-calculator.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
-    { name: 'Pomodoro Clock', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/EVWNwE', background: './../src/assets/projectsBackground/pomodoro-clock.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
-    { name: 'Weather App', githubLink: '', liveLink: './src/domains/weather-app/weather-app.html', background: './../src/assets/projectsBackground/local-weather-app.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'] },
+    "Frontend": [
+        { name: 'Weather App', githubLink: '', liveLink: './src/domains/weather-app/weather-app.html', background: './../src/assets/projectsBackground/local-weather-app.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'] },
+        { name: 'Pomodoro Clock', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/EVWNwE', background: './../src/assets/projectsBackground/pomodoro-clock.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
+        { name: 'Markdown Previewer', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/rOxjXK', background: './../src/assets/projectsBackground/markdown-previewer.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
+        { name: 'Javascript Calculator', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/avJpxz', background: './../src/assets/projectsBackground/javascript-calculator.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
     ],
     "DataVisualization": [{ name: 'Bar Chart', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/LvgEwL', background: './../src/assets/projectsBackground/bar-chart.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
     { name: 'Heat Map', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/PowoXOz', background: './../src/assets/projectsBackground/heat-map.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
     { name: 'Choropleth Map', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/mdyyMjJ', background: './../src/assets/projectsBackground/choropleth-map.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
     { name: 'Scatterplot Graph', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/QjypWg', background: './../src/assets/projectsBackground/scatterplot-graph.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] }],
     "Arcade": [{ name: 'Red Donkey', githubLink: '', liveLink: './src/domains/red-donkey/red-donkey.html', background: './../src/assets/projectsBackground/red-donkey.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'], description: 'Can you free the donkey from its prison?' },
-        { name: 'Lights Out', githubLink: '', liveLink: './src/domains/lights-out/lights-out.html', background: './../src/assets/projectsBackground/lights-out.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'], description: 'Turn on the lights! Careful, when you switch one, all the ones around it will switch too.' },
+    { name: 'Lights Out', githubLink: '', liveLink: './src/domains/lights-out/lights-out.html', background: './../src/assets/projectsBackground/lights-out.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'], description: 'Turn on the lights! Careful, when you switch one, all the ones around it will switch too.' },
     ],
-    "Aoc": [{ name: 'Advent of Code Solutions', link: 'link' }],
+    "Advent of Code": [{ name: 'Advent of Code Solutions', link: 'link' }],
     "Backend": [{ name: 'Issue Tracker', githubLink: 'https://github.com/alevanni/issue-tracker', liveLink: '', background: './../src/assets/projectsBackground/Issue-tracker.png' },
     { name: 'Sudoku Solver', githubLink: 'https://github.com/alevanni/sudoku-solver', liveLink: '', background: './../src/assets/projectsBackground/sudoku-solver.png' },
     { name: 'Imperial Metric Converter', githubLink: 'https://github.com/alevanni/imperial-metric-converter', liveLink: '', background: './../src/assets/projectsBackground/imperial-metric-converter.png' },
@@ -228,7 +256,7 @@ Object.entries(tabProjects).forEach(([tabName, data]) => {
             }
         },
         mounted() {
-            
+
         },
         template: `<h2>{{id}} Projects</h2>
         <div class="showcase">

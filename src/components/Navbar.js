@@ -10,13 +10,38 @@ export default createApp({
       ]
     };
   },
-    template: `<nav id="navbar">
+  mounted() {
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.documentElement.dataset["theme"] = "dark";
+      window.dispatchEvent(new CustomEvent('theme-changed'));
+      const toggleSwitch = document.getElementById("toggle-theme");
+      toggleSwitch.addEventListener("change", () => {
+        if (toggleSwitch.checked) {
+          console.log("here")
+          document.documentElement.dataset["theme"] = "light";
+
+        }
+        else {
+          document.documentElement.dataset["theme"] = "dark";
+        }
+        window.dispatchEvent(new CustomEvent('theme-changed'));
+      });
+    });
+
+
+  }
+  ,
+  template: `<nav id="navbar">
     <ul>
       <li v-for="item in navItems" :key="item.text">
         <a :href="item.href">{{ item.text }}</a>
       </li>
     </ul>
-  </nav>`   
+     <label class="switch">
+    <input type="checkbox" id="toggle-theme" >
+    <span class="slider round"></span>
+  </label>
+  </nav>`
 }).mount("#navigation");
 
-  

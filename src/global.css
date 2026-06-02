@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;500&family=Lora:wght@500;700&family=Nunito:wght@400;500&display=swap');
 
+:root {
+    --navbar-height: 80px;
+}
+
 :root[data-theme="light"] {
     --font-heading: 'Lora', serif;
     --font-body: 'Nunito', sans-serif;
@@ -23,8 +27,8 @@
     /* sage green */
 }
 
-:root {
-    --navbar-height: 80px;
+:root[data-theme="dark"] {
+    
     --font-heading: 'Orbitron', sans-serif;
     --font-body: 'Rajdhani', sans-serif;
     --color-bg: #1c1b2e;
@@ -83,7 +87,7 @@ p {
     border-radius: 34px;
     background-color: var(--color-surface);
     border: 1px solid var(--color-surface);
-
+    margin-bottom: 0;
     /* 3d depth: top light, bottom shadow */
     box-shadow:
         inset 0 3px 6px rgba(0, 0, 0, 0.3),
@@ -405,6 +409,9 @@ a:hover {
 #navbar {
     display: flex;
     width:100%;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 2rem;
     height: var(--navbar-height);
     letter-spacing: 0.5px;
     background-color: var(--color-bg);
