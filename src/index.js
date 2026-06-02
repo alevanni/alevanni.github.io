@@ -2,9 +2,9 @@ import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.pro
 import Navbar from "./components/Navbar.js";
 const root = document.documentElement;
 root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
-const accent1 = ref(getComputedStyle(root).getPropertyValue('--color-accent-1'));
-const accent2 = ref(getComputedStyle(root).getPropertyValue('--color-accent-2'));
-const accent3 = ref(getComputedStyle(root).getPropertyValue('--color-accent-3'));
+const accent1 = ref(getComputedStyle(root).getPropertyValue('--color-accent-4'));
+const accent2 = ref(getComputedStyle(root).getPropertyValue('--color-secondary'));
+const accent3 = ref(getComputedStyle(root).getPropertyValue('--color-primary'));
 const accent4 = ref(getComputedStyle(root).getPropertyValue('--color-accent-4'));
 
 
@@ -24,9 +24,9 @@ createApp({
     mounted() {
         window.addEventListener('theme-changed', () => {
             console.log('theme changed');
-            accent1.value = getComputedStyle(root).getPropertyValue('--color-accent-1').trim();
-            accent2.value = getComputedStyle(root).getPropertyValue('--color-accent-2').trim();
-            accent3.value = getComputedStyle(root).getPropertyValue('--color-accent-3').trim();
+            accent1.value = getComputedStyle(root).getPropertyValue('--color-accent-4').trim();
+            accent2.value = getComputedStyle(root).getPropertyValue('--color-secondary').trim();
+            accent3.value = getComputedStyle(root).getPropertyValue('--color-primary').trim();
             accent4.value = getComputedStyle(root).getPropertyValue('--color-accent-4').trim();
             // redraw canvas here
             this.drawCanvas();
