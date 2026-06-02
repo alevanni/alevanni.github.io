@@ -1,0 +1,100 @@
+#main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - var(--navbar-height));
+}
+
+#game {
+  margin-top: var(--navbar-height);
+  width: 50vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#flippable {
+  display: flex;
+  flex-direction:column;
+}
+
+#hud {
+  border: 2px outset var(--color-accent-3);
+  display: flex;
+  flex-direction:column;
+  height:150px;
+  color:var(--color-primary);
+  background-color:var(--color-surface);
+}
+button{
+  width: 70px;
+  height: 70px;
+  display: inline-block;
+  background: var(--color-surface);
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s, box-shadow 0.1s;
+  box-shadow:
+        0 4px 0 0 color-mix(in srgb, var(--color-text) 60%, black),
+        0 6px 10px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+button:active {
+    transform: translateY(3px);
+    box-shadow:
+        0 1px 0 0 color-mix(in srgb, var(--color-text) 60%, black),
+        0 2px 4px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.inactive {
+  border: 1px solid var(--color-text);
+  transition: 0.5s ease;
+  background-color: var(--color-surface);
+  transition: background-color 0.75s ease-in-out;
+}
+
+.active {
+  border:  1px solid var(--color-accent-4);
+  background-color: var(--color-accent-4);
+  transform: translateY(3px);
+  transition: 0.5s ease;
+  transition: background-color 0.75s ease;
+  box-shadow:inset 0 0 10px 0px var(--color-surface);
+}
+
+.row {
+  display: flex;
+  gap:2px;
+  align-items: end;
+}
+
+#flippable {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#size-control {
+  display: flex;
+  flex-direction:column;
+  font-size: 30px;
+}
+#size-control input{
+  background-color: var(--color-surface);
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+}
+/*
+ 
+
+span {
+  color:white;
+  font-size: 30px;
+}
+
+
+
+  */

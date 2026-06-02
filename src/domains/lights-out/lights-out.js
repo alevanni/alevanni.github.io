@@ -81,7 +81,7 @@ createApp({
       return `${m}:${s}`;
     },
     flip(x, y) {
-      if (x > 2 || x < 0 || y > 2 || y < 0) return;
+      if (x >= this.size || x < 0 || y >= this.size || y < 0) return;
       else {
         if (this.buttons[x][y].state === "active") {
           this.buttons[x][y].state = "inactive";
@@ -93,7 +93,7 @@ createApp({
       }
     },
     haveIwon() {
-      if (this.state === 9) {
+      if (this.state === this.size * this.size) {
         this.stopTimer();
         this.won = true;
       }
@@ -111,7 +111,7 @@ createApp({
         state: "active"
       }))
     );
-    this.state = 9;
+    this.state = this.size * this.size;
 
     // Make N random moves so you always have a solvable puzzle)
     for (let i = 0; i < 20; i++) {
@@ -140,7 +140,7 @@ createApp({
 
       this.resetTimer();
       this.moves = 0;
-      this.state = 4;
+      this.state = this.size * this.size;
       this.won = false;
       this.setGame(this.size);
     },

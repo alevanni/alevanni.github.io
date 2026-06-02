@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./lights-out.css" />
+  <link rel="stylesheet" href="./../../global.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>test-server</title>
   <link href="https://fonts.googleapis.com/css?family=Abel" rel='stylesheet'>
@@ -18,28 +19,30 @@
 
 <body>
   <div id="navigation"></div>
-    <div id="main">
-<div id="game">
-  <div id="hud">
-    <span class="magenta">Moves:{{moves}}</span>
-    <span class="aqua">Time:{{formattedTime}}</span>
-     <span class="magenta">Best moves:{{bestMoves}}</span>
-    <span class="aqua">Best time:{{formatTime(bestTime)}}</span>
-    
+  <div id="main">
+    <div id="game">
+      <div id="hud">
+        <span class="magenta">Moves:{{moves}}</span>
+        <span class="aqua">Time:{{formattedTime}}</span>
+        <span class="magenta">Best moves:{{bestMoves}}</span>
+        <span class="aqua">Best time:{{formatTime(bestTime)}}</span>
+
+      </div>
+      <div id='flippable'>
+        <div class='row' v-for="(row, rowIndex) in this.buttons"><button v-for="(item, columnIndex) in row"
+            :id="item.x + ',' + item.y" @click="this.pressButton(item)" :class="item.state">
+
+          </button>
+        </div>
+      </div>
+      <div id="size-control"><label class="yellow" for="dimension">Size </label><input id="dimension" class="yellow"
+          type="number" v-model="size" max="10" min="3"></input></div>
+      <dialog id="dialog" :open="this.won">You won!
+        <button @click="close">close</button>
+      </dialog>
+
+    </div>
   </div>
-<div id='flippable'>
-<div class='row' v-for="(row, rowIndex) in this.buttons"><button v-for="(item, columnIndex) in row" :id="item.x + ',' + item.y" @click="this.pressButton(item)" :class="item.state">
-  
-</button>
-  </div>
-</div>
-  <div id="size-control"><label  class="yellow" for="dimension">Size </label><input id="dimension" class="yellow" type="number" v-model="size" max="10" min="2"></input></div>
-  <dialog id="dialog" :open="this.won">You won!
-    <button @click="close">close</button>
-  </dialog>
-  
-</div>
-</div>
 </body>
 
 </html>
