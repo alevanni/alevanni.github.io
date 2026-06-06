@@ -140,7 +140,7 @@ createApp({
 
       this.resetTimer();
       this.moves = 0;
-      this.state = this.size * this.size;
+      
       this.won = false;
       this.setGame(this.size);
     },
@@ -148,9 +148,10 @@ createApp({
   },
   watch: {
     size(newSize) {
+      this.reset();
       this.bestMoves=0;
       this.bestTime=0;
-      this.reset();
+      
     }
   }
 }).mount("#main");

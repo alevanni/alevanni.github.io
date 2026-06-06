@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="./../../global.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>test-server</title>
-  <link href="https://fonts.googleapis.com/css?family=Abel" rel='stylesheet'>
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fontawesome5-fullcss@1.1.0/css/all.min.css">
   <script type="module" src="./lights-out.js"></script>
 
@@ -22,6 +22,7 @@
   <div id="main">
     <div id="game">
       <div id="hud">
+        <p>Turn on the lights! But careful, once you click a button, the adjacent buttons will also switch!</p>
         <span class="magenta">Moves:{{moves}}</span>
         <span class="aqua">Time:{{formattedTime}}</span>
         <span class="magenta">Best moves:{{bestMoves}}</span>
@@ -37,8 +38,14 @@
       </div>
       <div id="size-control"><label class="yellow" for="dimension">Size </label><input id="dimension" class="yellow"
           type="number" v-model="size" max="10" min="3"></input></div>
-      <dialog id="dialog" :open="this.won">You won!
-        <button @click="close">close</button>
+      <dialog id="dialog" :open="this.won">
+        <h2>You won! 🎉</h2>
+        <p>
+          <span class="badge badge-accent-2">{{ moved }} moves</span> <span class="badge badge-accent-4">{{
+            formattedTime }} min</span>
+        </p>
+        <p>Now go do something with your life!</p>
+        <button class="btn" @click="close">close</button>
       </dialog>
 
     </div>
