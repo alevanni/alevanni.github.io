@@ -1,7 +1,8 @@
 import { createApp, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
 import Navbar from "./components/Navbar.js";
+
 const root = document.documentElement;
-root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+// these variables have to be renamed
 const accent1 = ref(getComputedStyle(root).getPropertyValue('--color-accent-4'));
 const accent2 = ref(getComputedStyle(root).getPropertyValue('--color-secondary'));
 const accent3 = ref(getComputedStyle(root).getPropertyValue('--color-primary'));
@@ -228,7 +229,8 @@ createApp({
     },
     mounted() {
         const projectTabs = document.getElementById("projectTabs");
-
+        console.log(document.documentElement.dataset.theme)
+        console.log(root.dataset.theme);
     },
     methods: {
         activateTab(tab) {

@@ -7,29 +7,24 @@ export default createApp({
         { text: "Home", href: "/index.html" },
         { text: "Projects", href: "/index.html#projects" },
         { text: "Contacts", href: "/index.html#contacts" }
-      ]
+      ],
+      theme: localStorage.getItem("theme") || "dark",
     };
   },
   mounted() {
-
-    document.addEventListener("DOMContentLoaded", () => {
-      document.documentElement.dataset["theme"] = "dark";
+    document.documentElement.dataset["theme"] = this.theme;
+    const toggleSwitch = document.getElementById("toggle-theme");
+    toggleSwitch.addEventListener("change", () => {
+      if (toggleSwitch.checked) {
+        console.log("here")
+        document.documentElement.dataset["theme"] = "light";
+      }
+      else {
+        document.documentElement.dataset["theme"] = "dark";
+      }
       window.dispatchEvent(new CustomEvent('theme-changed'));
-      const toggleSwitch = document.getElementById("toggle-theme");
-      toggleSwitch.addEventListener("change", () => {
-        if (toggleSwitch.checked) {
-          console.log("here")
-          document.documentElement.dataset["theme"] = "light";
-
-        }
-        else {
-          document.documentElement.dataset["theme"] = "dark";
-        }
-        window.dispatchEvent(new CustomEvent('theme-changed'));
-      });
+      const currentTheme = localStorage.setItem("theme", document.documentElement.dataset["theme"]);
     });
-
-
   }
   ,
   template: `<nav id="navbar">
@@ -39,7 +34,7 @@ export default createApp({
       </li>
     </ul>
      <label class="switch">
-    <input type="checkbox" id="toggle-theme" >
+    <input type="checkbox" id="toggle-theme" :v-model="theme" :checked="theme === 'light'">
     <span class="slider round"></span>
   </label>
   </nav>`
