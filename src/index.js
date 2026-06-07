@@ -140,11 +140,6 @@ createApp({
                     );
                 }
             }
-
-
-
-
-
         },
         moveMagnifier(e) {
             this.glass.style.visibility = "visible";
@@ -180,7 +175,7 @@ createApp({
                 this.glass.width,
                 this.glass.height
             );
-            //console.log('cursor x:', x, 'source x:', (x - this.w) * this.zoom, 'glass left:', (x - this.w));
+
         },
         getCursorPosition(e) {
             var a, x = 0, y = 0;
@@ -196,30 +191,44 @@ createApp({
     }
 }).mount("#magnified-hero-div");
 
-const tabs = ref({ 1: "Frontend", 2: "Arcade", 3: "DataVisualization", 4: "Backend", 5: "Advent of Code" });
+const tabs = ref({ 1: "Frontend", 2: "Arcade", 3: "Data Visualization", 4: "Backend", /*5: "Advent of Code" */ });
+const descriptions = ref({
+    "Frontend": "These projects, that I have developed while studying the freeCodeCamp curriculum, are focused on frontend development. They feature HTML, CSS, and JavaScript. They include interactive web applications, responsive designs, and creative user interfaces.",
+    "Arcade": "These little games are developed using HTML, CSS, and VueJS.",
+    "Data Visualization": "Projects that focus on data visualization techniques using HTML, CSS, and JavaScript library D3. They were developed for the freeCodeCamp curriculum.",
+    "Backend": "APIs, microservices, and server-side applications that handle data processing and business logic. Also made for freeCodeCamp curriculum.",
+    //"Advent of Code": "Section still under construction..."
+});
 const tabProjects = {
-    "Frontend": [
+    "Frontend": {description: descriptions.value.Frontend, projects:[
         { name: 'Weather App', githubLink: '', liveLink: './src/domains/weather-app/weather-app.html', background: './../src/assets/projectsBackground/local-weather-app.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'] },
         { name: 'Pomodoro Clock', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/EVWNwE', background: './../src/assets/projectsBackground/pomodoro-clock.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
         { name: 'Markdown Previewer', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/rOxjXK', background: './../src/assets/projectsBackground/markdown-previewer.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
         { name: 'Javascript Calculator', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/avJpxz', background: './../src/assets/projectsBackground/javascript-calculator.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
-    ],
-    "DataVisualization": [{ name: 'Bar Chart', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/LvgEwL', background: './../src/assets/projectsBackground/bar-chart.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
+    ]},
+    "Data Visualization": {description: descriptions.value['Data Visualization'], projects:[
+    { name: 'Bar Chart', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/LvgEwL', background: './../src/assets/projectsBackground/bar-chart.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
     { name: 'Heat Map', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/PowoXOz', background: './../src/assets/projectsBackground/heat-map.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
     { name: 'Choropleth Map', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/mdyyMjJ', background: './../src/assets/projectsBackground/choropleth-map.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
-    { name: 'Scatterplot Graph', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/QjypWg', background: './../src/assets/projectsBackground/scatterplot-graph.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] }],
-    "Arcade": [{ name: 'Red Donkey', githubLink: '', liveLink: './src/domains/red-donkey/red-donkey.html', background: './../src/assets/projectsBackground/red-donkey.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'], description: 'Can you free the donkey from its prison?' },
+    { name: 'Scatterplot Graph', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/QjypWg', background: './../src/assets/projectsBackground/scatterplot-graph.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
+    { name: 'Tree Map', githubLink: '', liveLink: 'https://codepen.io/alevanni/full/xxbbLLy', background: './../src/assets/projectsBackground/tree-map.png', year: 2019, tech: ['HTML', 'CSS', 'JS'] },
+    ]},
+    "Arcade": {description: descriptions.value.Arcade, projects:[
+    { name: 'Red Donkey', githubLink: '', liveLink: './src/domains/red-donkey/red-donkey.html', background: './../src/assets/projectsBackground/red-donkey.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'], description: 'Can you free the donkey from its prison?' },
     { name: 'Lights Out', githubLink: '', liveLink: './src/domains/lights-out/lights-out.html', background: './../src/assets/projectsBackground/lights-out.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'], description: 'Turn on the lights! Careful, when you switch one, all the ones around it will switch too.' },
-    ],
-    "Advent of Code": [{ name: 'Advent of Code Solutions', link: 'link' }],
-    "Backend": [{ name: 'Issue Tracker', githubLink: 'https://github.com/alevanni/issue-tracker', liveLink: '', background: './../src/assets/projectsBackground/Issue-tracker.png' },
+    ]},
+   // "Advent of Code": {description: descriptions.value['Advent of Code'], projects:[
+    //{ name: 'Advent of Code Solutions', link: '' }
+    //]},
+    "Backend": {description: descriptions.value.Backend, projects:[
+    { name: 'Issue Tracker', githubLink: 'https://github.com/alevanni/issue-tracker', liveLink: '', background: './../src/assets/projectsBackground/Issue-tracker.png' },
     { name: 'Sudoku Solver', githubLink: 'https://github.com/alevanni/sudoku-solver', liveLink: '', background: './../src/assets/projectsBackground/sudoku-solver.png' },
     { name: 'Imperial Metric Converter', githubLink: 'https://github.com/alevanni/imperial-metric-converter', liveLink: '', background: './../src/assets/projectsBackground/imperial-metric-converter.png' },
     { name: 'American-British Translator', githubLink: 'https://github.com/alevanni/american-british-translator', liveLink: '', background: './../src/assets/projectsBackground/american-british-translator.png' },
     { name: 'Request Header Parser Microservice', githubLink: 'https://github.com/alevanni/request-header-parser-microservice', liveLink: '', background: './../src/assets/projectsBackground/request-header-parser-microservice.png' },
     { name: 'Timestamp Microservice', githubLink: 'https://github.com/alevanni/timestamp-microservice', liveLink: '', background: './../src/assets/projectsBackground/timestamp-microservice.png' },
     { name: 'File Metadata Microservice', githubLink: 'https://github.com/alevanni/file-metadata', liveLink: '', background: './../src/assets/projectsBackground/file-metadata-microservice.png' }],
-}
+}};
 createApp({
     data() {
         return {
@@ -244,43 +253,45 @@ createApp({
                     
                 </ul>
                 
-                <div v-for="(tab, key) in this.tabs" v-show="activeTab == tab" class="projects" :id="tab + '-projects'"></div>
+                <div v-for="(tab, key) in this.tabs" v-show="activeTab == tab" class="projects" :id="tab.replaceAll(' ', '-') + '-projects'"></div>
                 `,
 }).mount("#project-tabs");
 
 Object.entries(tabProjects).forEach(([tabName, data]) => {
     createApp({
         data() {
-
             return {
                 id: tabName,
-                projects: data,
+                projects: data.projects,
+                description: data.description
             }
         },
         mounted() {
 
         },
         template: `<h2>{{id}} Projects</h2>
+        <p>{{description}}</p>
         <div class="showcase">
+        
         <div v-for="project in projects" class="project-tile">
-  <div class="tile-img" :style="{ backgroundImage: 'url(' + project.background + ')' }"></div>
-  <div class="tile-content">
-    <h3>{{ project.name }}</h3>
-    <p>{{ project.description }}</p>
-    <div class="tile-badges">
-      <span class="badge badge-secondary">{{ project.year }}</span>
-      <span v-for="tech in project.tech" class="badge badge-accent-1">{{ tech }}</span>
-    </div>
-    <div class="tile-links card-footer">
-      <a v-if="project.githubLink" :href="project.githubLink" target="_blank" class="btn">
-        <i class="fa-brands fa-github"></i> GitHub
-      </a>
-      <a v-if="project.liveLink" :href="project.liveLink" target="_blank" class="btn-ghost btn">
-        <i class="fa fa-eye"></i> Live
-      </a>
-    </div>
-  </div>
-</div>
+            <div class="tile-img" :style="{ backgroundImage: 'url(' + project.background + ')' }"></div>
+            <div class="tile-content">
+                <h3>{{ project.name }}</h3>
+                <p>{{ project.description }}</p>
+                <div class="tile-badges">
+                <span class="badge badge-secondary">{{ project.year }}</span>
+                <span v-for="tech in project.tech" class="badge badge-accent-1">{{ tech }}</span>
+            </div>
+            <div class="tile-links card-footer">
+                <a v-if="project.githubLink" :href="project.githubLink" target="_blank" class="btn">
+                <i class="fa-brands fa-github"></i> GitHub
+                </a>
+                <a v-if="project.liveLink" :href="project.liveLink" target="_blank" class="btn-ghost btn">
+                    <i class="fa fa-eye"></i> Live
+                </a>
+            </div>
+        </div>
+        </div>
         </div>`,
-    }).mount('#' + tabName + '-projects');
+    }).mount('#' + tabName.replace(/\s+/g, '-') + '-projects');
 });

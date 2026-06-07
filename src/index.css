@@ -149,7 +149,7 @@
 #contacts {
   display: flex;
   align-items: start;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 #footer p{
