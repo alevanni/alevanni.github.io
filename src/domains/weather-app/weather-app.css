@@ -1,0 +1,145 @@
+#main {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#weather {
+  margin-top: var(--navbar-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  width: 800px;
+  border-radius: 20px;
+  padding: 30px;
+  transition: background-color 3s ease;
+}
+
+.day {
+  background-color: var(--color-surface);
+  color: var(--color-secondary);
+}
+
+.night {
+  background-color: var(--color-surface);
+  color: var(--color-accent-1);
+}
+
+#weather-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+#weather-container {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 3s ease;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+#weather-container.visible {
+  opacity: 1;
+}
+
+#description {
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#temperature {
+  display: flex;
+  align-items: center;
+  
+}
+#weather-container p {
+  font-size: 40px;
+  margin: 0;
+}
+
+#details ul {
+  list-style-type: none;
+  padding: 20px;
+  font-size: 20px;
+  text-align: left;
+  list-style-position: inside;
+}
+
+#icon, #temp, #fahr, #apparent-temperature, #details, #weather-description {
+  opacity: 0;
+  transition: opacity 4s ease;
+}
+
+#icon.visible, #temp.visible, 
+#fahr.visible, #apparent-temperature.visible, #details.visible, #weather-description.visible {
+  opacity: 1;
+}
+
+/* Stagger */
+
+
+#weather-description { transition-delay: 1s; }
+#icon        { transition-delay: 0.5s; }
+#temp        { transition-delay: 0.8s; }
+#fahr        { transition-delay: 1s; }
+#apparent-temperature { transition-delay: 1s; }
+#details     { transition-delay: 1s; }
+/*
+
+#details ul li {
+  list-style-type: none;
+  padding: 10px;
+}
+
+
+@media (max-width: 650px) {
+  #panel {
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #weather {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #temp,
+  #temp2 {
+    font-size: 23px;
+  }
+
+  #fahr {
+    font-size: 23px;
+  }
+
+  ul {
+    list-style-type: none;
+    
+    text-align: center;
+    padding: 10px;
+    list-style-position: outside;
+  }
+
+}
+  */

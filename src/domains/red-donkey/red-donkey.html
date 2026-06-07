@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css?family=Abel" rel='stylesheet'>
+  <link rel="stylesheet" href="./red-donkey.css" />
+  <link rel="stylesheet" href="./../../global.css" />
+  <title>Play red donkey</title>
+</head>
+
+<body>
+  
+    <div id="navigation"></div>
+    <div id="main">
+
+
+      <!-- HUD -->
+      <div class="hud">
+        <p>Release the red donkey from its cage! The big pink piece must pass through the opening at the bottom of the board.</p>
+        <span class="text-secondary">Moves: {{ moveCount }}</span>
+        <span class="text-secondary">Time: {{ formattedTime }}</span>
+        <button class="btn" @click="reset">Reset</button>
+      </div>
+
+      <!-- Board -->
+      <div id="board" :style="{ left: boardLeft + 'px', top: boardTop + 'px' }">
+        <div v-for="(piece, name) in pieces" :key="name" :id="name" class="piece" :class="name" :style="{
+        left:   piece.x + 'px',
+        top:    piece.y + 'px',
+        width:  piece.width  + 'px',
+        height: piece.height + 'px',
+      }" @mousedown="onMouseDown(name, $event)" @touchstart.prevent="onTouchStart(name, $event)">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Win dialog -->
+    <dialog :open="won" id="you-won">
+      <h2>You won! 🎉</h2>
+      <p>
+      <span class="badge badge-accent-2">{{ moveCount }} moves</span>  <span class="badge badge-accent-4">{{ formattedTime }} min</span></p>
+      <p>Now go do something with your life!</p>
+      <button class="btn" @click="reset">Play again</button>
+    </dialog>
+  
+
+  <script type="module" src="./redDonkey.js"></script>
+
+</html>
