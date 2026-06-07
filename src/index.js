@@ -221,14 +221,14 @@ const tabProjects = {
     //{ name: 'Advent of Code Solutions', link: '' }
     //]},
     "Backend": {description: descriptions.value.Backend, projects:[
-    { name: 'Issue Tracker', githubLink: 'https://github.com/alevanni/issue-tracker', liveLink: '', background: './../src/assets/projectsBackground/Issue-tracker.png' },
-    { name: 'Sudoku Solver', githubLink: 'https://github.com/alevanni/sudoku-solver', liveLink: '', background: './../src/assets/projectsBackground/sudoku-solver.png' },
-    { name: 'Imperial Metric Converter', githubLink: 'https://github.com/alevanni/imperial-metric-converter', liveLink: '', background: './../src/assets/projectsBackground/imperial-metric-converter.png' },
-    { name: 'American-British Translator', githubLink: 'https://github.com/alevanni/american-british-translator', liveLink: '', background: './../src/assets/projectsBackground/american-british-translator.png' },
-    { name: 'Request Header Parser Microservice', githubLink: 'https://github.com/alevanni/request-header-parser-microservice', liveLink: '', background: './../src/assets/projectsBackground/request-header-parser-microservice.png' },
-    { name: 'Timestamp Microservice', githubLink: 'https://github.com/alevanni/timestamp-microservice', liveLink: '', background: './../src/assets/projectsBackground/timestamp-microservice.png' },
-    { name: 'File Metadata Microservice', githubLink: 'https://github.com/alevanni/file-metadata', liveLink: '', background: './../src/assets/projectsBackground/file-metadata-microservice.png' }],
-}};
+    { name: 'Issue Tracker', githubLink: 'https://github.com/alevanni/issue-tracker', liveLink: '', background: './../src/assets/projectsBackground/Issue-tracker.png', year: 2021, tech: ['NodeJS', 'Express', 'MongoDB'],  },
+    { name: 'Sudoku Solver', githubLink: 'https://github.com/alevanni/sudoku-solver', liveLink: '', background: './../src/assets/projectsBackground/sudoku-solver.png', year: 2021, tech: ['NodeJS', 'Express'] },
+    { name: 'Imperial Metric Converter', githubLink: 'https://github.com/alevanni/imperial-metric-converter', liveLink: '', background: './../src/assets/projectsBackground/imperial-metric-converter.png', year: 2021, tech: ['NodeJS', 'Express'] },
+    { name: 'American-British Translator', githubLink: 'https://github.com/alevanni/american-british-translator', liveLink: '', background: './../src/assets/projectsBackground/american-british-translator.png', year: 2021, tech: ['NodeJS', 'Express'] },
+    { name: 'Request Header Parser Microservice', githubLink: 'https://github.com/alevanni/request-header-parser-microservice', liveLink: '', background: './../src/assets/projectsBackground/request-header-parser-microservice.png', year: 2021, tech: ['NodeJS', 'Express'] },
+    { name: 'Timestamp Microservice', githubLink: 'https://github.com/alevanni/timestamp-microservice', liveLink: '', background: './../src/assets/projectsBackground/timestamp-microservice.png', year: 2021, tech: ['NodeJS', 'Express'] },
+    { name: 'File Metadata Microservice', githubLink: 'https://github.com/alevanni/file-metadata', liveLink: '', background: './../src/assets/projectsBackground/file-metadata-microservice.png', year: 2021, tech: ['NodeJS', 'Express'] },
+]}};
 createApp({
     data() {
         return {
