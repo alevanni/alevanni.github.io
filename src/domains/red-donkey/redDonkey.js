@@ -29,7 +29,7 @@ function cloneInitial() {
 }
 
 createApp({
-  components: { Navbar },
+  
 
   setup() {
     // State
@@ -238,4 +238,4 @@ createApp({
       reset,
     };
   },
-}).mount("#app");
+}).mount("#main");
