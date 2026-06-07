@@ -27,7 +27,7 @@
         <span class="aqua">Time:{{formattedTime}}</span>
         <span class="magenta">Best moves:{{bestMoves}}</span>
         <span class="aqua">Best time:{{formatTime(bestTime)}}</span>
-
+        <button class="btn" @click="this.reset()">Reset</button>
       </div>
       <div id='flippable'>
         <div class='row' v-for="(row, rowIndex) in this.buttons"><button v-for="(item, columnIndex) in row"
@@ -37,11 +37,11 @@
         </div>
       </div>
       <div id="size-control"><label class="yellow" for="dimension">Size </label><input id="dimension" class="yellow"
-          type="number" v-model="size" max="10" min="3"></input></div>
+          type="number" v-model="size" max="7" min="3"></input></div>
       <dialog id="dialog" :open="this.won">
         <h2>You won! 🎉</h2>
         <p>
-          <span class="badge badge-accent-2">{{ moved }} moves</span> <span class="badge badge-accent-4">{{
+          <span class="badge badge-accent-2">{{ moves }} moves</span> <span class="badge badge-accent-4">{{
             formattedTime }} min</span>
         </p>
         <p>Now go do something with your life!</p>

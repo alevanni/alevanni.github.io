@@ -104,54 +104,56 @@ createApp({
     },
     setGame(size) {
       //Game not always solvable: start from all-active (solved) state
-    this.buttons = Array.from({ length: this.size }, (_, x) =>
-      Array.from({ length: this.size }, (_, y) => ({
-        x,
-        y,
-        state: "active"
-      }))
-    );
-    this.state = this.size * this.size;
+      this.buttons = Array.from({ length: this.size }, (_, x) =>
+        Array.from({ length: this.size }, (_, y) => ({
+          x,
+          y,
+          state: "active"
+        }))
+      );
+      this.state = this.size * this.size;
 
-    // Make N random moves so you always have a solvable puzzle)
-    for (let i = 0; i < 20; i++) {
-      const x = Math.floor(Math.random() * this.size);
-      const y = Math.floor(Math.random() * this.size);
-      this.flip(x, y);
-    }
-
-    this.resetTimer();
-    this.moves = 0;
-    this.won = false;
-    }
-    ,
-    reset() {
-      if (
-        (this.bestMoves != 0 && this.moves < this.bestMoves) ||
-        this.bestMoves === 0
-      )
-        this.bestMoves = this.moves;
-
-      if (
-        (this.bestTime != 0 && this.timeElapsed < this.bestTime) ||
-        this.bestTime === 0
-      )
-        this.bestTime = this.timeElapsed;
+      // Make N random moves so you always have a solvable puzzle)
+      for (let i = 0; i < 20; i++) {
+        const x = Math.floor(Math.random() * this.size);
+        const y = Math.floor(Math.random() * this.size);
+        this.flip(x, y);
+      }
 
       this.resetTimer();
       this.moves = 0;
-      
+      this.won = false;
+    }
+    ,
+    reset() {
+      if (this.won) {
+        if (
+          (this.bestMoves != 0 && this.moves < this.bestMoves) ||
+          this.bestMoves === 0
+        )
+          this.bestMoves = this.moves;
+
+        if (
+          (this.bestTime != 0 && this.timeElapsed < this.bestTime) ||
+          this.bestTime === 0
+        )
+          this.bestTime = this.timeElapsed;
+      }
+
+      this.resetTimer();
+      this.moves = 0;
+
       this.won = false;
       this.setGame(this.size);
     },
-    updateSize(size) {}
+    updateSize(size) { }
   },
   watch: {
     size(newSize) {
       this.reset();
-      this.bestMoves=0;
-      this.bestTime=0;
-      
+      this.bestMoves = 0;
+      this.bestTime = 0;
+
     }
   }
 }).mount("#main");
