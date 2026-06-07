@@ -445,3 +445,11 @@ nav ul {
 #navbar li a:hover {
   background-color: var(--color-surface);
 }
+
+#footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: var(--color-bg);
+    border-top: 2px solid var(--color-surface);
+    margin-top: 3rem;
+}

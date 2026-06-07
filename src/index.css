@@ -146,3 +146,29 @@
   gap: 8px;
   margin-top: auto;
 }
+#contacts {
+  display: flex;
+  align-items: start;
+  justify-content: space-evenly;
+}
+
+#footer p{
+  font-size: 14px;
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: baseline;
+}
+
+#footer i {
+  margin-right: 6px;
+  margin-left: 16px;
+  margin-bottom: 0px;
+  color: var(--color-secondary);
+  
+}
+#footer span {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
