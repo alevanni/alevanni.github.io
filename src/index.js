@@ -216,6 +216,7 @@ const tabProjects = {
     "Arcade": {description: descriptions.value.Arcade, projects:[
     { name: 'Red Donkey', githubLink: '', liveLink: './src/domains/red-donkey/red-donkey.html', background: './../src/assets/projectsBackground/red-donkey.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'], description: 'Can you free the donkey from its prison?' },
     { name: 'Lights Out', githubLink: '', liveLink: './src/domains/lights-out/lights-out.html', background: './../src/assets/projectsBackground/lights-out.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'], description: 'Turn on the lights! Careful, when you switch one, all the ones around it will switch too.' },
+    { name: 'Simon\'s Game', githubLink: '', liveLink: './src/domains/simon-s-game/simon-s-game.html', background: './../src/assets/projectsBackground/simon-s-game.png', year: 2026, tech:['HTML', 'CSS', 'VueJS'], description: 'Test your memory with this classic game from the \'70s!'}
     ]},
    // "Advent of Code": {description: descriptions.value['Advent of Code'], projects:[
     //{ name: 'Advent of Code Solutions', link: '' }

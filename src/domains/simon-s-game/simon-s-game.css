@@ -1,0 +1,234 @@
+@import "https://fonts.googleapis.com/css?family=Share+Tech+Mono";
+
+:root {
+    --game-width: 410px;
+    --border-width: 5px;
+    --button-width: 200px;
+    --commands-width: 200px;
+}
+
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-background);
+    height: 100vh;
+    width: 100%;
+}
+
+span {
+    font-weight: bold;
+}
+
+#simon {
+    position: relative;
+    width: var(--game-width);
+    height: var(--game-width);
+    background-color: white;
+    border: var(--border-width) solid black;
+    border-radius: 50%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tl,
+.tr,
+.bl,
+.br {
+    height: var(--button-width);
+    width: var(--button-width);
+    transition: opacity 0.5s ease;
+}
+
+.tl {
+    position: relative;
+    border-radius: var(--button-width) 0 0 0;
+    background-color: #2a7221;
+}
+
+.tr {
+    border-radius: 0 var(--button-width) 0 0;
+    position: relative;
+    background-color: #2081c3;
+}
+
+.bl {
+    position: relative;
+    border-radius: 0 0 0 var(--button-width);
+    background-color: #ffad05;
+}
+
+.br {
+    position: relative;
+    border-radius: 0 0 var(--button-width) 0;
+    background-color: #c3423f;
+}
+
+#commands {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 5px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 20px;
+}
+
+#score {
+    font-family: Share Tech Mono, monospace;
+    position: relative;
+    color: red;
+    text-align: right;
+    background-color: #171515;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 25px;
+    width: 30px;
+    border-radius: 3px;
+    border: 1px solid grey;
+}
+
+#score span {
+    height: 25px;
+    font-size: 20px;
+}
+
+#start {
+    padding: 3px;
+    border: 1px solid white;
+    border-radius: 3px;
+    position: relative;
+    color: white;
+    background-color: #171515;
+}
+
+#level {
+    width: 100px;
+    color: white;
+}
+
+.active {
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+}
+
+#level-slider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* The switch - the box around the slider */
+#main .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    border: 1px solid white;
+    border-radius: 34px;
+}
+
+/* Hide default HTML checkbox */
+#main .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The toggle slider */
+#main .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #2081c3;
+    -webkit-transition: .4s;
+    transition: .4s;
+    display: flex;
+    align-items: center;
+}
+
+#main .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+#main input:checked+.slider {
+    background-color: red;
+}
+
+#main input:focus+.slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+#main input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+/* Rounded sliders */
+#main .slider.round {
+    border-radius: 34px;
+}
+
+#main .slider.round:before {
+    border-radius: 50%;
+}
+
+/* End ToggleSlider */
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.flex-column span{
+    color: white;
+}
+.flex-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+label {
+    color: white;
+}
+
+datalist {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100px;
+    padding-left:5px;
+    padding-right:5px;
+    color: white;
+}
+
+#level {
+    width: 100px;
+}
+
+#level:disabled {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
