@@ -108,6 +108,9 @@ createApp({
                     setTimeout(() => this.addOneToSimonSequence(), 1000);
                 }
             } else {
+
+                this.listen = false;
+                await this.blinkScore();
                 // do something when you make a mistake,
                 if (this.strict) {
                     // start again from the first level
@@ -116,10 +119,23 @@ createApp({
                     this.score = 0;
                     this.start();
                 } else {
+                    // flash the sequence again
                     this.userSequence = "";
                     this.flashSimonSequence();
                 }
             }
+        },
+        async blinkScore(id) {
+            let scoreDisplay = document.getElementById("score");
+            let aux = this.score;
+            this.score = "X"
+            await new Promise((resolve) => setTimeout(resolve, this.speed));
+            this.score = "";
+            await new Promise((resolve) => setTimeout(resolve, this.speed));
+            this.score = "X"
+            await new Promise((resolve) => setTimeout(resolve, this.speed));
+            this.score = aux;
+
         },
         updateLevel($event) {
             // the level updates automatically during the game
