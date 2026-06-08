@@ -29,7 +29,7 @@
         </div>
 
         <div id="level-slider"><label>Level</label>
-          <input min="1" max="4" id="level" type="range" :value="level" @change="updateLevel" list="levels" :disabled="started"></input>
+          <input min="1" max="4" id="level" type="range" v-model="level" @change="updateLevel" list="levels" :disabled="started"></input>
           <datalist id="levels">
             <option value="1" label="1"></option>
             <option value="2" label="2"></option>

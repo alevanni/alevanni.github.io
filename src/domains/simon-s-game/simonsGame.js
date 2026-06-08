@@ -24,6 +24,7 @@ createApp({
             won: false,
             speed: 600,
             started: false,
+            resetting: false,
             sounds: ['https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-1.mp3', 'https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-2.mp3', 'https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-3.mp3', 'https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-4.mp3'],
         };
     },
@@ -35,6 +36,7 @@ createApp({
     mounted() { },
     methods: {
         start() {
+            this.resetting = true;
             this.started = true;
             this.simonSequence = "";
             this.score = 0;
@@ -46,7 +48,10 @@ createApp({
                 this.simonSequence += Math.floor(Math.random() * 4).toString();
             }
 
-            this.flashSimonSequence();
+            setTimeout(() => {
+                this.resetting = false;
+                this.flashSimonSequence();
+            }, 1500);
         },
         playButtonSound(id) {
             var audio = new Audio(this.sounds[id]);
@@ -58,6 +63,7 @@ createApp({
             this.flashSimonSequence();
         },
         async blink(id) {
+            if (this.resetting) return; // if i start again in the middle, i stop the flashing
             let button = document.getElementById(id.toString());
             button.classList.add("active");
             this.playButtonSound(id);
@@ -68,9 +74,10 @@ createApp({
         async flashSimonSequence() {
             this.listen = false; // we disable the listening while flashing
             for (const id of this.simonSequence.split("")) {
+                if (this.resetting) return;
                 await this.blink(id);
             }
-
+             if (this.resetting) return;
             this.listenSequence();
         },
         listenSequence() {
@@ -79,11 +86,11 @@ createApp({
         async addToUserSequence(id) {
             if (!this.listen) return;
             this.listen = false;
-            await this.blink(id);
-            this.listen = true;
-
-
+            // start the blink but don't await it, so i can still press
+            const blinkPromise = this.blink(id);
             this.userSequence = this.userSequence + id;
+            this.listen = true;
+            await blinkPromise;
             if (
                 this.simonSequence.slice(0, this.userSequence.length) ===
                 this.userSequence
