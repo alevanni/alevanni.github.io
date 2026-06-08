@@ -191,13 +191,13 @@ createApp({
     }
 }).mount("#magnified-hero-div");
 
-const tabs = ref({ 1: "Frontend", 2: "Arcade", 3: "Data Visualization", 4: "Backend", /*5: "Advent of Code" */ });
+const tabs = ref({ 1: "Frontend", 2: "Arcade", 3: "Data Visualization", 4: "Backend", 5: "Advent of Code"  });
 const descriptions = ref({
     "Frontend": "These projects, that I have developed while studying the freeCodeCamp curriculum, are focused on frontend development. They feature HTML, CSS, and JavaScript. They include interactive web applications, responsive designs, and creative user interfaces.",
     "Arcade": "These little games are developed using HTML, CSS, and VueJS.",
     "Data Visualization": "Projects that focus on data visualization techniques using HTML, CSS, and JavaScript library D3. They were developed for the freeCodeCamp curriculum.",
     "Backend": "APIs, microservices, and server-side applications that handle data processing and business logic. Also made for freeCodeCamp curriculum.",
-    //"Advent of Code": "Section still under construction..."
+    "Advent of Code": "Section still under construction..."
 });
 const tabProjects = {
     "Frontend": {description: descriptions.value.Frontend, projects:[
@@ -218,9 +218,9 @@ const tabProjects = {
     { name: 'Lights Out', githubLink: '', liveLink: './src/domains/lights-out/lights-out.html', background: './../src/assets/projectsBackground/lights-out.png', year: 2026, tech: ['HTML', 'CSS', 'VueJS'], description: 'Turn on the lights! Careful, when you switch one, all the ones around it will switch too.' },
     { name: 'Simon\'s Game', githubLink: '', liveLink: './src/domains/simon-s-game/simon-s-game.html', background: './../src/assets/projectsBackground/simon-s-game.png', year: 2026, tech:['HTML', 'CSS', 'VueJS'], description: 'Test your memory with this classic game from the \'70s!'}
     ]},
-   // "Advent of Code": {description: descriptions.value['Advent of Code'], projects:[
-    //{ name: 'Advent of Code Solutions', link: '' }
-    //]},
+    "Advent of Code": {description: descriptions.value['Advent of Code'], projects:[
+    { name: 'Advent of Code 2025', liveLink: './src/domains/aoc-2025/aoc-2025.html' }
+    ]},
     "Backend": {description: descriptions.value.Backend, projects:[
     { name: 'Issue Tracker', githubLink: 'https://github.com/alevanni/issue-tracker', liveLink: '', background: './../src/assets/projectsBackground/Issue-tracker.png', year: 2021, tech: ['NodeJS', 'Express', 'MongoDB'],  },
     { name: 'Sudoku Solver', githubLink: 'https://github.com/alevanni/sudoku-solver', liveLink: '', background: './../src/assets/projectsBackground/sudoku-solver.png', year: 2021, tech: ['NodeJS', 'Express'] },

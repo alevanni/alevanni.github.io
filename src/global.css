@@ -25,6 +25,13 @@
     /* peachy coral */
     --color-accent-4: #7dbd7a;
     /* sage green */
+    --package-shadow: drop-shadow(4px 8px 6px rgba(0,0,0,0.3));
+    --ribbon-shadow: drop-shadow(0px 4px 4px rgba(0,0,0,0.25));
+    --package-inset-side: inset 4px 0px 8px rgba(0,0,0,0.15),
+                          inset -4px 0px 8px rgba(0,0,0,0.08);
+    --package-inset-top: inset 0px 4px 8px rgba(0,0,0,0.1);
+     --hole-shadow: inset 2px 2px 5px rgba(0,0,0,0.3),
+                   inset -1px -1px 3px rgba(0,0,0,0.15);
 }
 
 :root[data-theme="dark"] {
@@ -49,6 +56,14 @@
     /* neon orange */
     --color-accent-4: #39ff14;
     /* electric green */
+    --package-shadow: drop-shadow(0px 0px 12px color-mix(in srgb, var(--color-primary) 40%, transparent));
+    --ribbon-shadow: drop-shadow(0px 0px 8px color-mix(in srgb, var(--color-primary) 50%, transparent));
+    --package-inset-side: inset 4px 0px 12px rgba(0,0,0,0.5),
+                          inset -4px 0px 12px rgba(0,0,0,0.3);
+    --package-inset-top: inset 0px 4px 12px rgba(255,255,255,0.05);
+    --hole-shadow: inset 0px 0px 8px color-mix(in srgb, var(--color-primary) 50%, transparent),
+                   inset 0px 0px 4px color-mix(in srgb, var(--color-primary) 80%, transparent);
+
 }
 
 
