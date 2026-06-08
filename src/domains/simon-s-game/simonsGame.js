@@ -78,7 +78,10 @@ createApp({
         },
         async addToUserSequence(id) {
             if (!this.listen) return;
+            this.listen = false;
             await this.blink(id);
+            this.listen = true;
+
 
             this.userSequence = this.userSequence + id;
             if (
@@ -86,6 +89,7 @@ createApp({
                 this.userSequence
             ) {
                 if (this.userSequence.length === this.simonSequence.length) {
+                    this.listen = false;
                     this.score++;
                     this.userSequence = "";
                     // advance level at boundaries
