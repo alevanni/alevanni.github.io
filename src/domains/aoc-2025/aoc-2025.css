@@ -131,3 +131,23 @@
   background-color: var(--ribbon-color);
   border: 1px solid black;
 }
+.bottom button {
+  width: 100px;
+  height: 50px;
+  position:absolute;
+  top: 60px;
+  left: calc( var(--package-width) / 2 + var(--ribbon-middle))
+}
+.open{
+  transform: translateY(100px);
+  transition: transform 0.5s ease;
+}
+
+.close{
+  transform: translateY(0px);
+  transition: transform 0.5s ease;
+}
+
+ul {
+  list-style: none;
+}
