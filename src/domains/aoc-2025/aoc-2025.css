@@ -12,6 +12,9 @@
     --ribbon-holes-height: calc(var(--ribbon-height) / 3);                   /* = 33.33px */
     --ribbon-holes-width: calc(var(--ribbon-sides) - var(--ribbon-holes-height) * 2); /* = 123.33px */
     --lid-height:  calc( var(--package-height) / 4);
+   --total-dial-numbers: 99;       
+   --dial-radius: 200px;  
+  
 }
 
 #main {
@@ -28,7 +31,7 @@
     justify-content: center;
 }
 
-#solution{
+#solution-container{
     margin-top: var(--navbar-height);
     width: 50%;
     height: 70vh;
@@ -150,4 +153,37 @@
 
 ul {
   list-style: none;
+}
+
+
+
+.dial {
+  position: relative;
+  width: calc(var(--dial-radius) * 2);
+  height: calc(var(--dial-radius) * 2);
+  border-radius: 50%;
+  background-color: var(--color-secondary);
+}
+.dial-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px;
+  
+  
+  color: white;
+  border-radius: 50%;
+  
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  
+--angle: calc(360deg / var(--total-dial-numbers) * var(--i));
+  
+  transform: 
+    rotate(var(--angle))           /* Rotate to position */
+    translateX(var(--dial-radius))      /* Move away from center */
+    rotate(calc(-1 * var(--angle))); /* Rotate back */
 }

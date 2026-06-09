@@ -15,7 +15,7 @@ createApp({
         return {
             active: Placeholder,
             open: false,
-            stars: [Day1, Day2]
+            stars: [{component: Day1, parts: 2}, {component:Day2, parts: 2}]
         }
     },
     mounted() {
@@ -43,7 +43,7 @@ createApp({
                     </div>
                     <div v-if="this.open" id="stars">
                     <ul>
-                    <li v-for="star in this.stars"><button @click="active=star">{{star.name}}</button></li>
+                    <li v-for="star in this.stars"><button @click="active=star.component">{{star.component.name}}</button><i v-for="item in star.parts" class="fa-regular fa-star"></i></li>
                     </ul>
                     </div>
                    <div class="bottom" :class="[open? 'open': 'close']">
@@ -52,6 +52,6 @@ createApp({
                   </div>
           </div>
         </div>
-        <div id="solution"><component :is="this.active"></component></div>
+        <div id="solution-container"><component :is="this.active"></component></div>
     `,
 }).mount("#main");
