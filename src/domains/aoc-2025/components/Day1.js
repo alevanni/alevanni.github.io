@@ -77,7 +77,6 @@ export const Day1 = {
                     start = (start + (distances[i] || 0)) % 100;
                 }
 
-                //console.log(start, count)
             }
             this.solution = count;
         }

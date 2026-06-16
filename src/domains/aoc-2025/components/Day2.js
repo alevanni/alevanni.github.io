@@ -6,14 +6,14 @@ export const Day2 = {
 
     data() {
         return {
-            exampleInput: "",
+            exampleInput: ("11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124").split(','),
             solution: 0,
             input: realInput,
 
         }
     },
     template: `<div><h1>Gift Shop</h1>
-     <div>{{exampleInput}}</div> 
+     <div><div class="row" v-for="row in exampleInput">{{row}}</div></div> 
     <div><button class="btn" @click="part1()">part 1</button> <button class="btn" @click="part2()">part 2</button></div>
     <div><h2>Solution: {{solution}}</h2>
         
@@ -21,20 +21,18 @@ export const Day2 = {
     </div>`,
     methods: {
         part1() {
-            const ranges = ref([['']]);
-            ranges.value = this.input.split(',').map(item => item.split('-'));
+            const ranges =  this.input.split(',').map(item => item.split('-'));
 
             let count = 0;
-            let invalidIds = ranges.value.map(range => this.findInvalidIds(parseInt(range[0] || '0'), parseInt(range[1] || '0')))
+            let invalidIds = ranges.map(range => this.findInvalidIds(parseInt(range[0] || '0'), parseInt(range[1] || '0')))
             count = invalidIds.reduce((acc, item) => (acc + item), 0);
             this.solution = count;
         },
         part2() {
-            const ranges = ref([['']]);
-            ranges.value = this.input.split(',').map(item => item.split('-'));
+            const ranges = this.input.split(',').map(item => item.split('-'));
 
             let count = 0;
-            let invalidIds = ranges.value.map(range => this.findInvalidIds2(parseInt(range[0] || '0'), parseInt(range[1] || '0')))
+            let invalidIds = ranges.map(range => this.findInvalidIds2(parseInt(range[0] || '0'), parseInt(range[1] || '0')))
             count = invalidIds.reduce((acc, item) => (acc + item), 0);
             this.solution = count;
         },

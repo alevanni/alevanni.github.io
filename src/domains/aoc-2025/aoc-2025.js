@@ -2,6 +2,10 @@ import { createApp, ref, defineAsyncComponent } from "https://unpkg.com/vue@3/di
 import Navbar from "../../components/Navbar.js";
 import { Day1 } from "./components/Day1.js";
 import { Day2 } from "./components/Day2.js";
+import { Day3 } from "./components/Day3.js";
+import { Day4 } from "./components/Day4.js";
+import { Day5 } from "./components/Day5.js";
+import { Day6 } from "./components/Day6.js";
 import {Placeholder} from "./components/Placeholder.js";
 
 const components = {
@@ -15,11 +19,11 @@ createApp({
         return {
             active: Placeholder,
             open: false,
-            stars: [{component: Day1, parts: 2}, {component:Day2, parts: 2}]
+            stars: [{component: Day1, parts: 2}, {component:Day2, parts: 2}, {component:Day3, parts: 2}, {component:Day4, parts: 2}, {component: Day5, parts: 2}, {component: Day6, parts: 2}]
         }
     },
     mounted() {
-        //const button = document.getElementById();
+        
     },
     methods: {
         toggleOpen() {

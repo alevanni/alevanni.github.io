@@ -195,3 +195,13 @@ ul {
   background-color: var(--color-accent-4);
   margin: auto;
 }
+
+.row {
+  display: flex;
+  
+}
+.centered-char {
+  display: flex;
+  justify-content: center;
+  width: 13px;;
+}
