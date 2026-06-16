@@ -1,4 +1,82 @@
+import { onMounted, ref } from "vue"
+import realInput from "../inputs/day-2.txt?raw"
+
 export const Day2 = {
-    name: 'Day2',
-    template: `<div>Day2</div>`
+    name: 'Gift Shop',
+
+    data() {
+        return {
+            exampleInput: "",
+            solution: 0,
+            input: realInput,
+
+        }
+    },
+    template: `<div><h1>Gift Shop</h1>
+     <div>{{exampleInput}}</div> 
+    <div><button class="btn" @click="part1()">part 1</button> <button class="btn" @click="part2()">part 2</button></div>
+    <div><h2>Solution: {{solution}}</h2>
+        
+    </div>
+    </div>`,
+    methods: {
+        part1() {
+            const ranges = ref([['']]);
+            ranges.value = this.input.split(',').map(item => item.split('-'));
+
+            let count = 0;
+            let invalidIds = ranges.value.map(range => this.findInvalidIds(parseInt(range[0] || '0'), parseInt(range[1] || '0')))
+            count = invalidIds.reduce((acc, item) => (acc + item), 0);
+            this.solution = count;
+        },
+        part2() {
+            const ranges = ref([['']]);
+            ranges.value = this.input.split(',').map(item => item.split('-'));
+
+            let count = 0;
+            let invalidIds = ranges.value.map(range => this.findInvalidIds2(parseInt(range[0] || '0'), parseInt(range[1] || '0')))
+            count = invalidIds.reduce((acc, item) => (acc + item), 0);
+            this.solution = count;
+        },
+        findInvalidIds(start, end) {
+            let invalidIds = [];
+            for (let i = start; i <= end; i++) {
+                let l = i.toString().length / 2;
+                if (l % 1 == 0) {
+
+                    let reg = new RegExp(`^(${i.toString().slice(0, l)}){2}$`)
+                    if (i.toString().match(reg)) {
+                        invalidIds.push(i);
+                    }
+
+                }
+
+            }
+            let sum = invalidIds.reduce((acc, item) => (acc + item), 0)
+            //console.log(invalidIds)
+            return sum;
+        },
+        findInvalidIds2(start, end) {
+    let invalidIds = [];
+    for (let i = start; i <= end; i++) {
+        let l = i.toString().length;
+        for (let j = 1; j <= l / 2; j++) {
+            if (l % j == 0) {
+
+                let reg = new RegExp(`^(${i.toString().slice(0, j)}){${l / j}}$`);
+                if (i.toString().match(reg)) {
+                    invalidIds.push(i);
+                    j = l;
+                }
+
+            }
+        }
+
+
+    }
+    let sum = invalidIds.reduce((acc, item) => (acc + item), 0)
+
+    return sum;
+}
+    }
 }

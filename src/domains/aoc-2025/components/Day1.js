@@ -1,21 +1,27 @@
 import { onMounted, ref } from "vue"
+import realInput from "../inputs/day-1.txt?raw"
 
 export const Day1 = {
     name: 'Secret Entrance',
 
     data() {
         return {
-            input: "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82",
+            exampleInput: "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82",
             solution: 0,
-            dialNumbers: 99,
+            input: realInput,
+            dialNumbers: 100,
         }
     },
     template: `<div><h1>Secret entrance</h1>
-    <div>{{input}}</div>
-    <div><button @click="part1()">part 1</button> <button @click="part2()">part 2</button></div>
+     <div>{{exampleInput}}</div> 
+    <div><button class="btn" @click="part1()">part 1</button> <button class="btn" @click="part2()">part 2</button></div>
     <div><h2>Solution: {{solution}}</h2>
+        <!---- 
         <div class="dial">
-        <span class='dial-item' v-for="item in dialNumbers" :style="{'--i': item}">{{item}}</span></div>
+        <span class='dial-item' v-for="item in dialNumbers" :style="{'--i': item}">{{item-1}}</span>
+        <div class="dial-arrow"></div>
+        </div>
+        ---!>
     </div>
     </div>`,
     methods: {
@@ -71,7 +77,7 @@ export const Day1 = {
                     start = (start + (distances[i] || 0)) % 100;
                 }
 
-                console.log(start, count)
+                //console.log(start, count)
             }
             this.solution = count;
         }

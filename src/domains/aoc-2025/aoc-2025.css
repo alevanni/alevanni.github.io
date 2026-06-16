@@ -12,8 +12,8 @@
     --ribbon-holes-height: calc(var(--ribbon-height) / 3);                   /* = 33.33px */
     --ribbon-holes-width: calc(var(--ribbon-sides) - var(--ribbon-holes-height) * 2); /* = 123.33px */
     --lid-height:  calc( var(--package-height) / 4);
-   --total-dial-numbers: 99;       
-   --dial-radius: 200px;  
+   --total-dial-numbers: 100;       
+   --dial-radius: 150px;  
   
 }
 
@@ -35,7 +35,9 @@
     margin-top: var(--navbar-height);
     width: 50%;
     height: 70vh;
-    border: 1px solid var(--color-secondary);
+    display: flex;
+    justify-content: center;
+    /*border: 1px solid var(--color-surface);*/
 }
 
 .package {
@@ -162,7 +164,8 @@ ul {
   width: calc(var(--dial-radius) * 2);
   height: calc(var(--dial-radius) * 2);
   border-radius: 50%;
-  background-color: var(--color-secondary);
+  margin: auto;
+  background-color: var(--color-surface);
 }
 .dial-item {
   position: absolute;
@@ -171,19 +174,24 @@ ul {
   width: 60px;
   height: 60px;
   margin: -30px;
-  
-  
+  font-size: 13px;
   color: white;
   border-radius: 50%;
-  
   display: grid;
   place-items: center;
   font-weight: 600;
   
---angle: calc(360deg / var(--total-dial-numbers) * var(--i));
+--angle: calc(360deg / var(--total-dial-numbers) * var(--i) - 90deg - 360deg / var(--total-dial-numbers));
   
   transform: 
     rotate(var(--angle))           /* Rotate to position */
-    translateX(var(--dial-radius))      /* Move away from center */
-    rotate(calc(-1 * var(--angle))); /* Rotate back */
+    translateX(calc(var(--dial-radius) + 10px))      /* Move away from center */
+     /* Rotate back  calc(-1 * var(--angle)) */
+}
+
+.dial-arrow{
+  height: var(--dial-radius);
+  width: 1px;
+  background-color: var(--color-accent-4);
+  margin: auto;
 }
