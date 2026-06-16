@@ -6,6 +6,8 @@ import { Day3 } from "./components/Day3.js";
 import { Day4 } from "./components/Day4.js";
 import { Day5 } from "./components/Day5.js";
 import { Day6 } from "./components/Day6.js";
+import { Day7 } from "./components/Day7.js";
+import { Day9 } from "./components/Day9.js";
 import {Placeholder} from "./components/Placeholder.js";
 
 const components = {
@@ -19,7 +21,7 @@ createApp({
         return {
             active: Placeholder,
             open: false,
-            stars: [{component: Day1, parts: 2}, {component:Day2, parts: 2}, {component:Day3, parts: 2}, {component:Day4, parts: 2}, {component: Day5, parts: 2}, {component: Day6, parts: 2}]
+            stars: [{component: Day1, parts: 2}, {component:Day2, parts: 2}, {component:Day3, parts: 2}, {component:Day4, parts: 2}, {component: Day5, parts: 2}, {component: Day6, parts: 2}, {component: Day7, parts: 2}, {component: Day9, parts: 1}]
         }
     },
     mounted() {
