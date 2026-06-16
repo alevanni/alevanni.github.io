@@ -48,8 +48,8 @@ createApp({
                         <div class="ribbon-vertical"></div>
                     </div>
                     <div v-if="this.open" id="stars">
-                    <ul>
-                    <li v-for="star in this.stars"><button @click="active=star.component">{{star.component.name}}</button><i v-for="item in star.parts" class="fa-regular fa-star"></i></li>
+                    <ul class="no-style">
+                    <li class="title-li" v-for="star in this.stars"><button class="title-button" @click="active=star.component">{{star.component.name}}</button><i v-for="item in star.parts" class="fa-regular fa-star star"></i></li>
                     </ul>
                     </div>
                    <div class="bottom" :class="[open? 'open': 'close']">

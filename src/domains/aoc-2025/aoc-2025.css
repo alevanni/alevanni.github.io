@@ -153,11 +153,23 @@
   transition: transform 0.5s ease;
 }
 
-ul {
+.no-style {
   list-style: none;
 }
+.title-li {
+  padding: 10px;
+}
 
+.title-button {
+  background-color: transparent;
+  color: var(--color-secondary);
+  border: none;
+}
 
+.star {
+  color: var(--color-accent-2);
+  margin-left: 10px;
+}
 
 .dial {
   position: relative;
