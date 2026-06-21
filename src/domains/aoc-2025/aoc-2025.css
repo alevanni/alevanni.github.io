@@ -29,6 +29,7 @@
     width:50%;
     display:flex;
     justify-content: center;
+    
 }
 
 #solution-container{
@@ -37,6 +38,7 @@
     height: 70vh;
     display: flex;
     justify-content: center;
+    padding-top: 30px;
     /*border: 1px solid var(--color-surface);*/
 }
 
@@ -129,6 +131,7 @@
   border-bottom: 1px solid black;
   border-radius: 0px 0px 5px 5px;
   box-shadow: var(--package-inset-side);
+  
 }
 .bottom .ribbon-vertical {
   width: calc(var(--ribbon-middle) * 2);
@@ -144,20 +147,24 @@
   left: calc( var(--package-width) / 2 + var(--ribbon-middle))
 }
 .open{
-  transform: translateY(100px);
-  transition: transform 0.5s ease;
+  transform: translateY(280px);
+  transition: transform 1.5s ease;
 }
 
 .close{
   transform: translateY(0px);
-  transition: transform 0.5s ease;
+  transition: transform 1.5s ease;
 }
 
+.appear {
+  position: absolute;
+  top: calc(var(--ribbon-height) + var(--lid-height));
+}
 .no-style {
   list-style: none;
 }
 .title-li {
-  padding: 10px;
+  padding: 3px;
 }
 
 .title-button {
@@ -216,4 +223,26 @@
   display: flex;
   justify-content: center;
   width: 13px;;
+}
+
+.list-enter-from,
+.list-leave-to { 
+  opacity: 0; 
+  transform: translateY(-10px);
+}
+
+.list-enter-to,
+.list-leave-from { 
+  opacity: 1; 
+  transform: translateY(0);
+}
+
+.list-enter-active { 
+  transition: opacity 600ms ease, transform 600ms ease;
+  transition-delay: calc(var(--j) * 100ms);
+}
+
+.list-leave-active { 
+   transition: opacity 300ms ease, transform 300ms ease;
+  transition-delay: calc(var(--h) * 80ms);
 }

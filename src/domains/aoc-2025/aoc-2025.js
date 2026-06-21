@@ -1,4 +1,5 @@
 import { createApp, ref, defineAsyncComponent } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
+//import {gsap} from "https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js";
 import Navbar from "../../components/Navbar.js";
 import { Day1 } from "./components/Day1.js";
 import { Day2 } from "./components/Day2.js";
@@ -8,7 +9,7 @@ import { Day5 } from "./components/Day5.js";
 import { Day6 } from "./components/Day6.js";
 import { Day7 } from "./components/Day7.js";
 import { Day9 } from "./components/Day9.js";
-import {Placeholder} from "./components/Placeholder.js";
+import { Placeholder } from "./components/Placeholder.js";
 
 const components = {
     Day1: defineAsyncComponent(() => import('./components/Day1.js')),
@@ -21,16 +22,24 @@ createApp({
         return {
             active: Placeholder,
             open: false,
-            stars: [{component: Day1, parts: 2}, {component:Day2, parts: 2}, {component:Day3, parts: 2}, {component:Day4, parts: 2}, {component: Day5, parts: 2}, {component: Day6, parts: 2}, {component: Day7, parts: 2}, {component: Day9, parts: 1}]
+            days: [{ component: Day1, parts: 2 }, { component: Day2, parts: 2 }, { component: Day3, parts: 2 }, { component: Day4, parts: 2 }, { component: Day5, parts: 2 }, { component: Day6, parts: 2 }, { component: Day7, parts: 2 }, { component: Day9, parts: 1 }]
         }
     },
     mounted() {
-        
+
     },
     methods: {
         toggleOpen() {
             this.open = !this.open;
             if (!this.open) this.active = Placeholder;
+        },
+        onEnter(el, done) {
+            gsap.to(el, {
+                opacity: 1,
+                height: '1.6em',
+                delay: el.dataset.index * 0.15,
+                onComplete: done
+            })
         }
     },
     template: `<div id="packages-container">
@@ -47,11 +56,18 @@ createApp({
                     <div class="lid">
                         <div class="ribbon-vertical"></div>
                     </div>
-                    <div v-if="this.open" id="stars">
-                    <ul class="no-style">
-                    <li class="title-li" v-for="star in this.stars"><button class="title-button" @click="active=star.component">{{star.component.name}}</button><i v-for="item in star.parts" class="fa-regular fa-star star"></i></li>
-                    </ul>
+                    
+                    <div id="stars" class="appear">
+                    
+                   <TransitionGroup name="list" tag="ul" class="no-style">
+                    <li v-if="open" class="title-li" v-for="(day, index) in days" :key="index" :style="{ '--j': index , '--h': days.length-index - 1}">
+                     <button class="title-button" @click="active=day.component">{{day.component.name}}</button>
+                     <i v-for="item in day.parts" class="fa-regular fa-star star"></i>
+                    </li>
+                   </TransitionGroup>
+                    
                     </div>
+                   
                    <div class="bottom" :class="[open? 'open': 'close']">
                      <div class="ribbon-vertical"></div>
                      <button @click="this.toggleOpen()">2025</button>
