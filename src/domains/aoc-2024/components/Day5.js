@@ -1,5 +1,4 @@
 import { onMounted, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
-import realInput from "../inputs/day-5.txt?raw";
 
 export const Day5 = {
     name: 'Print Queue',
@@ -8,9 +7,13 @@ export const Day5 = {
         return {
             exampleInput: ("47|53\n97|13\n97|61\n97|47\n75|29\n61|13\n75|53\n29|13\n97|29\n53|29\n61|53\n97|53\n61|29\n47|13\n75|47\n97|75\n47|61\n75|61\n47|29\n75|13\n53|13\n\n75,47,61,53,29\n97,61,53,29,13\n75,29,13\n75,97,47,61,53\n61,13,29\n97,13,75,29,47").split('\n'),
             solution: 0,
-            input: realInput,
+            input: "",
             dialNumbers: 100,
         }
+    },
+    async mounted() {
+        const response = await fetch('https://alevanni.github.io/src/domains/aoc-2024/inputs/day-5.txt');
+        this.input = await response.text();
     },
     template: `<div><h1>Print Queue</h1>
     <div><div class="row" v-for="row in exampleInput"><div v-for="place in row" class="centered-char">{{place}}</div></div></div>  

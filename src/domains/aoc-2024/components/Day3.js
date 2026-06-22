@@ -1,5 +1,4 @@
 import { onMounted, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
-import realInput from "../inputs/day-3.txt?raw";
 
 export const Day3 = {
     name: 'Mull It Over',
@@ -8,9 +7,13 @@ export const Day3 = {
         return {
             exampleInput: ("xmul(2,4)%&mul[3,7]!@^do_not_mul(5,5)+mul(32,64]then(mul(11,8)mul(8,5))").split('\n'),
             solution: 0,
-            input: realInput,
+            input: "",
             dialNumbers: 100,
         }
+    },
+    async mounted() {
+        const response = await fetch('https://alevanni.github.io/src/domains/aoc-2024/inputs/day-3.txt');
+        this.input = await response.text();
     },
     template: `<div><h1>Mull It Over</h1>
     <div><div class="row" v-for="row in exampleInput">{{row}}</div></div> 

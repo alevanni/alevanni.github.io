@@ -12,7 +12,7 @@ export const Day4 = {
         }
     },
     async mounted() {
-        const response = await fetch('../inputs/day-4.txt');
+        const response = await fetch('https://alevanni.github.io/src/domains/aoc-2025/inputs/day-4.txt');
         this.input = await response.text();
     },
     template: `<div><h1>Printing Department</h1>

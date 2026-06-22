@@ -1,5 +1,4 @@
 import { onMounted, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
-import realInput from "../inputs/day-1.txt?raw";
 
 export const Day1 = {
     name: 'Historian Hysteria',
@@ -8,9 +7,13 @@ export const Day1 = {
         return {
             exampleInput: ("3   4\n4   3\n2   5\n1   3\n3   9\n3   3").split('\n'),
             solution: 0,
-            input: realInput,
+            input: "",
             dialNumbers: 100,
         }
+    },
+    async mounted() {
+        const response = await fetch('https://alevanni.github.io/src/domains/aoc-2024/inputs/day-1.txt');
+        this.input = await response.text();
     },
     template: `<div><h1>Historian Hysteria</h1>
     <div><div class="row" v-for="row in exampleInput">{{row}}</div></div> 

@@ -1,5 +1,4 @@
 import { onMounted, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
-import realInput from "../inputs/day-9.txt?raw";
 
 export const Day9 = {
     name: 'Disk Fragmenter',
@@ -9,9 +8,13 @@ export const Day9 = {
             exampleInput: "2333133121414131402",
             solution: 0,
             message: "",
-            input: realInput,
+            input: "",
             dialNumbers: 100,
         }
+    },
+    async mounted() {
+        const response = await fetch('https://alevanni.github.io/src/domains/aoc-2024/inputs/day-9.txt');
+        this.input = await response.text();
     },
     template: `<div><h1>Disk Fragmenter</h1>
     <div>{{exampleInput}}</div> 
