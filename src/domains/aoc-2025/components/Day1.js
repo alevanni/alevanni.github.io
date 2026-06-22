@@ -12,7 +12,7 @@ export const Day1 = {
         }
     },
     async mounted() {
-        const response = await fetch('../inputs/day-1.txt');
+        const response = await fetch('./../inputs/day-1.txt');
         this.input = await response.text();
     },
     template: `<div><h1>Secret entrance</h1>
