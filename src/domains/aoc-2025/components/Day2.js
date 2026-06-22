@@ -1,5 +1,4 @@
 import { onMounted, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
-import realInput from "../inputs/day-2.txt?raw";
 
 export const Day2 = {
     name: 'Gift Shop',
@@ -8,9 +7,13 @@ export const Day2 = {
         return {
             exampleInput: ("11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124").split(','),
             solution: 0,
-            input: realInput,
+            input: "",
 
         }
+    },
+    async mounted() {
+        const response = await fetch('../inputs/day-2.txt');
+        this.input = await response.text();
     },
     template: `<div><h1>Gift Shop</h1>
      <div><div class="row" v-for="row in exampleInput">{{row}}</div></div> 

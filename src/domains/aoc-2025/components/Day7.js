@@ -1,5 +1,4 @@
 import { onMounted, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
-import realInput from "../inputs/day-7.txt?raw";
 
 export const Day7 = {
     name: 'Laboratories',
@@ -8,9 +7,13 @@ export const Day7 = {
         return {
             exampleInput: (".......S.......\n...............\n.......^.......\n...............\n......^.^......\n...............\n.....^.^.^.....\n...............\n....^.^...^....\n...............\n...^.^...^.^...\n...............\n..^...^.....^..\n...............\n.^.^.^.^.^...^.\n...............").split('\n'),
             solution: 0,
-            input: realInput,
+            input: "",
 
         }
+    },
+    async mounted() {
+        const response = await fetch('../inputs/day-7.txt');
+        this.input = await response.text();
     },
     template: `<div><h1>Laboratories</h1>
      <div><div class="row" v-for="row in exampleInput"><div v-for="place in row" class="centered-char">{{place}}</div></div></div> 
