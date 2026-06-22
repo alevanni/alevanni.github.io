@@ -1,5 +1,5 @@
-import { onMounted, ref } from "vue"
-import realInput from "../inputs/day-3.txt?raw"
+import { onMounted, ref } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
+import realInput from "../inputs/day-3.txt?raw";
 
 export const Day3 = {
     name: 'Lobby',
