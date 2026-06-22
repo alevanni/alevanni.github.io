@@ -1,10 +1,10 @@
 :root {
     --package-height: 300px;
     --package-width: 300px;
-    --package-color: color-mix(in srgb, var(--color-accent-4) 50%, var(--color-bg));
+    --package-color: color-mix(in srgb, var(--color-accent-3) 70%, var(--color-bg));
     --package-color-side: color-mix(in srgb, var(--package-color) 90%, black);
     --package-color-top: color-mix(in srgb, var(--package-color) 90%, white);
-    --ribbon-color: color-mix(in srgb, var(--color-primary) 60%, var(--color-bg));
+    --ribbon-color: color-mix(in srgb, var(--color-accent-2) 70%, var(--color-bg));
     --ribbon-middle: calc(var(--package-height) / 12);
     --ribbon-half: calc((var(--package-width) - var(--ribbon-middle)) / 2);  /* = 230px */
     --ribbon-sides: calc(var(--ribbon-half) - var(--ribbon-middle) * 2);          /* = 190px */

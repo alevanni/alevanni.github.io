@@ -197,7 +197,7 @@ const descriptions = ref({
     "Arcade": "These little games are developed using HTML, CSS, and VueJS.",
     "Data Visualization": "Projects that focus on data visualization techniques using HTML, CSS, and JavaScript library D3. They were developed for the freeCodeCamp curriculum.",
     "Backend": "APIs, microservices, and server-side applications that handle data processing and business logic. Also made for freeCodeCamp curriculum.",
-    "Advent of Code": "Section still under construction..."
+    "Advent of Code": "Open the package to reveal the solutions to some (hopefully one day, all) of the puzzles that I solved during the Advent of Code challenge!"
 });
 const tabProjects = {
     "Frontend": {description: descriptions.value.Frontend, projects:[
@@ -219,8 +219,8 @@ const tabProjects = {
     { name: 'Simon\'s Game', githubLink: '', liveLink: './src/domains/simon-s-game/simon-s-game.html', background: './../src/assets/projectsBackground/simon-s-game.png', year: 2026, tech:['HTML', 'CSS', 'VueJS'], description: 'Test your memory with this classic game from the \'70s!'}
     ]},
     "Advent of Code": {description: descriptions.value['Advent of Code'], projects:[
-    { name: 'Advent of Code 2025', liveLink: './src/domains/aoc-2025/aoc-2025.html' },
-    { name: 'Advent of Code 2024', liveLink: './src/domains/aoc-2024/aoc-2024.html' }
+    { name: 'Advent of Code 2025', liveLink: './src/domains/aoc-2025/aoc-2025.html', background: './../src/assets/projectsBackGround/aoc-2025.png', year: '2025', tech: ['HTML', 'CSS', 'VueJS'], description:'Decorate the North Pole before December 12th!!' },
+    { name: 'Advent of Code 2024', liveLink: './src/domains/aoc-2024/aoc-2024.html', background: './../src/assets/projectsBackGround/aoc-2024.png', year: '2025', tech: ['HTML', 'CSS', 'VueJS'], description: 'Can you find the Chief Historian??' }
     ]},
     "Backend": {description: descriptions.value.Backend, projects:[
     { name: 'Issue Tracker', githubLink: 'https://github.com/alevanni/issue-tracker', liveLink: '', background: './../src/assets/projectsBackground/Issue-tracker.png', year: 2021, tech: ['NodeJS', 'Express', 'MongoDB'],  },
