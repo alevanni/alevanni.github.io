@@ -15,7 +15,7 @@ export const Day1 = {
     template: `<div><h1>Secret entrance</h1>
      <div>{{exampleInput}}</div> 
     <div><button class="btn" @click="part1()">part 1</button> <button class="btn" @click="part2()">part 2</button></div>
-    <div><h2>Solution: {{solution}}</h2>
+    <div><h2 class="solution-h2">Solution: {{solution}}</h2>
         <!---- 
         <div class="dial">
         <span class='dial-item' v-for="item in dialNumbers" :style="{'--i': item}">{{item-1}}</span>
