@@ -8,9 +8,13 @@ export const Day1 = {
         return {
             exampleInput: "L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82",
             solution: 0,
-            input: realInput,
+            input: "",
             dialNumbers: 100,
         }
+    },
+    async mounted() {
+        const response = await fetch('../inputs/day-1.txt');
+        this.input = await response.text();
     },
     template: `<div><h1>Secret entrance</h1>
      <div>{{exampleInput}}</div> 
