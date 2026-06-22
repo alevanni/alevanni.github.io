@@ -1,0 +1,270 @@
+:root {
+    --package-height: 300px;
+    --package-width: 300px;
+    --package-color: color-mix(in srgb, var(--color-accent-3) 70%, var(--color-bg));
+    --package-color-side: color-mix(in srgb, var(--package-color) 90%, black);
+    --package-color-top: color-mix(in srgb, var(--package-color) 90%, white);
+    --ribbon-color: color-mix(in srgb, var(--color-accent-2) 70%, var(--color-bg));
+    --ribbon-middle: calc(var(--package-height) / 12);
+    --ribbon-half: calc((var(--package-width) - var(--ribbon-middle)) / 2);  /* = 230px */
+    --ribbon-sides: calc(var(--ribbon-half) - var(--ribbon-middle) * 2);          /* = 190px */
+    --ribbon-height: 50px;
+    --ribbon-holes-height: calc(var(--ribbon-height) / 3);                   /* = 33.33px */
+    --ribbon-holes-width: calc(var(--ribbon-sides) - var(--ribbon-holes-height) * 2); /* = 123.33px */
+    --lid-height:  calc( var(--package-height) / 4);
+   --total-dial-numbers: 100;       
+   --dial-radius: 150px;  
+  
+}
+:root[data-theme="dark"]{
+ --tag-font: "Reenie Beanie", cursive;
+}
+:root[data-theme="light"]{
+ --tag-font: "Cookie", cursive;
+}
+#main {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  
+}
+
+#packages-container{
+    margin-top: var(--navbar-height);
+    width:50%;
+    display:flex;
+    justify-content: center;
+    
+}
+
+#solution-container{
+    margin-top: var(--navbar-height);
+    width: 50%;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+    /*border: 1px solid var(--color-surface);*/
+}
+
+
+.package {
+  height: var(--package-height);
+  width: var(--package-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: var(--package-shadow);
+}
+.ribbon {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  filter: var(--ribbon-shadow);
+}
+.ribbon-middle {
+  width: var(--ribbon-middle);
+  height: var(--ribbon-middle);
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: var(--ribbon-color);
+}
+
+.ribbon-left {
+  height: var(--ribbon-height);
+  width: var(--ribbon-sides);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:var(--ribbon-color);
+  border: 1px solid black;
+  border-radius: 50px 70px 5px 50px;
+}
+.hole-left {
+  height: var(--ribbon-holes-height);
+  width: var(--ribbon-holes-width);
+  background-color: var(--color-bg);
+  border: 1px solid black;
+  border-radius: 50px 100px 15px 50px;
+  box-shadow: var(--hole-shadow);
+}
+
+.ribbon-right {
+  height: var(--ribbon-height);
+  width: var(--ribbon-sides);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--ribbon-color);
+  border: 1px solid black;
+  border-radius: 70px 50px 50px 5px;
+}
+.hole-right {
+  height: var(--ribbon-holes-height);
+  width: var(--ribbon-holes-width);
+  background-color: var(--color-bg);
+  border: 1px solid black;
+  border-radius: 100px 50px 50px 15px;
+  box-shadow: var(--hole-shadow);
+}
+
+.lid {
+  width: 100%;
+  height: var(--lid-height);
+  background-color: var(--package-color-top);
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid black;
+  box-shadow: var(--package-inset-top);
+}
+
+.lid .ribbon-vertical {
+  width: calc(var(--ribbon-middle) * 2);
+  height: var(--lid-height);
+  background-color: var(--ribbon-color);
+  border: 1px solid black;
+}
+
+.bottom {
+  width: 95%;
+  height: calc( var(--package-height) - var(--ribbon-height) - var(--lid-height));
+  background-color: var(--package-color-side);
+  display: flex;
+  justify-content: center;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  border-radius: 0px 0px 5px 5px;
+  box-shadow: var(--package-inset-side);
+  
+}
+.bottom .ribbon-vertical {
+  width: calc(var(--ribbon-middle) * 2);
+  height: calc( var(--package-height) - var(--ribbon-height) - var(--lid-height));
+  background-color: var(--ribbon-color);
+  border: 1px solid black;
+}
+.bottom button {
+  padding: 5px;
+  width: 100px;
+  height: 100px;
+  border:  double 8px var(--color-accent-2);
+  background: color-mix(in srgb, whitesmoke 80%, transparent);
+  border-radius: 5%;
+  position:absolute;
+  top: 50px;
+  left: calc( var(--package-width) / 2 + var(--ribbon-middle))
+}
+
+button p {
+  font-family: var(--tag-font);
+  font-size: 25px;
+  text-decoration: underline;
+}
+.open{
+  transform: translateY(280px);
+  transition: transform 1.5s ease;
+}
+
+.close{
+  transform: translateY(0px);
+  transition: transform 1.5s ease;
+}
+
+.appear {
+  position: absolute;
+  top: calc(var(--ribbon-height) + var(--lid-height));
+}
+.no-style {
+  list-style: none;
+}
+.title-li {
+  padding: 3px;
+}
+
+.title-button {
+  background-color: transparent;
+  color: var(--color-secondary);
+  border: none;
+}
+
+.star {
+  color: var(--color-accent-2);
+  
+  margin-left: 10px;
+  text-shadow: 0 0 10px var(--color-accent-2);
+}
+
+.dial {
+  position: relative;
+  width: calc(var(--dial-radius) * 2);
+  height: calc(var(--dial-radius) * 2);
+  border-radius: 50%;
+  margin: auto;
+  background-color: var(--color-surface);
+}
+.dial-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin: -30px;
+  font-size: 13px;
+  color: white;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 600;
+  
+--angle: calc(360deg / var(--total-dial-numbers) * var(--i) - 90deg - 360deg / var(--total-dial-numbers));
+  
+  transform: 
+    rotate(var(--angle))           /* Rotate to position */
+    translateX(calc(var(--dial-radius) + 10px))      /* Move away from center */
+     /* Rotate back  calc(-1 * var(--angle)) */
+}
+
+.dial-arrow{
+  height: var(--dial-radius);
+  width: 1px;
+  background-color: var(--color-accent-4);
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  
+}
+.centered-char {
+  display: flex;
+  justify-content: center;
+  width: 13px;;
+}
+
+.list-enter-from,
+.list-leave-to { 
+  opacity: 0; 
+  transform: translateY(-10px);
+}
+
+.list-enter-to,
+.list-leave-from { 
+  opacity: 1; 
+  transform: translateY(0);
+}
+
+.list-enter-active { 
+  transition: opacity 600ms ease, transform 600ms ease;
+  transition-delay: calc(var(--j) * 100ms);
+}
+
+.list-leave-active { 
+   transition: opacity 300ms ease, transform 300ms ease;
+  transition-delay: calc(var(--h) * 80ms);
+}
+
+.btn {
+  margin-bottom: 20px;
+}
