@@ -140,11 +140,21 @@
   border: 1px solid black;
 }
 .bottom button {
+  padding: 5px;
   width: 100px;
-  height: 50px;
+  height: 100px;
+  border:  double 8px var(--color-accent-2);
+  background: color-mix(in srgb, whitesmoke 80%, transparent);
+  border-radius: 5%;
   position:absolute;
-  top: 60px;
+  top: 50px;
   left: calc( var(--package-width) / 2 + var(--ribbon-middle))
+}
+
+button p {
+  font-family: "Reenie Beanie", cursive;
+  font-size: 25px;
+  text-decoration: underline;
 }
 .open{
   transform: translateY(280px);
@@ -175,7 +185,9 @@
 
 .star {
   color: var(--color-accent-2);
+  
   margin-left: 10px;
+  text-shadow: 0 0 10px var(--color-accent-2);
 }
 
 .dial {

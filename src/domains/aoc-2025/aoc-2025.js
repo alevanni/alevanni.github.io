@@ -62,7 +62,7 @@ createApp({
                    <TransitionGroup name="list" tag="ul" class="no-style">
                     <li v-if="open" class="title-li" v-for="(day, index) in days" :key="index" :style="{ '--j': index , '--h': days.length-index - 1}">
                      <button class="title-button" @click="active=day.component">{{day.component.name}}</button>
-                     <i v-for="item in day.parts" class="fa-regular fa-star star"></i>
+                     <i v-for="item in day.parts" class="fa-solid fa-star star"></i>
                     </li>
                    </TransitionGroup>
                     
@@ -70,7 +70,7 @@ createApp({
                    
                    <div class="bottom" :class="[open? 'open': 'close']">
                      <div class="ribbon-vertical"></div>
-                     <button @click="this.toggleOpen()">2025</button>
+                     <button @click="this.toggleOpen()"><p>For: you {{open? 'close': 'open'}} me!</p></button>
                   </div>
           </div>
         </div>
