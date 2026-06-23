@@ -31,10 +31,11 @@
   margin-top: 0px;
   transform: translate(-50%, -50%);
   font-size: 30px;
-  font-weight: 150;
+  font-weight: 30;
   text-align: center;
   width: 33vw; /* constrain to the middle rectangle width */
   pointer-events: none;
+  color: var(--color-surface);
 }
 .magnifier-glass {
   position: absolute;
@@ -44,7 +45,6 @@
   background-color: var(--color-bg);
   
 }
-
 
 #all-projects {
   width: 90%;
