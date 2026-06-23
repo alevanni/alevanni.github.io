@@ -57,7 +57,8 @@ createApp({
 
             // remove old listeners before adding new ones
             this.canvas.removeEventListener("mousemove", this.moveMagnifier);
-
+            this.canvas.removeEventListener("touchmove", this.moveMagnifier);
+            this.canvas.removeEventListener("touchstart", this.moveMagnifier);
             /* Create magnifier glass: */
             this.glass = document.createElement("canvas");
             this.zoomedCanvas = document.createElement("canvas");
@@ -90,6 +91,8 @@ createApp({
             /* Execute a function when someone moves the magnifier glass over the image: */
             this.canvas.addEventListener("mousemove", this.moveMagnifier);
             this.glass.addEventListener("mousemove", this.moveMagnifier);
+            this.canvas.addEventListener("touchmove", this.moveMagnifier, { passive: false });
+            this.canvas.addEventListener("touchstart", this.moveMagnifier, { passive: false });
         },
         drawSierpiski(ctx, width, height, startX, startY, depth, step, maxDepth) {
             if (depth === 0) {
@@ -186,14 +189,16 @@ createApp({
         getCursorPosition(e) {
             var a, x = 0, y = 0;
             e = e || window.event;
-            /* Get the x and y positions of the image: */
             a = this.canvas.getBoundingClientRect();
-            /* Calculate the cursor's x and y coordinates, relative to the image: */
-            x = (e.clientX - a.left) * (this.canvas.width / a.width);
-            y = (e.clientY - a.top) * (this.canvas.height / a.height);
+
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            x = (clientX - a.left) * (this.canvas.width / a.width);
+            y = (clientY - a.top) * (this.canvas.height / a.height);
 
             return { x: x, y: y };
-        }
+        },
     }
 }).mount("#magnified-hero-div");
 
