@@ -101,25 +101,31 @@ createApp({
             const rw = Math.round(width);
             const rh = Math.round(height);
 
-            ctx.globalAlpha = 0.4 + 0.8 * (depth / maxDepth);
+            const alpha = 0.4 + 0.8 * (depth / maxDepth);
 
+            const toRgba = (hex, a) => {
+                const r = parseInt(hex.slice(1, 3), 16);
+                const g = parseInt(hex.slice(3, 5), 16);
+                const b = parseInt(hex.slice(5, 7), 16);
+                return `rgba(${r}, ${g}, ${b}, ${a})`;
+            };
+
+            const levelFromOutside = maxDepth - depth;
+
+            const colorsByLevel = [
+                secondary.value,
+                accent4.value,
+                primary.value,
+                accent4.value,
+                secondary.value,
+            ];
+
+
+
+            ctx.globalAlpha = 1;
             ctx.beginPath();
             ctx.rect(rx, ry, rw, rh);
-            
-            if (step % 2 === 0) {
-                if (step % 4 === 0) {
-                    ctx.fillStyle = primary.value;
-                } else {
-                    ctx.fillStyle = accent4.value;
-                }
-            } else {
-                if (step % 3 === 0) {
-                    ctx.fillStyle = secondary.value;
-                } else {
-                    ctx.fillStyle = accent2.value;
-                }
-            }
-            
+            ctx.fillStyle = toRgba(colorsByLevel[levelFromOutside] ?? primary.value, alpha);
             ctx.fill();
 
             const newWidth = Math.round(width / 3);
