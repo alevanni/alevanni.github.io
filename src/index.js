@@ -21,6 +21,8 @@ createApp({
             zoomedCtx: null,
             w: null,
             h: null,
+            longPressTimer: null,
+            isMagnifierActive: false,
         }
     },
     mounted() {
@@ -57,8 +59,9 @@ createApp({
 
             // remove old listeners before adding new ones
             this.canvas.removeEventListener("mousemove", this.moveMagnifier);
-            this.canvas.removeEventListener("touchmove", this.moveMagnifier);
-            this.canvas.removeEventListener("touchstart", this.moveMagnifier);
+            this.canvas.removeEventListener("touchstart", this.handleTouchStart);
+            this.canvas.removeEventListener("touchmove", this.handleTouchMove);
+            this.canvas.removeEventListener("touchend", this.handleTouchEnd);
             /* Create magnifier glass: */
             this.glass = document.createElement("canvas");
             this.zoomedCanvas = document.createElement("canvas");
@@ -91,8 +94,9 @@ createApp({
             /* Execute a function when someone moves the magnifier glass over the image: */
             this.canvas.addEventListener("mousemove", this.moveMagnifier);
             this.glass.addEventListener("mousemove", this.moveMagnifier);
-            this.canvas.addEventListener("touchmove", this.moveMagnifier, { passive: false });
-            this.canvas.addEventListener("touchstart", this.moveMagnifier, { passive: false });
+            this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: true });
+            this.canvas.addEventListener("touchmove", this.handleTouchMove, { passive: false });
+            this.canvas.addEventListener("touchend", this.handleTouchEnd);
         },
         drawSierpiski(ctx, width, height, startX, startY, depth, step, maxDepth) {
             if (depth === 0) {
@@ -198,6 +202,28 @@ createApp({
             y = (clientY - a.top) * (this.canvas.height / a.height);
 
             return { x: x, y: y };
+        },
+        handleTouchStart(e) {
+            this.isMagnifierActive = false;
+            this.longPressTimer = setTimeout(() => {
+                this.isMagnifierActive = true;
+                this.moveMagnifier(e);
+            }, 500);
+        },
+        handleTouchMove(e) {
+            if (this.isMagnifierActive) {
+                e.preventDefault();
+                this.moveMagnifier(e);
+            } else {
+                clearTimeout(this.longPressTimer);
+                this.longPressTimer = null;
+            }
+        },
+        handleTouchEnd() {
+            clearTimeout(this.longPressTimer);
+            this.longPressTimer = null;
+            this.isMagnifierActive = false;
+            this.glass.style.visibility = "hidden";
         },
     }
 }).mount("#magnified-hero-div");
