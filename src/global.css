@@ -416,11 +416,14 @@ a {
 a:hover {
     color: var(--color-secondary);
 }
-#navigation{
-    width: 100%;
+#navigation {
+    width: 100vw;
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 3;
 }
+
 #navbar {
     display: flex;
     width:100%;
