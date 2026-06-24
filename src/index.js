@@ -27,12 +27,12 @@ createApp({
     },
     mounted() {
         window.addEventListener('theme-changed', () => {
-            console.log('theme changed');
-            accent1.value = getComputedStyle(root).getPropertyValue('--color-accent-4').trim();
-            accent2.value = getComputedStyle(root).getPropertyValue('--color-secondary').trim();
-            accent3.value = getComputedStyle(root).getPropertyValue('--color-primary').trim();
+            accent1.value = getComputedStyle(root).getPropertyValue('--color-accent-1').trim();
+            accent2.value = getComputedStyle(root).getPropertyValue('--color-accent-2').trim();
+            accent3.value = getComputedStyle(root).getPropertyValue('--color-accent-3').trim();
             accent4.value = getComputedStyle(root).getPropertyValue('--color-accent-4').trim();
-            // redraw canvas here
+            primary.value = getComputedStyle(root).getPropertyValue('--color-primary').trim();
+            secondary.value = getComputedStyle(root).getPropertyValue('--color-secondary').trim();
             this.drawCanvas();
         });
         this.drawCanvas();

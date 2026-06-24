@@ -426,38 +426,39 @@ a:hover {
 
 #navbar {
     display: flex;
-    width:100%;
+    width: 100%;
     align-items: center;
     justify-content: space-between;
-    padding-right: 2rem;
+    padding-right: 1rem;
     height: var(--navbar-height);
     letter-spacing: 0.5px;
     background-color: var(--color-bg);
     border-bottom: 2px solid var(--color-surface);
+}
+
+#navbar li a {
+    display: flex;
+    align-items: center;
+    color: var(--color-primary);
+    text-align: center;
+    height: 100%;
+    padding: 12px;
+    text-decoration: none;
+    font-size: clamp(12px, 2.5vw, 20px);
+}
+#navbar li {
+  float: left;
+  border-right: 2px solid var(--color-surface);
+  height: 100%;
+  display: flex;
 }
 nav ul {
   list-style-type: none;
   margin:0%;
   padding:0%;
   overflow: hidden;
-
-}
-
-#navbar li {
-  float: left;
-  border-right: 2px solid var(--color-surface);
+  display: flex;
   height: 100%;
-}
-
-#navbar li a {
-  display:flex;
-  align-items: center;
-  color: var(--color-primary);
-  text-align: center;
-  height:100%;
-  padding: 20px;
-  text-decoration: none;
-  font-size: 20px;
 }
 
 #navbar li a:hover {
@@ -470,4 +471,20 @@ nav ul {
     background-color: var(--color-bg);
     border-top: 2px solid var(--color-surface);
     margin-top: 3rem;
+}
+
+@media (max-width: 480px) {
+    .switch {
+        width: 44px;
+        height: 26px;
+    }
+    .slider:before {
+        height: 18px;
+        width: 18px;
+        left: 4px;
+        bottom: 4px;
+    }
+    input:checked + .slider:before {
+        transform: translateX(18px);
+    }
 }
