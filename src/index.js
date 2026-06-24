@@ -33,6 +33,13 @@ createApp({
             secondary.value = getComputedStyle(root).getPropertyValue('--color-secondary').trim();
             this.drawCanvas();
         });
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                this.drawCanvas();
+            }, 150);
+        });
         this.drawCanvas();
     },
     methods: {
