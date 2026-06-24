@@ -47,7 +47,7 @@
 }
 
 #all-projects {
-  width: 90%;
+  width: 90vw;
   height: auto;
   margin: auto;
   margin-top: 80px;
@@ -59,7 +59,7 @@
   padding: 6px;
   border-radius: 99px;
   background: var(--color-surface);
-  width: fit-content;
+  width: 100%;
   list-style: none;
   margin: 0;
   padding: 6px;
@@ -162,6 +162,11 @@
   justify-content: space-around;
 }
 
+.contact-infos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 #footer p{
   font-size: 14px;
   color: var(--color-primary);
@@ -171,7 +176,6 @@
 
 #footer i {
   margin-right: 6px;
-  margin-left: 16px;
   margin-bottom: 0px;
   color: var(--color-secondary);
   
