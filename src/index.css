@@ -63,10 +63,15 @@
     width: fit-content;
     max-width: 100%;
     list-style: none;
+    border-radius: 99px;
 }
 
 .navigation-tabs::-webkit-scrollbar {
     display: none; /* hides scrollbar on Chrome/Safari */
+}
+
+.navigation-tabs.is-wrapped {
+    border-radius: 16px; /* rectangular when wrapped */
 }
 
 .navigation-tab button {

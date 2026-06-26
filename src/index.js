@@ -288,8 +288,18 @@ createApp({
     },
     mounted() {
         const projectTabs = document.getElementById("projectTabs");
-        console.log(document.documentElement.dataset.theme)
-        console.log(root.dataset.theme);
+        const tabsEl = document.querySelector('.navigation-tabs');
+
+        const checkWrap = () => {
+            const items = [...tabsEl.querySelectorAll('.navigation-tab')];
+            const firstTop = items[0]?.getBoundingClientRect().top;
+            const wrapping = items.some(item => item.getBoundingClientRect().top > firstTop);
+            tabsEl.classList.toggle('is-wrapped', wrapping);
+            
+        };
+
+        window.addEventListener('resize', checkWrap);
+        checkWrap();
     },
     methods: {
         activateTab(tab) {
