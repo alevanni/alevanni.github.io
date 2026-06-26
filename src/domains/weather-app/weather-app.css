@@ -20,6 +20,10 @@
   transition: background-color 3s ease;
 }
 
+#weather h1 {
+  font-size: clamp(1rem, 4vw, 2rem);
+}
+
 .day {
   background-color: var(--color-surface);
   color: var(--color-secondary);
@@ -64,16 +68,19 @@
   
 }
 #weather-container p {
-  font-size: 40px;
+  font-size: clamp(20px, 5vw, 40px);
   margin: 0;
 }
 
 #details ul {
   list-style-type: none;
-  padding: 20px;
-  font-size: 20px;
   text-align: left;
   list-style-position: inside;
+  list-style-type: none;
+  padding: clamp(10px, 3vw, 20px);
+  font-size: clamp(14px, 2.5vw, 20px);
+  text-align: left;
+  
 }
 
 #icon, #temp, #fahr, #apparent-temperature, #details, #weather-description {
