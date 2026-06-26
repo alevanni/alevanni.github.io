@@ -21,6 +21,8 @@ createApp({
             zoomedCtx: null,
             w: null,
             h: null,
+            longPressTimer: null,
+            isMagnifierActive: false,
         }
     },
     mounted() {
@@ -64,7 +66,9 @@ createApp({
 
             // remove old listeners before adding new ones
             this.canvas.removeEventListener("mousemove", this.moveMagnifier);
-
+            this.canvas.removeEventListener("touchstart", this.handleTouchStart);
+            this.canvas.removeEventListener("touchmove", this.handleTouchMove);
+            this.canvas.removeEventListener("touchend", this.handleTouchEnd);
             /* Create magnifier glass: */
             this.glass = document.createElement("canvas");
             this.zoomedCanvas = document.createElement("canvas");
@@ -97,6 +101,9 @@ createApp({
             /* Execute a function when someone moves the magnifier glass over the image: */
             this.canvas.addEventListener("mousemove", this.moveMagnifier);
             this.glass.addEventListener("mousemove", this.moveMagnifier);
+            this.canvas.addEventListener("touchstart", this.handleTouchStart, { passive: true });
+            this.canvas.addEventListener("touchmove", this.handleTouchMove, { passive: false });
+            this.canvas.addEventListener("touchend", this.handleTouchEnd);
         },
         drawSierpiski(ctx, width, height, startX, startY, depth, step, maxDepth) {
             if (depth === 0) {
@@ -193,14 +200,38 @@ createApp({
         getCursorPosition(e) {
             var a, x = 0, y = 0;
             e = e || window.event;
-            /* Get the x and y positions of the image: */
             a = this.canvas.getBoundingClientRect();
-            /* Calculate the cursor's x and y coordinates, relative to the image: */
-            x = (e.clientX - a.left) * (this.canvas.width / a.width);
-            y = (e.clientY - a.top) * (this.canvas.height / a.height);
+
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            x = (clientX - a.left) * (this.canvas.width / a.width);
+            y = (clientY - a.top) * (this.canvas.height / a.height);
 
             return { x: x, y: y };
-        }
+        },
+        handleTouchStart(e) {
+            this.isMagnifierActive = false;
+            this.longPressTimer = setTimeout(() => {
+                this.isMagnifierActive = true;
+                this.moveMagnifier(e);
+            }, 500);
+        },
+        handleTouchMove(e) {
+            if (this.isMagnifierActive) {
+                e.preventDefault();
+                this.moveMagnifier(e);
+            } else {
+                clearTimeout(this.longPressTimer);
+                this.longPressTimer = null;
+            }
+        },
+        handleTouchEnd() {
+            clearTimeout(this.longPressTimer);
+            this.longPressTimer = null;
+            this.isMagnifierActive = false;
+            this.glass.style.visibility = "hidden";
+        },
     }
 }).mount("#magnified-hero-div");
 
@@ -264,8 +295,18 @@ createApp({
     },
     mounted() {
         const projectTabs = document.getElementById("projectTabs");
-        console.log(document.documentElement.dataset.theme)
-        console.log(root.dataset.theme);
+        const tabsEl = document.querySelector('.navigation-tabs');
+
+        const checkWrap = () => {
+            const items = [...tabsEl.querySelectorAll('.navigation-tab')];
+            const firstTop = items[0]?.getBoundingClientRect().top;
+            const wrapping = items.some(item => item.getBoundingClientRect().top > firstTop);
+            tabsEl.classList.toggle('is-wrapped', wrapping);
+            
+        };
+
+        window.addEventListener('resize', checkWrap);
+        checkWrap();
     },
     methods: {
         activateTab(tab) {
