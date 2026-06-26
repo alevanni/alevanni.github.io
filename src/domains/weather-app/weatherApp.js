@@ -10,6 +10,7 @@ createApp({
             weatherCode: null,
             description: null,
             temperature: null,
+            temperatureC: null,
             humidity: null,
             imageSrc: null,
             clouds: null,
@@ -19,6 +20,7 @@ createApp({
             sunset: null,
             rain: null,
             apparentTemperature: null,
+            apparentTemperatureC: null,
             error: null,
             weatherCodes: null,
             unit: 'C',
@@ -65,8 +67,10 @@ createApp({
             this.dayPart = data.current.is_day ? "day" : "night";
             this.description = this.weatherCodes[this.weatherCode][this.dayPart].description;
             this.imageSrc = this.weatherCodes[this.weatherCode][this.dayPart].image;
-            this.temperature = Math.round(data.current.temperature_2m);
-            this.apparentTemperature = Math.round(data.current.apparent_temperature);
+            this.temperatureC = Math.round(data.current.temperature_2m);
+            this.apparentTemperatureC = Math.round(data.current.apparent_temperature);
+            this.temperature = this.temperatureC;
+            this.apparentTemperature = this.apparentTemperatureC;
             this.humidity = data.current.relative_humidity_2m;
             this.wind = data.current.wind_speed_10m;
             this.windDirection = data.current.wind_direction_10m;
@@ -82,19 +86,19 @@ createApp({
             await new Promise(resolve => setTimeout(resolve, 50));
             const container = document.querySelector('#weather-container');
             const observer = new ResizeObserver(() => {
-  container.style.maxHeight = container.scrollHeight + 'px';
-});
-observer.observe(container);
+                container.style.maxHeight = container.scrollHeight + 'px';
+            });
+            observer.observe(container);
 
         },
         toggleUnit() {
             if (this.unit === 'C') {
-                this.temperature = Math.round(this.temperature * 9 / 5 + 32);
-                this.apparentTemperature = Math.round(this.apparentTemperature * 9 / 5 + 32);
+                this.temperature = Math.round(this.temperatureC * 9 / 5 + 32);
+                this.apparentTemperature = Math.round(this.apparentTemperatureC * 9 / 5 + 32);
                 this.unit = 'F';
             } else {
-                this.temperature = Math.round((this.temperature - 32) * 5 / 9);
-                this.apparentTemperature = Math.round((this.apparentTemperature - 32) * 5 / 9);
+                this.temperature = this.temperatureC;
+                this.apparentTemperature = this.apparentTemperatureC;
                 this.unit = 'C';
             }
         },
