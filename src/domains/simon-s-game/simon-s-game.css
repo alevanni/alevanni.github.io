@@ -3,7 +3,8 @@
 :root {
     --game-width: 410px;
     --border-width: 5px;
-    --button-width: 200px;
+    /* Always exactly half the board so the 2×2 grid never wraps */
+    --button-width: calc((var(--game-width) - var(--border-width) * 2) / 2);
     --commands-width: 200px;
 }
 
@@ -12,8 +13,10 @@
     justify-content: center;
     align-items: center;
     background-color: var(--color-background);
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
+    padding: 16px;
+    box-sizing: border-box;
 }
 
 span {
@@ -38,6 +41,10 @@ span {
     height: var(--button-width);
     width: var(--button-width);
     transition: opacity 0.5s ease;
+    /* Improve touch target feel */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
 }
 
 .tl {
@@ -80,6 +87,7 @@ span {
     justify-content: center;
     gap: 5px;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 #score {
@@ -109,6 +117,9 @@ span {
     position: relative;
     color: white;
     background-color: #171515;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
 }
 
 #level {
@@ -201,7 +212,7 @@ span {
     justify-content: center;
     align-items: center;
 }
-.flex-column span{
+.flex-column span {
     color: white;
 }
 .flex-row {
@@ -219,8 +230,8 @@ datalist {
     flex-direction: row;
     justify-content: space-between;
     width: 100px;
-    padding-left:5px;
-    padding-right:5px;
+    padding-left: 5px;
+    padding-right: 5px;
     color: white;
 }
 
@@ -229,6 +240,91 @@ datalist {
 }
 
 #level:disabled {
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+}
+
+/* ── Mobile responsiveness ── */
+@media (max-width: 480px) {
+    :root {
+        /* Scale the board to fit smaller screens with some breathing room */
+        --game-width: min(92vw, 92vh);
+        --border-width: 3px;
+    }
+
+    #main {
+        padding: 8px;
+        /* Allow scrolling if viewport is very short (landscape) */
+        align-items: center;
+    }
+
+    /* Scale the centre control disc proportionally */
+    #commands {
+        width: calc(var(--game-width) * 0.48);
+        height: calc(var(--game-width) * 0.48);
+        padding: 12px;
+        gap: 4px;
+    }
+
+    #score span {
+        font-size: 16px;
+    }
+
+    /* Shrink the datalist tick-marks so they don't overflow on narrow screens */
+    datalist {
+        width: 80px;
+        font-size: 11px;
+    }
+
+    #level {
+        width: 80px;
+    }
+
+    /* Make the toggle switch slightly smaller */
+    #main .switch {
+        width: 48px;
+        height: 28px;
+    }
+
+    #main .slider:before {
+        height: 20px;
+        width: 20px;
+    }
+
+    #main input:checked+.slider:before {
+        transform: translateX(20px);
+    }
+}
+
+/* Extra-small / landscape phones */
+@media (max-width: 360px) {
+    :root {
+        --game-width: min(88vw, 88vh);
+    }
+
+    #commands {
+        padding: 8px;
+        gap: 3px;
+    }
+
+    #score {
+        height: 22px;
+        width: 26px;
+    }
+
+    #score span {
+        font-size: 14px;
+        height: 22px;
+    }
+}
+
+/* Landscape orientation on mobile – board can't be as tall, so constrain by height */
+@media (max-height: 500px) and (orientation: landscape) {
+    :root {
+        --game-width: min(80vh, 80vw);
+    }
+
+    #main {
+        padding: 4px;
+    }
 }

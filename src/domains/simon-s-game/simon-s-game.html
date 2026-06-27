@@ -4,7 +4,11 @@
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- viewport: initial-scale=1, user-scalable=no prevents accidental pinch-zoom during play -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+    <!-- Prevent iOS from adding tap callout / selection on long-press -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <link rel="stylesheet" href="./simon-s-game.css" />
     <link rel="stylesheet" href="./../../global.css" />
     <title>Play Simon's Game</title>
@@ -14,45 +18,62 @@
 
     <div id="navigation"></div>
     <div id="main">
-  <div id="simon">
-    <button id="0" class="tl" @click="addToUserSequence(0)"></button>
-    <button id="1" class="tr" @click="addToUserSequence(1)"></button>
+        <div id="simon">
+            <!--
+                Use @touchstart in addition to @click so the response feels instant on mobile.
+                @touchstart fires before the 300 ms tap-delay browsers add on touch screens.
+                prevent-default stops ghost mouse events from firing twice.
+            -->
+            <button id="0" class="tl"
+                @click="addToUserSequence(0)"
+                @touchstart.prevent="addToUserSequence(0)"></button>
+            <button id="1" class="tr"
+                @click="addToUserSequence(1)"
+                @touchstart.prevent="addToUserSequence(1)"></button>
 
-    <button id="2" class="bl" @click="addToUserSequence(2)"></button>
-    <button id="3" class="br" @click="addToUserSequence(3)"></button>
-    <div id="commands-container">
-      <div id="commands">
-        <div class="flex-row">
-          <div id="score"><span>{{score}}</span></div>
-          <button id="start" @click="start">start</button>
+            <button id="2" class="bl"
+                @click="addToUserSequence(2)"
+                @touchstart.prevent="addToUserSequence(2)"></button>
+            <button id="3" class="br"
+                @click="addToUserSequence(3)"
+                @touchstart.prevent="addToUserSequence(3)"></button>
 
+            <div id="commands-container">
+                <div id="commands">
+                    <div class="flex-row">
+                        <div id="score"><span>{{score}}</span></div>
+                        <button id="start" @click="start">start</button>
+                    </div>
+
+                    <div id="level-slider">
+                        <label>Level</label>
+                        <input min="1" max="4" id="level" type="range"
+                            v-model="level"
+                            @change="updateLevel"
+                            list="levels"
+                            :disabled="started" />
+                        <datalist id="levels">
+                            <option value="1" label="1"></option>
+                            <option value="2" label="2"></option>
+                            <option value="3" label="3"></option>
+                            <option value="4" label="4"></option>
+                        </datalist>
+                    </div>
+
+                    <div class="flex-column">
+                        <span>Strict</span>
+                        <label class="switch">
+                            <input id="strict" type="checkbox" v-model="strict" />
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div id="level-slider"><label>Level</label>
-          <input min="1" max="4" id="level" type="range" v-model="level" @change="updateLevel" list="levels" :disabled="started"></input>
-          <datalist id="levels">
-            <option value="1" label="1"></option>
-            <option value="2" label="2"></option>
-            <option value="3" label="3"></option>
-            <option value="4" label="4"></option>
-
-          </datalist>
-        </div>
-        <div class="flex-column">
-          <span>Strict</span><label class="switch">
-            <input id="strict" type="checkbox" v-model="strict"></input>
-            <span class="slider round"></span>
-          </label>
-        </div>
-
-      </div>
-
+        <dialog :open="won">You won!</dialog>
     </div>
-  </div>
-  <dialog :open="won">You won!</dialog>
-</div>
-       
-    </div>
+
 </body>
-  <script type="module" src="./simonsGame.js"></script>
+<script type="module" src="./simonsGame.js"></script>
 </html>

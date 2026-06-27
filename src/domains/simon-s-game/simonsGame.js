@@ -4,12 +4,12 @@ import {
 } from "https://unpkg.com/vue@3/dist/vue.esm-browser.prod.js";
 import Navbar from "../../components/Navbar.js";
 /*
-The original Milton Bradley/Hasbro Simon offers four distinct skill levels: 
+The original Milton Bradley/Hasbro Simon offers four distinct skill levels:
 Skill 1: Up to 8 lights in a sequence.
 Skill 2: Up to 16 lights in a sequence.
 Skill 3: Up to 24 lights in a sequence.
 Skill 4: Up to 32 lights in a sequence.
-Note: The tempo automatically increases after completing the 5th, 9th, and 13th steps. 
+Note: The tempo automatically increases after completing the 5th, 9th, and 13th steps.
 */
 
 createApp({
@@ -25,7 +25,14 @@ createApp({
             speed: 600,
             started: false,
             resetting: false,
-            sounds: ['https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-1.mp3', 'https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-2.mp3', 'https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-3.mp3', 'https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-4.mp3'],
+            // Guard against the touchstart + click double-fire on some browsers.
+            _lastTouchTime: 0,
+            sounds: [
+                'https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-1.mp3',
+                'https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-2.mp3',
+                'https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-3.mp3',
+                'https://cdn.freecodecamp.org/curriculum/take-home-projects/memory-light-game/sound-4.mp3',
+            ],
         };
     },
     computed: {
@@ -63,7 +70,7 @@ createApp({
             this.flashSimonSequence();
         },
         async blink(id) {
-            if (this.resetting) return; // if i start again in the middle, i stop the flashing
+            if (this.resetting) return;
             let button = document.getElementById(id.toString());
             button.classList.add("active");
             this.playButtonSound(id);
@@ -72,12 +79,12 @@ createApp({
             await new Promise((resolve) => setTimeout(resolve, this.speed));
         },
         async flashSimonSequence() {
-            this.listen = false; // we disable the listening while flashing
+            this.listen = false;
             for (const id of this.simonSequence.split("")) {
                 if (this.resetting) return;
                 await this.blink(id);
             }
-             if (this.resetting) return;
+            if (this.resetting) return;
             this.listenSequence();
         },
         listenSequence() {
@@ -85,12 +92,23 @@ createApp({
         },
         async addToUserSequence(id) {
             if (!this.listen) return;
+
+            /*
+             * Debounce: on mobile, @touchstart.prevent fires the handler and Vue's
+             * .prevent modifier stops the synthetic click — but some browsers still
+             * fire both events. Guard with a 300 ms window so a single physical tap
+             * is never counted twice.
+             */
+            const now = Date.now();
+            if (now - this._lastTouchTime < 300) return;
+            this._lastTouchTime = now;
+
             this.listen = false;
-            // start the blink but don't await it, so i can still press
             const blinkPromise = this.blink(id);
             this.userSequence = this.userSequence + id;
             this.listen = true;
             await blinkPromise;
+
             if (
                 this.simonSequence.slice(0, this.userSequence.length) ===
                 this.userSequence
@@ -103,7 +121,8 @@ createApp({
                     const boundaries = { 8: "2", 16: "3", 24: "4" };
                     if (boundaries[this.simonSequence.length] && this.level !== "4") {
                         this.level = boundaries[this.simonSequence.length];
-                    } // win check — beat the max length of level 4
+                    }
+                    // win check — beat the max length of level 4
                     if (
                         this.simonSequence.length >= this.maxLength &&
                         this.level === "4"
@@ -119,18 +138,14 @@ createApp({
                     setTimeout(() => this.addOneToSimonSequence(), 1000);
                 }
             } else {
-
                 this.listen = false;
                 await this.blinkScore();
-                // do something when you make a mistake,
                 if (this.strict) {
-                    // start again from the first level
                     this.userSequence = "";
                     this.level = "1";
                     this.score = 0;
                     this.start();
                 } else {
-                    // flash the sequence again
                     this.userSequence = "";
                     this.flashSimonSequence();
                 }
@@ -139,18 +154,15 @@ createApp({
         async blinkScore(id) {
             let scoreDisplay = document.getElementById("score");
             let aux = this.score;
-            this.score = "X"
+            this.score = "X";
             await new Promise((resolve) => setTimeout(resolve, this.speed));
             this.score = "";
             await new Promise((resolve) => setTimeout(resolve, this.speed));
-            this.score = "X"
+            this.score = "X";
             await new Promise((resolve) => setTimeout(resolve, this.speed));
             this.score = aux;
-
         },
         updateLevel($event) {
-            // the level updates automatically during the game
-            // or can be set manually before starting
             this.level = $event.target.value;
         }
     },
