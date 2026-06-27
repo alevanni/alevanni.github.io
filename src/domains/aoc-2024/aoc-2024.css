@@ -337,6 +337,7 @@ button p {
         margin-top: 16px;
         padding-top: 0;
         padding-bottom: 40px;
+        padding-left: 16px;
         /* Match the box open/close transition exactly */
         transition: margin-top 1.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
