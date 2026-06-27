@@ -6,265 +6,349 @@
     --package-color-top: color-mix(in srgb, var(--package-color) 90%, white);
     --ribbon-color: color-mix(in srgb, var(--color-accent-2) 70%, var(--color-bg));
     --ribbon-middle: calc(var(--package-height) / 12);
-    --ribbon-half: calc((var(--package-width) - var(--ribbon-middle)) / 2);  /* = 230px */
-    --ribbon-sides: calc(var(--ribbon-half) - var(--ribbon-middle) * 2);          /* = 190px */
+    --ribbon-half: calc((var(--package-width) - var(--ribbon-middle)) / 2);
+    --ribbon-sides: calc(var(--ribbon-half) - var(--ribbon-middle) * 2);
     --ribbon-height: 50px;
-    --ribbon-holes-height: calc(var(--ribbon-height) / 3);                   /* = 33.33px */
-    --ribbon-holes-width: calc(var(--ribbon-sides) - var(--ribbon-holes-height) * 2); /* = 123.33px */
-    --lid-height:  calc( var(--package-height) / 4);
-   --total-dial-numbers: 100;       
-   --dial-radius: 150px;  
-  
+    --ribbon-holes-height: calc(var(--ribbon-height) / 3);
+    --ribbon-holes-width: calc(var(--ribbon-sides) - var(--ribbon-holes-height) * 2);
+    --lid-height: calc(var(--package-height) / 4);
+    --bottom-height: calc(var(--package-height) - var(--ribbon-height) - var(--lid-height));
+    --total-dial-numbers: 100;
+    --dial-radius: 150px;
 }
-:root[data-theme="dark"]{
- --tag-font: "Reenie Beanie", cursive;
+
+:root[data-theme="dark"] {
+    --tag-font: "Reenie Beanie", cursive;
 }
-:root[data-theme="light"]{
- --tag-font: "Cookie", cursive;
+:root[data-theme="light"] {
+    --tag-font: "Cookie", cursive;
 }
+
 #main {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
-#packages-container{
+#packages-container {
     margin-top: var(--navbar-height);
-    width:50%;
-    display:flex;
+    width: 50%;
+    display: flex;
     justify-content: center;
-    
 }
 
-#solution-container{
+#solution-container {
     margin-top: var(--navbar-height);
     width: 50%;
     height: 70vh;
     display: flex;
     justify-content: center;
     padding-top: 30px;
-    /*border: 1px solid var(--color-surface);*/
 }
-
 
 .package {
-  height: var(--package-height);
-  width: var(--package-width);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  filter: var(--package-shadow);
+    width: var(--package-width);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    filter: var(--package-shadow);
 }
+
 .ribbon {
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  filter: var(--ribbon-shadow);
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    filter: var(--ribbon-shadow);
+    margin: 0;
+    padding: 0;
 }
+
 .ribbon-middle {
-  width: var(--ribbon-middle);
-  height: var(--ribbon-middle);
-  border: 1px solid black;
-  border-radius: 5px;
-  background-color: var(--ribbon-color);
+    width: var(--ribbon-middle);
+    height: var(--ribbon-middle);
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: var(--ribbon-color);
 }
 
 .ribbon-left {
-  height: var(--ribbon-height);
-  width: var(--ribbon-sides);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color:var(--ribbon-color);
-  border: 1px solid black;
-  border-radius: 50px 70px 5px 50px;
+    height: var(--ribbon-height);
+    width: var(--ribbon-sides);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--ribbon-color);
+    border: 1px solid black;
+    border-radius: 50px 70px 5px 50px;
 }
+
 .hole-left {
-  height: var(--ribbon-holes-height);
-  width: var(--ribbon-holes-width);
-  background-color: var(--color-bg);
-  border: 1px solid black;
-  border-radius: 50px 100px 15px 50px;
-  box-shadow: var(--hole-shadow);
+    height: var(--ribbon-holes-height);
+    width: var(--ribbon-holes-width);
+    background-color: var(--color-bg);
+    border: 1px solid black;
+    border-radius: 50px 100px 15px 50px;
+    box-shadow: var(--hole-shadow);
 }
 
 .ribbon-right {
-  height: var(--ribbon-height);
-  width: var(--ribbon-sides);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--ribbon-color);
-  border: 1px solid black;
-  border-radius: 70px 50px 50px 5px;
+    height: var(--ribbon-height);
+    width: var(--ribbon-sides);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--ribbon-color);
+    border: 1px solid black;
+    border-radius: 70px 50px 50px 5px;
 }
+
 .hole-right {
-  height: var(--ribbon-holes-height);
-  width: var(--ribbon-holes-width);
-  background-color: var(--color-bg);
-  border: 1px solid black;
-  border-radius: 100px 50px 50px 15px;
-  box-shadow: var(--hole-shadow);
+    height: var(--ribbon-holes-height);
+    width: var(--ribbon-holes-width);
+    background-color: var(--color-bg);
+    border: 1px solid black;
+    border-radius: 100px 50px 50px 15px;
+    box-shadow: var(--hole-shadow);
 }
 
 .lid {
-  width: 100%;
-  height: var(--lid-height);
-  background-color: var(--package-color-top);
-  border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  border: 1px solid black;
-  box-shadow: var(--package-inset-top);
+    width: 100%;
+    box-sizing: border-box;
+    height: var(--lid-height);
+    background-color: var(--package-color-top);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+    box-shadow: var(--package-inset-top);
 }
 
 .lid .ribbon-vertical {
-  width: calc(var(--ribbon-middle) * 2);
-  height: var(--lid-height);
-  background-color: var(--ribbon-color);
-  border: 1px solid black;
+    width: calc(var(--ribbon-middle) * 2);
+    height: var(--lid-height);
+    background-color: var(--ribbon-color);
+    border: 1px solid black;
 }
 
 .bottom {
-  width: 95%;
-  height: calc( var(--package-height) - var(--ribbon-height) - var(--lid-height));
-  background-color: var(--package-color-side);
-  display: flex;
-  justify-content: center;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
-  border-radius: 0px 0px 5px 5px;
-  box-shadow: var(--package-inset-side);
-  
+    width: calc(100% - 8px); /* slightly narrower so it sits inside the lid like a real box */
+    box-sizing: border-box;
+    max-height: var(--bottom-height);
+    background-color: var(--package-color-side);
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-radius: 0px 0px 5px 5px;
+    box-shadow: var(--package-inset-side);
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: start;
+    justify-items: center;
+    overflow: hidden;
+    z-index: 2; /* stay above .appear so button is always clickable */
 }
+
 .bottom .ribbon-vertical {
-  width: calc(var(--ribbon-middle) * 2);
-  height: calc( var(--package-height) - var(--ribbon-height) - var(--lid-height));
-  background-color: var(--ribbon-color);
-  border: 1px solid black;
+    width: calc(var(--ribbon-middle) * 2);
+    height: var(--bottom-height);
+    background-color: var(--ribbon-color);
+    border: 1px solid black;
+    grid-row: 1;
+    grid-column: 1;
 }
+
 .bottom button {
-  padding: 5px;
-  width: 100px;
-  height: 100px;
-  border:  double 8px var(--color-accent-2);
-  background: color-mix(in srgb, whitesmoke 80%, transparent);
-  border-radius: 5%;
-  position:absolute;
-  top: 50px;
-  left: calc( var(--package-width) / 2 + var(--ribbon-middle))
+    grid-row: 1;
+    grid-column: 1;
+    justify-self: end;
+    align-self: center;
+    margin-right: 10px;
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+    border: double 8px var(--color-accent-2);
+    background: color-mix(in srgb, whitesmoke 80%, transparent);
+    border-radius: 5%;
+    cursor: pointer;
 }
 
 button p {
-  font-family: var(--tag-font);
-  font-size: 25px;
-  text-decoration: underline;
-}
-.open{
-  transform: translateY(280px);
-  transition: transform 1.5s ease;
+    font-family: var(--tag-font);
+    font-size: 25px;
+    text-decoration: underline;
 }
 
-.close{
-  transform: translateY(0px);
-  transition: transform 1.5s ease;
+.open {
+    /* List has 8 items × ~30px = ~240px, add extra 40px buffer for last item */
+    transform: translateY(280px);
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.close {
+    transform: translateY(0px);
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Desktop: absolute overlay emerging from the box, centered under the lid */
 .appear {
-  position: absolute;
-  top: calc(var(--ribbon-height) + var(--lid-height));
+    position: absolute;
+    top: calc(var(--ribbon-height) + var(--lid-height));
+    left: 55%;
+    transform: translateX(-50%);
+    width: var(--package-width);
+    pointer-events: none;
+    z-index: 1; /* below .bottom (z-index:2) so button is never blocked */
 }
+
+.appear ul {
+    pointer-events: all;
+}
+
 .no-style {
-  list-style: none;
+    list-style: none;
 }
+
 .title-li {
-  padding: 3px;
+    padding: 3px;
 }
 
 .title-button {
-  background-color: transparent;
-  color: var(--color-secondary);
-  border: none;
+    background-color: transparent;
+    color: var(--color-secondary);
+    border: none;
+    cursor: pointer;
 }
 
 .star {
-  color: var(--color-accent-2);
-  
-  margin-left: 10px;
-  text-shadow: 0 0 10px var(--color-accent-2);
+    color: var(--color-accent-2);
+    margin-left: 10px;
+    text-shadow: 0 0 10px var(--color-accent-2);
 }
 
 .dial {
-  position: relative;
-  width: calc(var(--dial-radius) * 2);
-  height: calc(var(--dial-radius) * 2);
-  border-radius: 50%;
-  margin: auto;
-  background-color: var(--color-surface);
-}
-.dial-item {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 60px;
-  height: 60px;
-  margin: -30px;
-  font-size: 13px;
-  color: white;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-weight: 600;
-  
---angle: calc(360deg / var(--total-dial-numbers) * var(--i) - 90deg - 360deg / var(--total-dial-numbers));
-  
-  transform: 
-    rotate(var(--angle))           /* Rotate to position */
-    translateX(calc(var(--dial-radius) + 10px))      /* Move away from center */
-     /* Rotate back  calc(-1 * var(--angle)) */
+    position: relative;
+    width: calc(var(--dial-radius) * 2);
+    height: calc(var(--dial-radius) * 2);
+    border-radius: 50%;
+    margin: auto;
+    background-color: var(--color-surface);
 }
 
-.dial-arrow{
-  height: var(--dial-radius);
-  width: 1px;
-  background-color: var(--color-accent-4);
-  margin: auto;
+.dial-item {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60px;
+    height: 60px;
+    margin: -30px;
+    font-size: 13px;
+    color: white;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-weight: 600;
+    --angle: calc(360deg / var(--total-dial-numbers) * var(--i) - 90deg - 360deg / var(--total-dial-numbers));
+    transform:
+        rotate(var(--angle))
+        translateX(calc(var(--dial-radius) + 10px));
+}
+
+.dial-arrow {
+    height: var(--dial-radius);
+    width: 1px;
+    background-color: var(--color-accent-4);
+    margin: auto;
 }
 
 .row {
-  display: flex;
-  
+    display: flex;
 }
+
 .centered-char {
-  display: flex;
-  justify-content: center;
-  width: 13px;;
+    display: flex;
+    justify-content: center;
+    width: 13px;
 }
 
 .list-enter-from,
-.list-leave-to { 
-  opacity: 0; 
-  transform: translateY(-10px);
+.list-leave-to {
+    opacity: 0;
+    transform: translateY(-10px);
 }
 
 .list-enter-to,
-.list-leave-from { 
-  opacity: 1; 
-  transform: translateY(0);
+.list-leave-from {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.list-enter-active { 
-  transition: opacity 600ms ease, transform 600ms ease;
-  transition-delay: calc(var(--j) * 100ms);
+.list-enter-active {
+    transition: opacity 600ms ease, transform 600ms ease;
+    transition-delay: calc(var(--j) * 100ms);
 }
 
-.list-leave-active { 
-   transition: opacity 300ms ease, transform 300ms ease;
-  transition-delay: calc(var(--h) * 80ms);
+.list-leave-active {
+    transition: opacity 300ms ease, transform 300ms ease;
+    transition-delay: calc(var(--h) * 80ms);
 }
 
 .btn {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+/* Mobile  */
+@media (max-width: 768px) {
+    :root {
+        --package-height: 200px;
+        --package-width: 200px;
+        --ribbon-height: 35px;
+    }
+
+    #main {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #packages-container {
+        width: 100%;
+        margin-top: calc(var(--navbar-height) + 20px);
+        position: relative;
+        /* Height = ribbon + lid + bottom (the untranslated package) */
+        height: calc(var(--ribbon-height) + var(--lid-height) + var(--bottom-height));
+    }
+
+    /* List sits inside the opened box, just below the lid, centered */
+    .appear {
+        position: absolute;
+        top: calc(var(--ribbon-height) + var(--lid-height) + 8px);
+        left: 55%;
+        transform: translateX(-50%);
+        width: var(--package-width);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    /* Solution container offset is driven by JS via margin-top */
+    #solution-container {
+        width: 100%;
+        height: auto;
+        min-height: 40vh;
+        margin-top: 16px;
+        padding-top: 0;
+        padding-bottom: 40px;
+        padding-left: 16px;
+        /* Match the box open/close transition exactly */
+        transition: margin-top 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .bottom button {
+        width: 70px;
+        height: 70px;
+        margin-right: 8px;
+    }
+
+    .bottom button p {
+        font-size: 16px;
+    }
 }
