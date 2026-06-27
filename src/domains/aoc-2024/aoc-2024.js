@@ -20,47 +20,77 @@ createApp({
         return {
             active: Placeholder,
             open: false,
-            days: [{component: Day1, parts: 2}, {component: Day2, parts: 2}, {component: Day3, parts: 2},  {component: Day4, parts: 2}, {component: Day5, parts: 2}, {component: Day6, parts: 1}, {component: Day7, parts: 2}, {component: Day9, parts: 1}]
+            days: [
+                {component: Day1, parts: 2},
+                {component: Day2, parts: 2},
+                {component: Day3, parts: 2},
+                {component: Day4, parts: 2},
+                {component: Day5, parts: 2},
+                {component: Day6, parts: 1},
+                {component: Day7, parts: 2},
+                {component: Day9, parts: 1}
+            ]
         }
     },
-    mounted() {
-        
-    },
+    mounted() {},
     methods: {
         toggleOpen() {
             this.open = !this.open;
             if (!this.open) this.active = Placeholder;
+
+            // On mobile, `transform` doesn't affect document flow.
+            // We push the solution container down by exactly the translateY
+            // distance, using the same cubic-bezier timing as the CSS .open/.close.
+            if (window.innerWidth <= 768) {
+                const solution = document.getElementById('solution-container');
+                const bottomEl = document.querySelector('.bottom');
+                if (solution && bottomEl) {
+                    if (this.open) {
+                        // Match the 240px translateY from .open, plus base gap
+                        solution.style.marginTop = '296px';
+                    } else {
+                        solution.style.marginTop = '16px';
+                    }
+                }
+            }
         }
     },
-    template: `<div id="packages-container">
-                 <div class="package">
-                    <div class="ribbon">
-                        <div class="ribbon-left">
-                            <div class="hole-left"></div>
-                        </div>
-                        <div class="ribbon-middle"></div>
-                        <div class="ribbon-right">
-                            <div class="hole-right"></div>
-                        </div>
+    template: `
+        <div id="packages-container">
+            <div class="package">
+                <div class="ribbon">
+                    <div class="ribbon-left">
+                        <div class="hole-left"></div>
                     </div>
-                    <div class="lid">
-                        <div class="ribbon-vertical"></div>
+                    <div class="ribbon-middle"></div>
+                    <div class="ribbon-right">
+                        <div class="hole-right"></div>
                     </div>
-                    <div id="stars" class="appear">
-                    
-                   <TransitionGroup name="list" tag="ul" class="no-style">
-                    <li v-if="open" class="title-li" v-for="(day, index) in days" :key="index" :style="{ '--j': index , '--h': days.length-index - 1}">
-                     <button class="title-button" @click="active=day.component">{{day.component.name}}</button>
-                     <i v-for="item in day.parts" class="fa-solid fa-star star"></i>
-                    </li>
-                   </TransitionGroup>
-                    
-                    </div>
-                   <div class="bottom" :class="[open? 'open': 'close']">
-                     <div class="ribbon-vertical"></div>
-                     <button @click="this.toggleOpen()"><p>For: you {{open? 'close': 'open'}} me!</p></button>
-                  </div>
-          </div>
+                </div>
+                <div class="lid">
+                    <div class="ribbon-vertical"></div>
+                </div>
+                <div id="stars" class="appear">
+                    <TransitionGroup name="list" tag="ul" class="no-style">
+                        <li
+                            v-if="open"
+                            class="title-li"
+                            v-for="(day, index) in days"
+                            :key="index"
+                            :style="{ '--j': index, '--h': days.length - index - 1 }"
+                        >
+                            <button class="title-button" @click="active = day.component">{{ day.component.name }}</button>
+                            <i v-for="item in day.parts" class="fa-solid fa-star star"></i>
+                        </li>
+                    </TransitionGroup>
+                </div>
+                <div class="bottom" :class="[open ? 'open' : 'close']">
+                    <div class="ribbon-vertical"></div>
+                    <button @click="toggleOpen()">
+                        <p>For: you {{ open ? 'close' : 'open' }} me!</p>
+                    </button>
+                </div>
+            </div>
         </div>
         <div id="solution-container"><component :is="this.active"></component></div>
     `,
