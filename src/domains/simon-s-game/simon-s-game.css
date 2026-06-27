@@ -77,54 +77,59 @@ span {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: black;
-    width: 200px;
-    height: 200px;
+    /* Disc is always ~48% of the board, scales with --game-width */
+    width: calc(var(--game-width) * 0.48);
+    height: calc(var(--game-width) * 0.48);
     border-radius: 50%;
     border: 5px solid black;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
-    padding: 20px;
+    gap: calc(var(--game-width) * 0.006);
+    padding: calc(var(--game-width) * 0.05);
     box-sizing: border-box;
+    /* Children sized in em will scale automatically */
+    font-size: calc(var(--game-width) * 0.038);
+    overflow: hidden;
 }
 
 #score {
     font-family: Share Tech Mono, monospace;
     position: relative;
     color: red;
-    text-align: right;
     background-color: #171515;
     display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    height: 25px;
-    width: 30px;
+    justify-content: center;
+    align-items: center;
+    height: 1.8em;
+    width: 2.2em;
     border-radius: 3px;
     border: 1px solid grey;
 }
 
 #score span {
-    height: 25px;
-    font-size: 20px;
+    font-size: 1.4em;
+    line-height: 1;
 }
 
 #start {
-    padding: 3px;
+    padding: 0.2em 0.4em;
     border: 1px solid white;
-    border-radius: 3px;
+    border-radius: 0.2em;
     position: relative;
     color: white;
     background-color: #171515;
+    font-size: 1em;
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
     cursor: pointer;
 }
 
 #level {
-    width: 100px;
+    width: 5.5em;
     color: white;
+    font-size: 1em;
 }
 
 .active {
@@ -142,10 +147,12 @@ span {
 #main .switch {
     position: relative;
     display: inline-block;
-    width: 60px;
-    height: 34px;
+    /* font-size inherited from #commands so all em children scale with the board */
+    font-size: inherit;
+    width: 3.5em;
+    height: 2em;
     border: 1px solid white;
-    border-radius: 34px;
+    border-radius: 2em;
 }
 
 /* Hide default HTML checkbox */
@@ -168,14 +175,15 @@ span {
     transition: .4s;
     display: flex;
     align-items: center;
+    font-size: inherit;
 }
 
 #main .slider:before {
     position: absolute;
     content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
+    height: 1.5em;
+    width: 1.5em;
+    left: 0.25em;
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -190,14 +198,14 @@ span {
 }
 
 #main input:checked+.slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
+    -webkit-transform: translateX(1.5em);
+    -ms-transform: translateX(1.5em);
+    transform: translateX(1.5em);
 }
 
 /* Rounded sliders */
 #main .slider.round {
-    border-radius: 34px;
+    border-radius: 2em;
 }
 
 #main .slider.round:before {
@@ -223,20 +231,22 @@ span {
 
 label {
     color: white;
+    font-size: 1em;
 }
 
 datalist {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100px;
-    padding-left: 5px;
-    padding-right: 5px;
+    width: 5.5em;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
     color: white;
+    font-size: 0.8em;
 }
 
 #level {
-    width: 100px;
+    width: 5.5em;
 }
 
 #level:disabled {
@@ -254,67 +264,13 @@ datalist {
 
     #main {
         padding: 8px;
-        /* Allow scrolling if viewport is very short (landscape) */
-        align-items: center;
-    }
-
-    /* Scale the centre control disc proportionally */
-    #commands {
-        width: calc(var(--game-width) * 0.48);
-        height: calc(var(--game-width) * 0.48);
-        padding: 12px;
-        gap: 4px;
-    }
-
-    #score span {
-        font-size: 16px;
-    }
-
-    /* Shrink the datalist tick-marks so they don't overflow on narrow screens */
-    datalist {
-        width: 80px;
-        font-size: 11px;
-    }
-
-    #level {
-        width: 80px;
-    }
-
-    /* Make the toggle switch slightly smaller */
-    #main .switch {
-        width: 48px;
-        height: 28px;
-    }
-
-    #main .slider:before {
-        height: 20px;
-        width: 20px;
-    }
-
-    #main input:checked+.slider:before {
-        transform: translateX(20px);
     }
 }
 
-/* Extra-small / landscape phones */
+/* Extra-small phones */
 @media (max-width: 360px) {
     :root {
         --game-width: min(88vw, 88vh);
-    }
-
-    #commands {
-        padding: 8px;
-        gap: 3px;
-    }
-
-    #score {
-        height: 22px;
-        width: 26px;
-    }
-
-    #score span {
-        font-size: 14px;
-        height: 22px;
     }
 }
 
