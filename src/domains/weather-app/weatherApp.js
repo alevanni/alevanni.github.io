@@ -84,11 +84,6 @@ createApp({
             await new Promise(resolve => setTimeout(resolve, 10));
             this.loaded = true;
             await new Promise(resolve => setTimeout(resolve, 50));
-            const container = document.querySelector('#weather-container');
-            const observer = new ResizeObserver(() => {
-                container.style.maxHeight = container.scrollHeight + 'px';
-            });
-            observer.observe(container);
 
         },
         toggleUnit() {
@@ -117,6 +112,7 @@ createApp({
         <div id="where">
           <h1>{{ city ?? "Loading..." }}</h1>
         </div>
+        <div id="weather-container-wrapper" v-if="description" :class="{ visible: loaded }">
         <div id="weather-container" v-if="description" :class="{ visible: loaded }">
           <div id="description" >
             <p id="weather-description" :class="{ visible: loaded }">{{ description }}</p>
@@ -139,6 +135,7 @@ createApp({
               <li>Sunset: {{ sunset }}</li>
             </ul>
           </div>
+        </div>
         </div>
       </div>
     `,

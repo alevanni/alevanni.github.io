@@ -34,20 +34,27 @@
   color: var(--color-accent-1);
 }
 
+#weather-container-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 1.5s ease;
+  width: 100%;
+}
+
+#weather-container-wrapper.visible {
+  grid-template-rows: 1fr;
+}
+
 #weather-container {
   display: flex;
   width: 100%;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  opacity: 0;
-  max-height: 0;
   overflow: hidden;
-  transition: opacity 3s ease, max-height 0.5s ease;
-}
-
-#weather-container.visible {
-  opacity: 1;
+  min-height: 0;
+  opacity: 0;
+  transition: opacity 3s ease;
 }
 
 #weather-container.visible {
