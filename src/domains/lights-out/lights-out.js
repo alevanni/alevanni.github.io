@@ -149,11 +149,12 @@ createApp({
     updateSize(size) { }
   },
   watch: {
-    size(newSize) {
-      this.reset();
-      this.bestMoves = 0;
-      this.bestTime = 0;
-
-    }
+  size(newSize) {
+    if (newSize > 7) { this.size = 7; return; }
+    if (newSize < 3) { this.size = 3; return; }
+    this.reset();
+    this.bestMoves = 0;
+    this.bestTime = 0;
   }
+}
 }).mount("#main");
