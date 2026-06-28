@@ -18,8 +18,14 @@
     <!-- HUD -->
     <div class="hud">
       <p>Release the red donkey from its cage! The big pink piece must pass through the opening at the bottom of the board.</p>
-      <span class="text-secondary">Moves: {{ moveCount }}</span>
-      <span class="text-secondary">Time: {{ formattedTime }}</span>
+      <div class="hud-stat">
+        <span class="text-secondary">Moves</span>
+        <span class="text-secondary">{{ moveCount }}</span>
+      </div>
+      <div class="hud-stat">
+        <span class="text-secondary">Time</span>
+        <span class="text-secondary">{{ formattedTime }}</span>
+      </div>
       <button class="btn" @click="reset">Reset</button>
     </div>
 
