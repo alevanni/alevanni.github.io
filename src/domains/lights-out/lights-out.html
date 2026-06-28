@@ -31,7 +31,7 @@
         </div>
       </div>
       <div id="size-control"><label class="yellow" for="dimension">Size </label><input id="dimension" class="yellow"
-          type="number" v-model="size" max="7" min="3"></input></div>
+          type="number" v-model.number="size" max="7" min="3"></input></div>
       <dialog id="dialog" :open="this.won">
         <h2>You won! 🎉</h2>
         <p>

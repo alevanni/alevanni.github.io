@@ -149,12 +149,14 @@ createApp({
     updateSize(size) { }
   },
   watch: {
-  size(newSize) {
-    if (newSize > 7) { this.size = 7; return; }
-    if (newSize < 3) { this.size = 3; return; }
-    this.reset();
+  size(newVal) {
+    const n = parseInt(newVal);
+    if (isNaN(n) || newVal === '') return;      // still typing, ignore
+    if (n < 3) { this.size = 3; return; }
+    if (n > 7) { this.size = 7; return; }
     this.bestMoves = 0;
     this.bestTime = 0;
+    this.reset();
   }
 }
 }).mount("#main");
