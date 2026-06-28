@@ -34,6 +34,17 @@
 #hud p {
   border-bottom: 0.5px solid rgba(128, 128, 128, 0.2);
 }
+
+#hud span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#hud .btn {
+  margin-top: auto;
+}
+
 button{
   width: 70px;
   height: 70px;
@@ -130,3 +141,43 @@ dialog[open] {
   height: auto;
 }
 
+
+@media (max-width: 600px) {
+  #game {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.5rem;
+    overflow-y: auto;
+    padding: 1rem;
+    padding-top: calc(var(--navbar-height, 60px) + 1rem);
+  }
+
+  button:not(.btn) {
+    width: clamp(42px, 12vw, 70px);
+    height: clamp(42px, 12vw, 70px);
+  }
+
+  .btn {
+    width: auto;
+    height: auto;
+  }
+
+  #hud {
+    width: 90vw;
+    height: auto;
+  }
+
+  #size-control {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  #size-control input {
+    width: 50px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}

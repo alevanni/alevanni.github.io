@@ -17,10 +17,10 @@
     <div id="game">
       <div id="hud">
         <p>Turn on the lights! But careful, once you click a button, the adjacent buttons will also switch!</p>
-        <span class="magenta">Moves:{{moves}}</span>
-        <span class="aqua">Time:{{formattedTime}}</span>
-        <span class="magenta">Best moves:{{bestMoves}}</span>
-        <span class="aqua">Best time:{{formatTime(bestTime)}}</span>
+        <span class="magenta">Moves: <span class="val">{{moves}}</span></span>
+        <span class="aqua">Time: <span class="val">{{formattedTime}}</span></span>
+        <span class="magenta">Best moves: <span class="val">{{bestMoves}}</span></span>
+        <span class="aqua">Best time: <span class="val">{{formatTime(bestTime)}}</span></span>
         <button class="btn" @click="this.reset()">Reset</button>
       </div>
       <div id='flippable'>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div id="size-control"><label class="yellow" for="dimension">Size </label><input id="dimension" class="yellow"
-          type="number" v-model="size" max="7" min="3"></input></div>
+          type="number" v-model.number="size" max="7" min="3"></input></div>
       <dialog id="dialog" :open="this.won">
         <h2>You won! 🎉</h2>
         <p>
