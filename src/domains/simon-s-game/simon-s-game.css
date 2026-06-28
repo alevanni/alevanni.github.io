@@ -184,6 +184,8 @@ span {
     height: 1.5em;
     width: 1.5em;
     left: 0.25em;
+    top: 50%;
+    transform: translateY(-50%);
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
@@ -198,9 +200,9 @@ span {
 }
 
 #main input:checked+.slider:before {
-    -webkit-transform: translateX(1.5em);
-    -ms-transform: translateX(1.5em);
-    transform: translateX(1.5em);
+    -webkit-transform: translateX(1.5em) translateY(-50%);
+    -ms-transform: translateX(1.5em) translateY(-50%);
+    transform: translateX(1.5em) translateY(-50%);
 }
 
 /* Rounded sliders */
@@ -264,6 +266,16 @@ datalist {
 
     #main {
         padding: 8px;
+    }
+
+    #level-slider {
+        gap: 0;
+        line-height: 1;
+        margin-top: 0.4em;
+    }
+
+    #level {
+        margin: 0;
     }
 }
 
