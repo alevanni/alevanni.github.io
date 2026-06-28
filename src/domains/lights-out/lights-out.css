@@ -34,6 +34,17 @@
 #hud p {
   border-bottom: 0.5px solid rgba(128, 128, 128, 0.2);
 }
+
+#hud span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#hud .btn {
+  margin-top: auto;
+}
+
 button{
   width: 70px;
   height: 70px;
@@ -134,11 +145,12 @@ dialog[open] {
 @media (max-width: 600px) {
   #game {
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 1.5rem;
     overflow-y: auto;
     padding: 1rem;
+    padding-top: calc(var(--navbar-height, 60px) + 1rem);
   }
 
   button:not(.btn) {
